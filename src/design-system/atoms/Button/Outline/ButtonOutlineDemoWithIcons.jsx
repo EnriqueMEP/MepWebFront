@@ -161,19 +161,7 @@ export const ButtonOutlineDemoWithIcons = ({ isDarkMode = false }) => {
         
       </div>
 
-      <div style={{
-        padding: '24px',
-        backgroundColor: isDarkMode ? '#374151' : '#f9fafb',
-        borderRadius: '8px',
-        border: `1px solid ${isDarkMode ? '#4b5563' : '#e5e7eb'}`,
-        fontSize: '14px',
-        lineHeight: '1.6',
-        color: isDarkMode ? '#d1d5db' : '#374151'
-      }}>
-        
-       
-      
-      </div>
+     
     </div>
   );
 };

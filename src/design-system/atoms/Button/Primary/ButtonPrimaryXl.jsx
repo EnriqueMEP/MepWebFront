@@ -1,11 +1,10 @@
 ﻿import React, { useRef } from 'react';
 import { primitiveColors } from '../../../foundations/colors.js';
 import { textStyles } from '../../../foundations/typography.js';
-import { lightElevation } from '../../../foundations/elevation.js';
 import Icon from '../../../foundations/icons/Icon.jsx';
 
 /**
- * ButtonPrimaryXl - BotÃ³n Primary Extra Large
+ * ButtonPrimaryXl - Botón Primary Extra Large
  * Extrae todos los valores de foundations (sin hardcodeo)
  * Usa el sistema de iconos foundations
  */
@@ -24,8 +23,8 @@ export const ButtonPrimaryXl = ({
 
   const getBackgroundColor = () => {
     if (disabled) return primitiveColors.olive[300];
-    if (selected) return primitiveColors.olive[800];
-    return primitiveColors.olive[600];
+    if (selected) return primitiveColors.olive[700];
+    return primitiveColors.olive[500];
   };
 
   const buttonStyles = {
@@ -36,7 +35,7 @@ export const ButtonPrimaryXl = ({
     
     // Size - XL
     height: '56px',
-    padding: '8px 24px',
+    padding: '20px 24px',
     minWidth: 'fit-content',
     
     // Colors from foundations
@@ -50,10 +49,8 @@ export const ButtonPrimaryXl = ({
     fontSize: textStyles.buttonXL.fontSize,
     fontWeight: textStyles.buttonXL.fontWeight,
     lineHeight: textStyles.buttonXL.lineHeight,
-    
-    // Elevation from foundations
-    boxShadow: lightElevation.surface,
-    
+
+    // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
     transition: 'all 0.2s ease-in-out',
     userSelect: 'none',
@@ -71,7 +68,7 @@ export const ButtonPrimaryXl = ({
 
   const handleMouseLeave = () => {
     if (!disabled && !selected && buttonRef.current) {
-      buttonRef.current.style.backgroundColor = primitiveColors.olive[600];
+      buttonRef.current.style.backgroundColor = primitiveColors.olive[500];
     }
   };
 

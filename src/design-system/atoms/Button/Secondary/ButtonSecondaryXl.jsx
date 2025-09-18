@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { primitiveColors } from '../../../foundations/colors.js';
 import { textStyles } from '../../../foundations/typography.js';
-import { lightElevation } from '../../../foundations/elevation.js';
 import Icon from '../../../foundations/icons/Icon.jsx';
 
 /**
@@ -53,9 +52,6 @@ export const ButtonSecondaryXl = ({
     fontWeight: textStyles.buttonXL.fontWeight,
     lineHeight: textStyles.buttonXL.lineHeight,
 
-    // Elevation from foundations
-    boxShadow: lightElevation.surface,
-
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
     transition: 'all 0.2s ease-in-out',
@@ -98,7 +94,7 @@ export const ButtonSecondaryXl = ({
       {leftIcon && (
         <Icon
           name={leftIcon}
-          size={20}
+          size={24}
           color={primitiveColors.neutral[50]}
         />
       )}
@@ -106,7 +102,7 @@ export const ButtonSecondaryXl = ({
       {rightIcon && (
         <Icon
           name={rightIcon}
-          size={20}
+          size={24}
           color={primitiveColors.neutral[50]}
         />
       )}

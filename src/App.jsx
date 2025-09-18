@@ -4,6 +4,7 @@ import FoundationsShowcase from './design-system/foundations-showcase.jsx'
 import ButtonPrimaryDemoWithIcons from './design-system/atoms/Button/Primary/ButtonPrimaryDemoWithIcons.jsx'
 import ButtonSecondaryDemoWithIcons from './design-system/atoms/Button/Secondary/ButtonSecondaryDemoWithIcons.jsx'
 import ButtonOutlineDemoWithIcons from './design-system/atoms/Button/Outline/ButtonOutlineDemoWithIcons.jsx'
+import ButtonGhostDemoWithIcons from './design-system/atoms/Button/Ghost/ButtonGhostDemoWithIcons.jsx'
 
 function App() {
   const [currentView, setCurrentView] = useState('home')
@@ -79,9 +80,13 @@ function App() {
                 <h3 style={{ marginBottom: '16px' }}>Button Secondary</h3>
                 <ButtonSecondaryDemoWithIcons />
               </div>
-              <div className="component-demo">
+              <div className="component-demo" style={{ marginBottom: '24px' }}>
                 <h3 style={{ marginBottom: '16px' }}>Button Outline</h3>
                 <ButtonOutlineDemoWithIcons />
+              </div>
+              <div className="component-demo">
+                <h3 style={{ marginBottom: '16px' }}>Button Ghost</h3>
+                <ButtonGhostDemoWithIcons />
               </div>
             </div>
           </div>

@@ -4,13 +4,13 @@ import { textStyles } from '../../../foundations/typography.js';
 import Icon from '../../../foundations/icons/Icon.jsx';
 
 /**
- * ButtonOutlineXl - Botón Outline Extra Large
- * Extrae todos los valores de foundations (sin hardcodeo)
+ * ButtonGhostLg - Botón Ghost Large
+ * Fondo y borde transparente por defecto
+ * Solo muestra borde inferior cuando está seleccionado
  * Usa el sistema de iconos foundations
- * Colores: Default olive[500], Hover olive[700], Selected olive[500], Disabled olive[300]
- * Fondo transparente con borde
+ * Colores olive: Default olive[500], Hover olive[700], Selected olive[500], Disabled olive[300]
  */
-export const ButtonOutlineXl = ({
+export const ButtonGhostLg = ({
   children = 'Button',
   leftIcon,  // Nombre del icono (string) o null
   rightIcon, // Nombre del icono (string) o null
@@ -24,9 +24,9 @@ export const ButtonOutlineXl = ({
   const buttonRef = useRef(null);
 
   const getColors = () => {
-    if (disabled) return { color: primitiveColors.olive[300], borderColor: primitiveColors.olive[300] };
-    if (selected) return { color: primitiveColors.olive[500], borderColor: primitiveColors.olive[500] };
-    return { color: primitiveColors.olive[500], borderColor: primitiveColors.olive[500] };
+    if (disabled) return { color: primitiveColors.olive[300] };
+    if (selected) return { color: primitiveColors.olive[500] };
+    return { color: primitiveColors.olive[500] };
   };
 
   const colors = getColors();
@@ -38,24 +38,25 @@ export const ButtonOutlineXl = ({
     justifyContent: 'center',
     gap: '12px',
 
-    // Size - XL
-    height: '56px',
-    padding: '20px 24px',
+    // Size - LG
+    height: '48px',
+    padding: '16px 20px',
     minWidth: 'fit-content',
 
-    // Colors from foundations - Outline style
+    // Colors from foundations - Ghost style
     backgroundColor: 'transparent',
     color: colors.color,
-    borderWidth: '2px',
-    borderStyle: 'solid', 
-    borderColor: colors.borderColor,
-    borderRadius: '0', // Rectángulos sin bordes redondeados
+    border: 'none',
+    borderRadius: '0',
+
+    // Borde inferior solo cuando está seleccionado
+    borderBottom: selected ? `2px solid ${colors.color}` : '2px solid transparent',
 
     // Typography from foundations
-    fontFamily: textStyles.buttonXL.fontFamily,
-    fontSize: textStyles.buttonXL.fontSize,
-    fontWeight: textStyles.buttonXL.fontWeight,
-    lineHeight: textStyles.buttonXL.lineHeight,
+    fontFamily: textStyles.buttonLarge.fontFamily,
+    fontSize: textStyles.buttonLarge.fontSize,
+    fontWeight: textStyles.buttonLarge.fontWeight,
+    lineHeight: textStyles.buttonLarge.lineHeight,
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -70,15 +71,13 @@ export const ButtonOutlineXl = ({
 
   const handleMouseEnter = () => {
     if (!disabled && !selected && buttonRef.current) {
-      buttonRef.current.style.color = primitiveColors.olive[700]; // #4a5c2a
-      buttonRef.current.style.borderColor = primitiveColors.olive[700];
+      buttonRef.current.style.color = primitiveColors.olive[700];
     }
   };
 
   const handleMouseLeave = () => {
     if (!disabled && !selected && buttonRef.current) {
-      buttonRef.current.style.color = primitiveColors.olive[500]; // #6b7c3c
-      buttonRef.current.style.borderColor = primitiveColors.olive[500];
+      buttonRef.current.style.color = primitiveColors.olive[500];
     }
   };
 
@@ -89,7 +88,7 @@ export const ButtonOutlineXl = ({
   return (
     <button
       ref={buttonRef}
-      className={`btn-outline-xl ${className}`}
+      className={`btn-ghost-lg ${className}`}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
@@ -101,7 +100,7 @@ export const ButtonOutlineXl = ({
       {leftIcon && (
         <Icon
           name={leftIcon}
-          size={24}
+          size={20}
           color={colors.color}
         />
       )}
@@ -109,7 +108,7 @@ export const ButtonOutlineXl = ({
       {rightIcon && (
         <Icon
           name={rightIcon}
-          size={24}
+          size={20}
           color={colors.color}
         />
       )}
@@ -117,4 +116,4 @@ export const ButtonOutlineXl = ({
   );
 };
 
-export default ButtonOutlineXl;
+export default ButtonGhostLg;

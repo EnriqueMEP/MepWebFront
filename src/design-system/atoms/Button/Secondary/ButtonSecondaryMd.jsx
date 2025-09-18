@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { primitiveColors } from '../../../foundations/colors.js';
 import { textStyles } from '../../../foundations/typography.js';
-import { lightElevation } from '../../../foundations/elevation.js';
 import Icon from '../../../foundations/icons/Icon.jsx';
 
 /**
@@ -34,11 +33,11 @@ export const ButtonSecondaryMd = ({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '8px',
+    gap: '12px',
 
     // Size - MD
-    height: '44px',
-    padding: '12px 20px',
+    height: '40px',
+    padding: '12px 16px',
     minWidth: 'fit-content',
 
     // Colors from foundations
@@ -52,9 +51,6 @@ export const ButtonSecondaryMd = ({
     fontSize: textStyles.buttonMedium.fontSize,
     fontWeight: textStyles.buttonMedium.fontWeight,
     lineHeight: textStyles.buttonMedium.lineHeight,
-
-    // Elevation from foundations
-    boxShadow: lightElevation.surface,
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { primitiveColors } from '../../../foundations/colors.js';
 import { textStyles } from '../../../foundations/typography.js';
-import { lightElevation } from '../../../foundations/elevation.js';
 import Icon from '../../../foundations/icons/Icon.jsx';
 
 /**
@@ -48,7 +47,7 @@ export const ButtonOutlineSm = ({
     // Colors from foundations - Outline style
     backgroundColor: 'transparent',
     color: colors.color,
-    borderWidth: '1px',
+    borderWidth: '2px',
     borderStyle: 'solid', 
     borderColor: colors.borderColor,
     borderRadius: '0', // Rectángulos sin bordes redondeados
@@ -58,9 +57,6 @@ export const ButtonOutlineSm = ({
     fontSize: textStyles.buttonSmall.fontSize,
     fontWeight: textStyles.buttonSmall.fontWeight,
     lineHeight: textStyles.buttonSmall.lineHeight,
-
-    // Elevation from foundations
-    boxShadow: lightElevation.surface,
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',

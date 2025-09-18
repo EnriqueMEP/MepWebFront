@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ButtonSecondarySm from './ButtonSecondarySm.jsx';
-import ButtonSecondaryMd from './ButtonSecondaryMd.jsx';
-import ButtonSecondaryLg from './ButtonSecondaryLg.jsx';
-import ButtonSecondaryXl from './ButtonSecondaryXl.jsx';
+import ButtonGhostSm from './ButtonGhostSm.jsx';
+import ButtonGhostMd from './ButtonGhostmD.jsx';
+import ButtonGhostLg from './ButtonGhostLg.jsx';
+import ButtonGhostXl from './ButtonGhostXl.jsx';
 
-export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
+export const ButtonGhostDemoWithIcons = ({ isDarkMode = false }) => {
   const [selectedButton, setSelectedButton] = useState(null);
 
   return (
@@ -29,7 +29,7 @@ export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
           marginBottom: '24px',
           color: isDarkMode ? '#ffffff' : '#1f2937'
         }}>
-          Demo Interactiva - ButtonSecondary
+          Demo Interactiva - ButtonGhost
         </h2>
         
         <div style={{
@@ -46,27 +46,19 @@ export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
             gap: '8px',
             alignItems: 'center'
           }}>
-            <ButtonSecondarySm
+            <ButtonGhostSm
               selected={selectedButton === 'sm'}
               onClick={() => setSelectedButton(selectedButton === 'sm' ? null : 'sm')}
             >
               Small
-            </ButtonSecondarySm>
+            </ButtonGhostSm>
             <div style={{
               fontSize: '12px',
               fontWeight: '600',
               color: isDarkMode ? '#e5e7eb' : '#374151',
               textAlign: 'center'
             }}>
-              ButtonSecondarySm
-            </div>
-            <div style={{
-              fontSize: '10px',
-              color: isDarkMode ? '#9ca3af' : '#6b7280',
-              textAlign: 'center',
-              maxWidth: '120px'
-            }}>
-              Sin iconos (básico)
+              ButtonGhostSm
             </div>
           </div>
 
@@ -76,28 +68,21 @@ export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
             gap: '8px',
             alignItems: 'center'
           }}>
-            <ButtonSecondaryMd
+            <ButtonGhostMd
               leftIcon="user"
               selected={selectedButton === 'md'}
               onClick={() => setSelectedButton(selectedButton === 'md' ? null : 'md')}
             >
               Medium
-            </ButtonSecondaryMd>
+            </ButtonGhostMd>
             <div style={{
               fontSize: '12px',
               fontWeight: '600',
               color: isDarkMode ? '#e5e7eb' : '#374151',
               textAlign: 'center'
             }}>
-              ButtonSecondaryMd
-            </div>
-            <div style={{
-              fontSize: '10px',
-              color: isDarkMode ? '#9ca3af' : '#6b7280',
-              textAlign: 'center',
-              maxWidth: '120px'
-            }}>
-              Icono izquierda (user)
+              ButtonGhostMd<br/>
+              Icono izquierda
             </div>
           </div>
 
@@ -107,28 +92,21 @@ export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
             gap: '8px',
             alignItems: 'center'
           }}>
-            <ButtonSecondaryLg
+            <ButtonGhostLg
               rightIcon="arrowRight"
               selected={selectedButton === 'lg'}
               onClick={() => setSelectedButton(selectedButton === 'lg' ? null : 'lg')}
             >
               Large
-            </ButtonSecondaryLg>
+            </ButtonGhostLg>
             <div style={{
               fontSize: '12px',
               fontWeight: '600',
               color: isDarkMode ? '#e5e7eb' : '#374151',
               textAlign: 'center'
             }}>
-              ButtonSecondaryLg
-            </div>
-            <div style={{
-              fontSize: '10px',
-              color: isDarkMode ? '#9ca3af' : '#6b7280',
-              textAlign: 'center',
-              maxWidth: '120px'
-            }}>
-              Icono derecha (arrowRight)
+              ButtonGhostLg<br/>
+              Icono derecha
             </div>
           </div>
 
@@ -138,29 +116,22 @@ export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
             gap: '8px',
             alignItems: 'center'
           }}>
-            <ButtonSecondaryXl
+            <ButtonGhostXl
               leftIcon="userLocation"
               rightIcon="userShared"
               selected={selectedButton === 'xl'}
               onClick={() => setSelectedButton(selectedButton === 'xl' ? null : 'xl')}
             >
               Extra Large
-            </ButtonSecondaryXl>
+            </ButtonGhostXl>
             <div style={{
               fontSize: '12px',
               fontWeight: '600',
               color: isDarkMode ? '#e5e7eb' : '#374151',
               textAlign: 'center'
             }}>
-              ButtonSecondaryXl
-            </div>
-            <div style={{
-              fontSize: '10px',
-              color: isDarkMode ? '#9ca3af' : '#6b7280',
-              textAlign: 'center',
-              maxWidth: '120px'
-            }}>
-              Ambos iconos (userLocation + userShared)
+              ButtonGhostXl<br/>
+              Ambos iconos
             </div>
           </div>
 
@@ -170,37 +141,28 @@ export const ButtonSecondaryDemoWithIcons = ({ isDarkMode = false }) => {
             gap: '8px',
             alignItems: 'center'
           }}>
-            <ButtonSecondaryMd
+            <ButtonGhostMd
               disabled={true}
-              leftIcon="user"
             >
               Disabled
-            </ButtonSecondaryMd>
+            </ButtonGhostMd>
             <div style={{
               fontSize: '12px',
               fontWeight: '600',
               color: isDarkMode ? '#e5e7eb' : '#374151',
               textAlign: 'center'
             }}>
-              ButtonSecondaryMd
-            </div>
-            <div style={{
-              fontSize: '10px',
-              color: isDarkMode ? '#9ca3af' : '#6b7280',
-              textAlign: 'center',
-              maxWidth: '120px'
-            }}>
+              ButtonGhostMd<br/>
               Estado Disabled
             </div>
           </div>
+          
         </div>
-
         
-
-       
       </div>
+
     </div>
   );
 };
 
-export default ButtonSecondaryDemoWithIcons;
+export default ButtonGhostDemoWithIcons;

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { primitiveColors } from '../../../foundations/colors.js';
 import { textStyles } from '../../../foundations/typography.js';
-import { lightElevation } from '../../../foundations/elevation.js';
 import Icon from '../../../foundations/icons/Icon.jsx';
 
 /**
@@ -24,8 +23,8 @@ export const ButtonPrimarySm = ({
 
   const getBackgroundColor = () => {
     if (disabled) return primitiveColors.olive[300];
-    if (selected) return primitiveColors.olive[800];
-    return primitiveColors.olive[600];
+    if (selected) return primitiveColors.olive[700];
+    return primitiveColors.olive[500];
   };
 
   const buttonStyles = {
@@ -52,9 +51,6 @@ export const ButtonPrimarySm = ({
     fontWeight: textStyles.buttonSmall.fontWeight,
     lineHeight: textStyles.buttonSmall.lineHeight,
 
-    // Elevation from foundations
-    boxShadow: lightElevation.surface,
-
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
     transition: 'all 0.2s ease-in-out',
@@ -79,7 +75,7 @@ export const ButtonPrimarySm = ({
 
   const handleMouseLeave = () => {
     if (!disabled && !selected && buttonRef.current) {
-      buttonRef.current.style.backgroundColor = primitiveColors.olive[600];
+      buttonRef.current.style.backgroundColor = primitiveColors.olive[500];
     }
   };
 
