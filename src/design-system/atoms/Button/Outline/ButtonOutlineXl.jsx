@@ -157,7 +157,7 @@ export const ButtonOutlineXl = ({
       {leftIcon && (
         <Icon
           name={leftIcon}
-          size={20}
+          size={24}
           color={currentIconColor}
         />
       )}
@@ -165,7 +165,7 @@ export const ButtonOutlineXl = ({
       {rightIcon && (
         <Icon
           name={rightIcon}
-          size={20}
+          size={24}
           color={currentIconColor}
         />
       )}
