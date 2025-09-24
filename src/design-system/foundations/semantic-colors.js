@@ -348,6 +348,42 @@ export const lightTheme = {
     text: primitiveColors.olive[300],       // #92c482
     border: primitiveColors.olive[300],     // #92c482
     opacity: 1 // Outline no usa opacity
+  },
+
+  // ==========================================
+  // 32. BADGE PRIMARY - Badge primario con estados
+  // ==========================================
+  badgePrimary: {
+    backgroundColor: primitiveColors.olive[500], // #3f762f
+    color: primitiveColors.olive[50],            // #f2f8f0
+    borderColor: 'transparent'
+  },
+
+  // ==========================================
+  // 33. BADGE SECONDARY - Badge secundario con estados
+  // ==========================================
+  badgeSecondary: {
+    backgroundColor: primitiveColors.green[500], // #53af32
+    color: primitiveColors.green[50],            // #f1fdf0
+    borderColor: 'transparent'
+  },
+
+  // ==========================================
+  // 34. BADGE WARNING - Badge de advertencia
+  // ==========================================
+  badgeWarning: {
+    backgroundColor: primitiveColors.red[500],   // #e53935
+    color: primitiveColors.red[50],              // #fff5f5
+    borderColor: 'transparent'
+  },
+
+  // ==========================================
+  // 35. BADGE OUTLINE - Badge con borde sin fondo
+  // ==========================================
+  badgeOutline: {
+    backgroundColor: 'transparent',
+    color: primitiveColors.olive[500],           // #3f762f
+    borderColor: primitiveColors.olive[500]      // #3f762f
   }
 };
 
@@ -578,11 +614,11 @@ export const darkTheme = {
   // 28. BUTTON PRIMARY - Botón primario con estados (dark mode)
   // ==========================================
   buttonPrimaryDefault: {
-    background: primitiveColors.olive[200], // #356028 - más brillante en dark
-    text: primitiveColors.olive[700],        // #f2f8f0
+    background: primitiveColors.olive[200], // #bbddb1 - más brillante en dark
+    text: primitiveColors.olive[700],        // #294a20
     border: 'transparent'
   },
-  buttonPrimaryHover: {
+  buttonPrimaryHover: {  
     background: primitiveColors.olive[700], // #294a20
     text: primitiveColors.olive[50],        // #f2f8f0
     border: 'transparent'
@@ -672,6 +708,42 @@ export const darkTheme = {
     text: primitiveColors.olive[600],       // #356028 - más tenue en dark
     border: primitiveColors.olive[600],     // #356028
     opacity: 1 // Outline no usa opacity
+  },
+
+  // ==========================================
+  // 32. BADGE PRIMARY - Badge primario (dark mode)
+  // ==========================================
+  badgePrimary: {
+    backgroundColor: primitiveColors.olive[600], // #356028 - más brillante en dark
+    color: primitiveColors.olive[50],            // #f2f8f0
+    borderColor: 'transparent'
+  },
+
+  // ==========================================
+  // 33. BADGE SECONDARY - Badge secundario (dark mode)
+  // ==========================================
+  badgeSecondary: {
+    backgroundColor: primitiveColors.green[600], // #44962a - más brillante en dark
+    color: primitiveColors.green[50],            // #f1fdf0
+    borderColor: 'transparent'
+  },
+
+  // ==========================================
+  // 34. BADGE WARNING - Badge de advertencia (dark mode)
+  // ==========================================
+  badgeWarning: {
+    backgroundColor: primitiveColors.red[600],   // #d32f2f - más brillante en dark
+    color: primitiveColors.red[50],              // #fff5f5
+    borderColor: 'transparent'
+  },
+
+  // ==========================================
+  // 35. BADGE OUTLINE - Badge con borde (dark mode)
+  // ==========================================
+  badgeOutline: {
+    backgroundColor: 'transparent',
+    color: primitiveColors.olive[400],           // #6ca35c - más brillante en dark
+    borderColor: primitiveColors.olive[400]      // #6ca35c
   }
 };
 
@@ -685,27 +757,37 @@ export const darkTheme = {
 export const componentRoleMapping = {
   // Botones Primary con estados
   buttonPrimary: 'buttonPrimaryDefault',
+  buttonPrimaryDefault: 'buttonPrimaryDefault',
   buttonPrimaryHover: 'buttonPrimaryHover',
   buttonPrimarySelected: 'buttonPrimarySelected',
   buttonPrimaryDisabled: 'buttonPrimaryDisabled',
   
   // Botones Secondary con estados
   buttonSecondary: 'buttonSecondaryDefault',
+  buttonSecondaryDefault: 'buttonSecondaryDefault',
   buttonSecondaryHover: 'buttonSecondaryHover',
   buttonSecondarySelected: 'buttonSecondarySelected',
   buttonSecondaryDisabled: 'buttonSecondaryDisabled',
   
   // Botones Ghost con estados
   buttonGhost: 'buttonGhostDefault',
+  buttonGhostDefault: 'buttonGhostDefault',
   buttonGhostHover: 'buttonGhostHover',
   buttonGhostSelected: 'buttonGhostSelected',
   buttonGhostDisabled: 'buttonGhostDisabled',
   
   // Botones Outline con estados
   buttonOutline: 'buttonOutlineDefault',
+  buttonOutlineDefault: 'buttonOutlineDefault',
   buttonOutlineHover: 'buttonOutlineHover',
   buttonOutlineSelected: 'buttonOutlineSelected',
   buttonOutlineDisabled: 'buttonOutlineDisabled',
+
+  // Badge con variantes
+  badgePrimary: 'badgePrimary',
+  badgeSecondary: 'badgeSecondary',
+  badgeWarning: 'badgeWarning',
+  badgeOutline: 'badgeOutline',
   
   // Estados especiales de botones (legacy)
   buttonPrimaryContainer: 'primaryContainer',

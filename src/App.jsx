@@ -2,10 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import ThemeProvider from './design-system/foundations/ThemeContext.jsx'
 import FoundationsShowcase from './design-system/foundations-showcase.jsx'
-import ButtonPrimaryDemoWithIcons from './design-system/atoms/Button/Primary/ButtonPrimaryDemoWithIcons.jsx'
-import ButtonSecondaryDemoWithIcons from './design-system/atoms/Button/Secondary/ButtonSecondaryDemoWithIcons.jsx'
-import ButtonOutlineDemoWithIcons from './design-system/atoms/Button/Outline/ButtonOutlineDemoWithIcons.jsx'
-import ButtonGhostDemoWithIcons from './design-system/atoms/Button/Ghost/ButtonGhostDemoWithIcons.jsx'
+import ButtonDemoUnified from './design-system/atoms/Button/ButtonDemoUnified.jsx'
+import BadgeDemoWithAllTypes from './design-system/atoms/Badge/BadgeDemoWithAllTypes.jsx'
 
 function App() {
   const [currentView, setCurrentView] = useState('home')
@@ -69,25 +67,22 @@ function App() {
         return (
           <div style={{
             minHeight: 'calc(100vh - 90px)',
-            padding: '48px 24px',
             color: isDarkMode ? '#ffffff' : '#1a1a1a'
           }}>
             <div className="components-section">
-              <div className="component-demo" style={{ marginBottom: '24px' }}>
-                <h3 style={{ marginBottom: '16px' }}>Button Primary</h3>
-                <ButtonPrimaryDemoWithIcons />
+              <div className="component-demo" style={{ marginBottom: '48px' }}>
+                <ButtonDemoUnified />
               </div>
               <div className="component-demo" style={{ marginBottom: '24px' }}>
-                <h3 style={{ marginBottom: '16px' }}>Button Secondary</h3>
-                <ButtonSecondaryDemoWithIcons />
-              </div>
-              <div className="component-demo" style={{ marginBottom: '24px' }}>
-                <h3 style={{ marginBottom: '16px' }}>Button Outline</h3>
-                <ButtonOutlineDemoWithIcons />
-              </div>
-              <div className="component-demo">
-                <h3 style={{ marginBottom: '16px' }}>Button Ghost</h3>
-                <ButtonGhostDemoWithIcons />
+                <h3 style={{ 
+                  marginBottom: '16px', 
+                  padding: '0 24px',
+                  fontSize: '24px',
+                  fontWeight: '600'
+                }}>
+                  🏷️ Badge System
+                </h3>
+                <BadgeDemoWithAllTypes />
               </div>
             </div>
           </div>

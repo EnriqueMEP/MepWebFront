@@ -4,11 +4,11 @@ import { textStyles } from '../../foundations/typography.js';
 import Icon from '../../foundations/icons/Icon.jsx';
 
 /**
- * ButtonPrimary - Botón Primary Unificado
- * Fondo sólido olive con texto neutral[50]
- * Usa useComponentColors para soporte automático de dark/light mode
+ * ButtonGhost - Botón Ghost Unificado
+ * Usa tokens semánticos adaptativos para light/dark mode
  * Tamaños: sm, md, lg, xl
- * Estados: default, hover, selected, disabled
+ * Estados: normal, hover, selected, disabled
+ * Background transparente, sin border
  */
 
 const SIZES = {
@@ -46,48 +46,36 @@ const SIZES = {
   }
 };
 
-export const ButtonPrimary = ({ 
+export const ButtonGhost = ({
   children = 'Button',
   size = 'md',
   leftIcon,  // Nombre del icono (string) o null
   rightIcon, // Nombre del icono (string) o null
-  onClick, 
+  onClick,
   disabled = false,
   selected = false,
   className = '',
   style = {},
-  ...props 
+  ...props
 }) => {
   const buttonRef = useRef(null);
   const sizeConfig = SIZES[size] || SIZES.md;
   const [isHovering, setIsHovering] = useState(false);
 
-  // Obtener colores semánticos para primary button
-  const primaryColors = useComponentColors('buttonPrimaryDefault');
-  const primaryHoverColors = useComponentColors('buttonPrimaryHover');
-  const primarySelectedColors = useComponentColors('buttonPrimarySelected');
-  const primaryDisabledColors = useComponentColors('buttonPrimaryDisabled');
+  // Obtener colores semánticos para ghost button
+  const ghostColors = useComponentColors('buttonGhostDefault');
+  const ghostHoverColors = useComponentColors('buttonGhostHover');
+  const ghostSelectedColors = useComponentColors('buttonGhostSelected'); 
+  const ghostDisabledColors = useComponentColors('buttonGhostDisabled');
 
-  const getStateColors = () => {
-    if (disabled) return {
-      backgroundColor: primaryDisabledColors.background,
-      color: primaryDisabledColors.text
-    };
-    if (selected) return {
-      backgroundColor: primarySelectedColors.background,
-      color: primarySelectedColors.text
-    };
-    if (isHovering && !disabled && !selected) return {
-      backgroundColor: primaryHoverColors.background,
-      color: primaryHoverColors.text
-    };
-    return {
-      backgroundColor: primaryColors.background,
-      color: primaryColors.text
-    };
+  const getColors = () => {
+    if (disabled) return { color: ghostDisabledColors.text };
+    if (selected) return { color: ghostSelectedColors.text };
+    if (isHovering && !disabled && !selected) return { color: ghostHoverColors.text };
+    return { color: ghostColors.text };
   };
 
-  const stateColors = getStateColors();
+  const currentColors = getColors();
 
   const buttonStyles = {
     // Layout foundations
@@ -95,19 +83,22 @@ export const ButtonPrimary = ({
     alignItems: 'center',
     justifyContent: 'center',
     gap: sizeConfig.gap,
-    
+
     // Fixed sizing - no expansion on zoom
     height: sizeConfig.height,
     width: sizeConfig.width,
     padding: sizeConfig.padding,
     flexShrink: 0, // Prevent shrinking on zoom
-    
-    // Colors from semantic-colors with theme support
-    backgroundColor: stateColors.backgroundColor,
-    color: stateColors.color,
+
+    // Colors from semantic-colors - Ghost style
+    backgroundColor: 'transparent',
+    color: currentColors.color,
     border: 'none',
     borderRadius: '0',
-    
+
+    // Borde inferior solo cuando está seleccionado
+    borderBottom: selected ? `2px solid ${currentColors.color}` : '2px solid transparent',
+
     // Dynamic typography from foundations
     fontFamily: sizeConfig.typography.fontFamily,
     fontSize: sizeConfig.typography.fontSize,
@@ -120,7 +111,7 @@ export const ButtonPrimary = ({
     userSelect: 'none',
     outline: 'none',
     opacity: disabled ? 0.6 : 1,
-    
+
     // Custom styles
     ...style
   };
@@ -144,7 +135,7 @@ export const ButtonPrimary = ({
   return (
     <button
       ref={buttonRef}
-      className={`btn-primary-${size} ${className}`}
+      className={`btn-ghost-${size} ${className}`}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
@@ -154,25 +145,23 @@ export const ButtonPrimary = ({
       {...props}
     >
       {leftIcon && (
-        <Icon 
-          name={leftIcon} 
-          size={sizeConfig.iconSize} 
-          color={stateColors.color}
+        <Icon
+          name={leftIcon}
+          size={sizeConfig.iconSize}
+          color={currentColors.color}
         />
       )}
       <span>{children}</span>
       {rightIcon && (
-        <Icon 
-          name={rightIcon} 
-          size={sizeConfig.iconSize} 
-          color={stateColors.color}
+        <Icon
+          name={rightIcon}
+          size={sizeConfig.iconSize}
+          color={currentColors.color}
         />
       )}
     </button>
   );
 };
 
-export default ButtonPrimary;
-
-
+export default ButtonGhost;
 

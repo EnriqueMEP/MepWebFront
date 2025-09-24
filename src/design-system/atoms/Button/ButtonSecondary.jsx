@@ -1,15 +1,53 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useComponentColors } from '../../../foundations/theme-hooks.js';
-import { textStyles } from '../../../foundations/typography.js';
-import Icon from '../../../foundations/icons/Icon.jsx';
+import { useComponentColors } from '../../foundations/theme-hooks.js';
+import { textStyles } from '../../foundations/typography.js';
+import Icon from '../../foundations/icons/Icon.jsx';
 
 /**
- * ButtonSecondaryMd - Botón Secondary Medium con sistema semántico
+ * ButtonSecondary - Botón Secondary Unificado
  * Usa tokens semánticos adaptativos para light/dark mode
- * Soporta estados: normal, hover, selected, disabled
+ * Tamaños: sm, md, lg, xl
+ * Estados: normal, hover, selected, disabled
  */
-export const ButtonSecondaryMd = ({
+
+const SIZES = {
+  sm: {
+    height: '32px',
+    width: 'fit-content', // max-width fijo según Figma
+    padding: '8px 12px',
+    gap: '12px',
+    typography: textStyles.buttonSmall,
+    iconSize: 16
+  },
+  md: {
+    height: '40px',
+    width: 'fit-content', // se ajusta al contenido pero sin expandir
+    padding: '8px 16px',
+    gap: '12px',
+    typography: textStyles.buttonMedium,
+    iconSize: 20
+  },
+  lg: {
+    height: '48px',
+    width: 'fit-content', // se ajusta al contenido pero sin expandir
+    padding: '8px 20px',
+    gap: '12px',
+    typography: textStyles.buttonLarge,
+    iconSize: 24
+  },
+  xl: {
+    height: '56px',
+    width: 'fit-content', // se ajusta al contenido pero sin expandir
+    padding: '8px 24px',
+    gap: '12px',
+    typography: { ...textStyles.buttonXL, fontWeight: 700 }, // XL usa font-weight: 700
+    iconSize: 32
+  }
+};
+
+export const ButtonSecondary = ({
   children = 'Button',
+  size = 'md',
   leftIcon,  // Nombre del icono (string) o null
   rightIcon, // Nombre del icono (string) o null
   onClick,
@@ -20,6 +58,7 @@ export const ButtonSecondaryMd = ({
   ...props
 }) => {
   const buttonRef = useRef(null);
+  const sizeConfig = SIZES[size] || SIZES.md;
 
   // Obtener colores semánticos para secondary button
   const secondaryColors = useComponentColors('buttonSecondary');
@@ -57,12 +96,13 @@ export const ButtonSecondaryMd = ({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '12px',
+    gap: sizeConfig.gap,
 
-    // Size - MD
-    height: '40px',
-    padding: '12px 16px',
-    minWidth: 'fit-content',
+    // Fixed sizing - no expansion on zoom
+    height: sizeConfig.height,
+    width: sizeConfig.width,
+    padding: sizeConfig.padding,
+    flexShrink: 0, // Prevent shrinking on zoom
 
     // Colors from semantic tokens
     backgroundColor: baseColors.background,
@@ -70,11 +110,11 @@ export const ButtonSecondaryMd = ({
     border: 'none',
     borderRadius: '0',
 
-    // Typography from foundations
-    fontFamily: textStyles.buttonMedium.fontFamily,
-    fontSize: textStyles.buttonMedium.fontSize,
-    fontWeight: textStyles.buttonMedium.fontWeight,
-    lineHeight: textStyles.buttonMedium.lineHeight,
+    // Dynamic typography from foundations
+    fontFamily: sizeConfig.typography.fontFamily,
+    fontSize: sizeConfig.typography.fontSize,
+    fontWeight: sizeConfig.typography.fontWeight,
+    lineHeight: sizeConfig.typography.lineHeight,
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -115,7 +155,7 @@ export const ButtonSecondaryMd = ({
   return (
     <button
       ref={buttonRef}
-      className={`btn-secondary-md ${className}`}
+      className={`btn-secondary-${size} ${className}`}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
@@ -127,7 +167,7 @@ export const ButtonSecondaryMd = ({
       {leftIcon && (
         <Icon
           name={leftIcon}
-          size={16}
+          size={sizeConfig.iconSize}
           color={iconColor}
         />
       )}
@@ -135,7 +175,7 @@ export const ButtonSecondaryMd = ({
       {rightIcon && (
         <Icon
           name={rightIcon}
-          size={16}
+          size={sizeConfig.iconSize}
           color={iconColor}
         />
       )}
@@ -143,5 +183,5 @@ export const ButtonSecondaryMd = ({
   );
 };
 
-export default ButtonSecondaryMd;
+export default ButtonSecondary;
 
