@@ -578,8 +578,8 @@ export const darkTheme = {
   // 28. BUTTON PRIMARY - Botón primario con estados (dark mode)
   // ==========================================
   buttonPrimaryDefault: {
-    background: primitiveColors.olive[600], // #356028 - más brillante en dark
-    text: primitiveColors.olive[50],        // #f2f8f0
+    background: primitiveColors.olive[200], // #356028 - más brillante en dark
+    text: primitiveColors.olive[700],        // #f2f8f0
     border: 'transparent'
   },
   buttonPrimaryHover: {
