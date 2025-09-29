@@ -23,17 +23,16 @@
 /**
  * FONT FAMILIES - Familias tipográficas del sistema
  * 
- * Jerarquía tipográfica basada en dos familias principales:
- * - Reckless: Para displays y elementos destacados
- * - Ubuntu: Para headings, títulos, labels y botones
- * - Roboto: Para contenido de texto y body
+ * Sistema unificado basado en Ubuntu como fuente principal:
+ * - Ubuntu: Para todos los elementos (displays, headings, títulos, labels, botones y contenido)
+ * - Se mantiene la semántica pero con una sola familia tipográfica
  */
 export const fontFamilies = {
   /**
-   * Reckless - Tipografía principal para displays
+   * Ubuntu - Tipografía principal para displays
    * Uso: Display Large, Display Medium, Display Small
    */
-  display: 'Reckless, serif',
+  display: 'Ubuntu, sans-serif',
   
   /**
    * Ubuntu - Tipografía para estructura y UI
@@ -42,10 +41,10 @@ export const fontFamilies = {
   heading: 'Ubuntu, sans-serif',
   
   /**
-   * Roboto - Tipografía para contenido
+   * Ubuntu - Tipografía para contenido
    * Uso: Body text, párrafos, contenido extenso
    */
-  body: 'Roboto, sans-serif',
+  body: 'Ubuntu, sans-serif',
 };
 
 /**
@@ -66,7 +65,7 @@ export const fontWeights = {
  * Valores exactos en píxeles extraídos de Figma
  */
 export const fontSizes = {
-  // Display sizes (Reckless)
+  // Display sizes (Ubuntu)
   display: {
     large: '57px',    // Display Large
     medium: '45px',   // Display Medium  
@@ -102,7 +101,7 @@ export const fontSizes = {
     small: '12px',    // Button Small
   },
   
-  // Body sizes (Roboto)
+  // Body sizes (Ubuntu)
   body: {
     large: '16px',    // Body Large
     medium: '14px',   // Body Medium
@@ -168,12 +167,12 @@ export const lineHeights = {
  */
 export const textStyles = {
   // ==========================================
-  // DISPLAY STYLES (Reckless)
+  // DISPLAY STYLES (Ubuntu)
   // ==========================================
   
   /**
    * Display Large - Títulos principales y hero text
-   * Reckless 57/64 Regular
+   * Ubuntu 57/64 Regular
    */
   displayLarge: {
     fontFamily: fontFamilies.display,
@@ -185,7 +184,7 @@ export const textStyles = {
   
   /**
    * Display Medium - Subtítulos importantes
-   * Reckless 45/52 Regular
+   * Ubuntu 45/52 Regular
    */
   displayMedium: {
     fontFamily: fontFamilies.display,
@@ -197,7 +196,7 @@ export const textStyles = {
   
   /**
    * Display Small - Títulos de sección
-   * Reckless 36/44 Regular
+   * Ubuntu 36/44 Regular
    */
   displaySmall: {
     fontFamily: fontFamilies.display,
