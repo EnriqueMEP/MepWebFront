@@ -393,6 +393,14 @@ export const lightTheme = {
     background: primitiveColors.olive[300],      // #92c482
     text: primitiveColors.olive[700],            // #294a20
     border: primitiveColors.olive[600]           // #356028
+  },
+
+  // ==========================================
+  // 37. CONTENT - Contenido general (texto negro sobre fondo blanco)
+  // ==========================================
+  content: {
+    background: primitiveColors.neutral[0],      // #ffffff (fondo blanco)
+    text: primitiveColors.neutral[900],          // #171717 (texto negro)
   }
 };
 
@@ -762,6 +770,14 @@ export const darkTheme = {
     background: primitiveColors.olive[600],      // #356028 - más oscuro en dark
     text: primitiveColors.olive[200],            // #bbddb1 - más claro en dark
     border: primitiveColors.olive[500]           // #3f762f
+  },
+
+  // ==========================================
+  // 37. CONTENT - Contenido general (texto claro sobre fondo oscuro en dark mode)
+  // ==========================================
+  content: {
+    background: primitiveColors.neutral[900],    // #171717 (fondo oscuro)
+    text: primitiveColors.neutral[50],           // #fafafa (texto claro)
   }
 };
 
@@ -837,7 +853,10 @@ export const componentRoleMapping = {
   cardSurface: 'surface',
   modalSurface: 'surface',
   headerSurface: 'primary',
-  sidebarSurface: 'surfaceDim'
+  sidebarSurface: 'surfaceDim',
+  
+  // Contenido general
+  content: 'content'
 };
 
 /**

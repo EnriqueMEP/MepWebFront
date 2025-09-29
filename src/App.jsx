@@ -7,6 +7,7 @@ import BadgeDemoWithAllTypes from './design-system/atoms/Badge/BadgeDemoWithAllT
 import CardDemoUnified from './design-system/atoms/Card/CardDemoUnified.jsx'
 import Header from './design-system/atoms/Header/Header.jsx'
 import Footer from './design-system/atoms/Footer/Footer.jsx'
+import Home from './pages/Home.jsx'
 
 function App() {
   const [currentView, setCurrentView] = useState('home')
@@ -30,6 +31,28 @@ function App() {
 
   const renderContent = () => {
     switch(currentView) {
+      case 'home':
+        return (
+          <>
+            {/* Header integrado */}
+            <Header 
+              activeNavItem={activeNavItem}
+              isLoginSelected={isLoginSelected}
+              onNavClick={handleNavClick}
+              onLoginClick={handleLoginClick}
+              onMenuClick={handleMenuClick}
+            />
+            
+            {/* Componente Home */}
+            <Home />
+            
+            {/* Footer integrado */}
+            <Footer 
+              activeNavItem={activeNavItem}
+              onNavClick={handleNavClick}
+            />
+          </>
+        )
       case 'foundations':
         return (
           <div style={{
@@ -126,111 +149,6 @@ function App() {
                 </h3>
                 <CardDemoUnified />
               </div>
-            </div>
-          </div>
-        )
-      default:
-        // HOME PAGE CON HEADER INTEGRADO
-        return (
-          <div style={{ 
-            minHeight: '100vh',
-            backgroundColor: isDarkMode ? '#111827' : '#f8f9fa',
-            color: isDarkMode ? '#ffffff' : '#1a1a1a',
-            width: '100%',
-            margin: 0,
-            padding: 0,
-            boxSizing: 'border-box'
-          }}>
-            {/* Header MEP - Contenedor de ancho completo */}
-            <div style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              margin: 0,
-              padding: 0
-            }}>
-              <Header 
-                activeNavItem={activeNavItem}
-                isLoginSelected={isLoginSelected}
-                onNavClick={handleNavClick}
-                onLoginClick={handleLoginClick}
-                onMenuClick={handleMenuClick}
-              />
-            </div>
-            
-            {/* Contenido del Home */}
-            <div style={{
-              padding: '48px 64px',
-              textAlign: 'center',
-              maxWidth: '1440px',
-              margin: '0 auto'
-            }}>
-              <h1 style={{ 
-                fontSize: '48px',
-                margin: '0 0 24px 0',
-                fontWeight: '700'
-              }}>
-                Bienvenido a MEP
-              </h1>
-              <p style={{ 
-                fontSize: '20px',
-                opacity: 0.8,
-                margin: '0 0 48px 0',
-                lineHeight: '1.6'
-              }}>
-                Página Home con Header integrado - Sistema de Diseño MEP
-              </p>
-              
-              {/* Botón para ir al visor de componentes */}
-              <div style={{ marginTop: '32px' }}>
-                <button 
-                  onClick={() => setCurrentView('components')}
-                  style={{
-                    padding: '16px 32px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    backgroundColor: '#3F762F',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    marginRight: '16px',
-                    transition: 'all 0.2s ease-in-out'
-                  }}
-                >
-                  Ver Componentes
-                </button>
-                <button 
-                  onClick={() => setCurrentView('foundations')}
-                  style={{
-                    padding: '16px 32px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    backgroundColor: '#92C482',
-                    color: '#3F762F',
-                    border: '2px solid #3F762F',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease-in-out'
-                  }}
-                >
-                  Ver Foundations
-                </button>
-              </div>
-            </div>
-
-            {/* Footer MEP - Contenedor de ancho completo */}
-            <div style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              margin: 0,
-              padding: 0
-            }}>
-              <Footer 
-                activeNavItem={activeNavItem}
-                onNavClick={handleNavClick}
-              />
             </div>
           </div>
         )

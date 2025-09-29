@@ -41,8 +41,8 @@ const Header = ({
     width: '100%',
     minWidth: '100vw', // Se extiende de principio a fin
     height: '80px',
-    paddingLeft: 'max(64px, 4vw)', // Responsive padding
-    paddingRight: 'max(64px, 4vw)',
+    paddingLeft: 'max(80px, 4vw)', // Responsive padding
+    paddingRight: 'max(80px, 4vw)',
     paddingTop: '16px',
     paddingBottom: '16px',
     background: headerColors.background,

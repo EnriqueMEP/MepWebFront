@@ -66,6 +66,7 @@ export const CardVertical = ({
   title = 'Title',
   description = 'Description',
   buttonText = 'Button',
+  buttonSelected = false,
   onButtonClick,
   className = '',
   style = {},
@@ -222,6 +223,7 @@ export const CardVertical = ({
             <ButtonPrimary
               size={sizeConfig.buttonSize}
               rightIcon="arrowRightLong"
+              selected={buttonSelected}
               onClick={onButtonClick}
             >
               {buttonText}
