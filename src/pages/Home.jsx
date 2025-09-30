@@ -460,17 +460,54 @@ const Home = () => {
       }
     }
 
-    /* Projects Shape - Left positioned, opposite to hero shape */
+    /* Projects Shape - Linked to projects section, same behavior as hero shape */
     .projects-shape {
       display: block;
       position: absolute;
-      top: 20%;
+      top: 37%;
       left: -8%;
       width: 40%;
-      height: 80%;
+      height: 90.5%;
       aspect-ratio: auto;
-      z-index: 0;
+      z-index: 1;
       opacity: 1;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-shape {
+        top: 37%;
+        left: -8%;
+        width: 40%;
+        height: 90.5%;
+        aspect-ratio: auto;
+        z-index: 1;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .projects-shape {
+        top: 37%;
+        left: -8%;
+        width: 40%;
+        height: 90.5%;
+        aspect-ratio: auto;
+        z-index: 1;
+      }
+    }
+        height: 90.5%;
+        aspect-ratio: auto;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .projects-shape {
+        top: 30%;
+        left: -8%;
+        width: 40%;
+        height: 90.5%;
+        aspect-ratio: auto;
+        z-index: 1;
+      }
     }
 
     .projects-shape img {
@@ -479,12 +516,14 @@ const Home = () => {
       object-fit: contain;
       filter: opacity(0.85) saturate(1.2);
       transition: all 0.3s ease;
-      transform: scaleX(-1); /* Flip horizontally to mirror the hero shape */
+      /* No transform - keep original orientation */
     }
 
     .projects-title {
       width: 100%;
       text-align: center;
+      position: relative;
+      z-index: 3;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
@@ -497,6 +536,8 @@ const Home = () => {
 
     .projects-grid {
       width: 100%;
+      position: relative;
+      z-index: 3;
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
