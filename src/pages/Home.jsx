@@ -6,18 +6,10 @@ import { textStyles } from '../design-system/foundations/typography.js';
 import { useSemanticTokens } from '../design-system/foundations/theme-hooks.js';
 
 /**
- * Home - Página principal adaptada del test_home.html
+ * Home - Página principal con tamaño fijo para desktop
  * 
- * Usa los componentes del design system:
- * - ButtonPrimary para CTAs
- * - BadgeText para etiquetas
- * - CardVertical para proyectos
- * 
- * Estructura:
- * - Hero Section con badge, título, descripción y botón
- * - Stats Section (MEP en cifras)
- * - Projects Section con cards
- * - Blog Section con artículos
+ * Diseño fijo de 1440px que se centra en pantallas más grandes
+ * y mantiene proporciones consistentes independientemente del viewport
  */
 
 const Home = () => {
@@ -27,7 +19,6 @@ const Home = () => {
   
   // Obtener colores semánticos para el tema actual
   const semanticColors = useSemanticTokens();
-  const surfaceColors = semanticColors.surface;
 
   const projectsData = [
     {
@@ -85,25 +76,32 @@ const Home = () => {
     }
   ];
 
-  // Estilos usando el design system
+  // Estilos con tamaño fijo para consistencia visual
   const homeStyles = {
-    width: '100%',
-    maxWidth: '1440px',
-    margin: '0 auto',
-    paddingLeft: '80px',
-    paddingRight: '80px',
-    paddingTop: '150px',
-    paddingBottom: '150px',
-    position: 'relative',
+    width: '100%', // Todo el ancho del contenedor de 1440px
+    minHeight: 'calc(100vh - 80px)', // Al menos altura de pantalla menos header
+    padding: '80px 64px', // Padding fijo igual al header/footer
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: '80px'
+    gap: '80px',
+    background: 'var(--Semantic-Color-Surfaces-background-default, #FAFAFA)'
+  };
+
+  // Container interno simplificado
+  const contentContainerStyles = {
+    width: '100%', // Usar todo el ancho disponible dentro del padding
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '80px',
+    position: 'relative',
+    boxSizing: 'border-box'
   };
 
   const heroSectionStyles = {
-    width: '100%',
+    width: '100%', // Usar todo el ancho del contenedor
     padding: '40px 0',
     display: 'flex',
     justifyContent: 'space-between', 
@@ -113,6 +111,7 @@ const Home = () => {
 
   const heroContentStyles = {
     width: '512px',
+    minWidth: '400px', // Ancho mínimo para evitar encogimiento
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
@@ -143,7 +142,7 @@ const Home = () => {
   };
 
   const statsSectionStyles = {
-    width: '100%',
+    width: '100%', // Usar todo el ancho del contenedor
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -154,13 +153,13 @@ const Home = () => {
   const sectionTitleStyles = {
     ...textStyles.displayMedium,
     color: semanticColors.content.text, // Token semántico para contenido
-    width: '100%',
+    width: '100%', // Usar todo el ancho disponible
     textAlign: 'center',
     margin: 0
   };
 
   const statsGridStyles = {
-    width: '100%',
+    width: '100%', // Usar todo el ancho disponible
     paddingLeft: '40px',
     paddingRight: '40px',
     display: 'flex',
@@ -199,7 +198,7 @@ const Home = () => {
   };
 
   const projectsSectionStyles = {
-    width: '100%',
+    width: '100%', // Usar todo el ancho del contenedor
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -208,7 +207,7 @@ const Home = () => {
   };
 
   const projectsGridStyles = {
-    width: '100%',
+    width: '100%', // Usar todo el ancho disponible
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -217,7 +216,7 @@ const Home = () => {
   };
 
   const blogSectionStyles = {
-    width: '100%',
+    width: '100%', // Usar todo el ancho del contenedor
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
@@ -265,22 +264,24 @@ const Home = () => {
 
   return (
     <div style={homeStyles}>
-      {/* Imagen decorativa de fondo */}
-      <img 
-        style={{
-          width: '711px',
-          height: '204px',
-          left: '-265px',
-          top: '1121px',
-          position: 'absolute',
-          opacity: '0.40'
-        }}
-        src="https://placehold.co/711x204" 
-        alt="Decorative background"
-      />
+      <div style={contentContainerStyles}>
+        {/* Imagen decorativa de fondo */}
+        <img 
+          style={{
+            width: '711px',
+            height: '204px',
+            left: '-265px',
+            top: '600px',
+            position: 'absolute',
+            opacity: '0.40',
+            zIndex: 0
+          }}
+          src="https://placehold.co/711x204" 
+          alt="Decorative background"
+        />
 
-      {/* Hero Section */}
-      <div style={heroSectionStyles}>
+        {/* Hero Section */}
+        <div style={heroSectionStyles}>
         <div style={heroContentStyles}>
           <div style={heroTextStyles}>
             <BadgeText variant="outline" size="lg">
@@ -405,6 +406,7 @@ const Home = () => {
             </ButtonPrimary>
           </article>
         ))}
+      </div>
       </div>
     </div>
   );

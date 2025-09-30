@@ -34,7 +34,7 @@ function App() {
       case 'home':
         return (
           <>
-            {/* Header integrado */}
+            {/* Header fijo en la parte superior */}
             <Header 
               activeNavItem={activeNavItem}
               isLoginSelected={isLoginSelected}
@@ -43,14 +43,16 @@ function App() {
               onMenuClick={handleMenuClick}
             />
             
-            {/* Componente Home */}
-            <Home />
-            
-            {/* Footer integrado */}
-            <Footer 
-              activeNavItem={activeNavItem}
-              onNavClick={handleNavClick}
-            />
+            {/* Contenido principal con padding-top para el header fijo */}
+            <main style={{ paddingTop: '80px', width: '100%' }}>
+              <Home />
+              
+              {/* Footer al final del contenido */}
+              <Footer 
+                activeNavItem={activeNavItem}
+                onNavClick={handleNavClick}
+              />
+            </main>
           </>
         )
       case 'foundations':

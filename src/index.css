@@ -9,14 +9,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Asegurar que toda la aplicación use Ubuntu por defecto */
-body {
+/* Layout completamente fijo - siempre 1440px centrado con scroll vertical */
+html, body {
   margin: 0;
   padding: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fafafa;
   font-family: 'Ubuntu', sans-serif;
+  overflow-x: hidden; /* Sin scroll horizontal */
+  overflow-y: auto; /* Permitir scroll vertical */
+}
+
+/* Contenedor principal fijo centrado */
+#root {
+  width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Asegurar que todos los elementos usen box-sizing border-box */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 h1 {

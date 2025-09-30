@@ -1,0 +1,455 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    @apply appearance-none bg-transparent border-0 outline-none;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  --badge-badge-badge-lg-height: var(--cactus-tokens-semantic-height-height-08);
+  --badge-badge-badge-outline-border-color: var(
+    --cactus-tokens-semantic-color-primary-primary
+  );
+  --badge-badge-badge-outline-text-color: var(
+    --cactus-tokens-semantic-color-primary-primary
+  );
+  --badge-badge-badge-sm-height: var(--cactus-tokens-semantic-height-height-06);
+  --badge-badge-badge-text-border-color: var(
+    --cactus-tokens-semantic-color-primary-primary
+  );
+  --badge-badge-text-badge-text-border-radius: var(
+    --cactus-tokens-semantic-radius-radius-01
+  );
+  --badge-badge-text-padding-badge-lg-padx: var(
+    --cactus-tokens-semantic-padding-padding-06
+  );
+  --badge-badge-text-padding-badge-lg-pady: var(
+    --cactus-tokens-semantic-padding-padding-02
+  );
+  --badge-badge-text-padding-badge-sm-padx: var(
+    --cactus-tokens-semantic-padding-padding-03
+  );
+  --badge-badge-text-padding-badge-sm-pady: var(
+    --cactus-tokens-semantic-padding-padding-01
+  );
+  --buttons-button-button-border-radius: var(
+    --cactus-tokens-semantic-radius-radius-00
+  );
+  --buttons-button-button-gap: var(--cactus-tokens-semantic-gap-gap-05);
+  --buttons-button-button-md-height: var(
+    --cactus-tokens-semantic-height-height-12
+  );
+  --buttons-button-button-md-padx: var(
+    --cactus-tokens-semantic-padding-padding-06
+  );
+  --buttons-button-button-pady: var(--cactus-tokens-semantic-padding-padding-04);
+  --buttons-button-button-text-color: var(
+    --cactus-tokens-semantic-color-primary-on-primary
+  );
+  --buttons-button-button-xl-height: var(
+    --cactus-tokens-semantic-height-height-16
+  );
+  --buttons-button-button-xl-padx: var(
+    --cactus-tokens-semantic-padding-padding-08
+  );
+  --buttons-button-primary-backgorund-button-primary-default-bg-color: var(
+    --cactus-tokens-semantic-color-primary-primary
+  );
+  --buttons-card-card-border-radius: var(
+    --cactus-tokens-semantic-padding-padding-00
+  );
+  --cactus-body-large-font-family: "Roboto", Helvetica;
+  --cactus-body-large-font-size: 16px;
+  --cactus-body-large-font-style: normal;
+  --cactus-body-large-font-weight: 400;
+  --cactus-body-large-letter-spacing: 0px;
+  --cactus-body-large-line-height: 24px;
+  --cactus-body-medium-font-family: "Roboto", Helvetica;
+  --cactus-body-medium-font-size: 14px;
+  --cactus-body-medium-font-style: normal;
+  --cactus-body-medium-font-weight: 400;
+  --cactus-body-medium-letter-spacing: 0px;
+  --cactus-body-medium-line-height: 20px;
+  --cactus-button-medium-font-family: "Ubuntu", Helvetica;
+  --cactus-button-medium-font-size: 14px;
+  --cactus-button-medium-font-style: normal;
+  --cactus-button-medium-font-weight: 500;
+  --cactus-button-medium-letter-spacing: 0px;
+  --cactus-button-medium-line-height: 20px;
+  --cactus-button-xl-font-family: "Ubuntu", Helvetica;
+  --cactus-button-xl-font-size: 18px;
+  --cactus-button-xl-font-style: normal;
+  --cactus-button-xl-font-weight: 700;
+  --cactus-button-xl-letter-spacing: 0px;
+  --cactus-button-xl-line-height: 28px;
+  --cactus-display-large-font-family: "Ubuntu", Helvetica;
+  --cactus-display-large-font-size: 57px;
+  --cactus-display-large-font-style: normal;
+  --cactus-display-large-font-weight: 400;
+  --cactus-display-large-letter-spacing: 0px;
+  --cactus-display-large-line-height: 64px;
+  --cactus-display-medium-emphasis-font-family: "Ubuntu", Helvetica;
+  --cactus-display-medium-emphasis-font-size: 45px;
+  --cactus-display-medium-emphasis-font-style: normal;
+  --cactus-display-medium-emphasis-font-weight: 700;
+  --cactus-display-medium-emphasis-letter-spacing: 0px;
+  --cactus-display-medium-emphasis-line-height: 52px;
+  --cactus-display-medium-font-family: "Ubuntu", Helvetica;
+  --cactus-display-medium-font-size: 45px;
+  --cactus-display-medium-font-style: normal;
+  --cactus-display-medium-font-weight: 400;
+  --cactus-display-medium-letter-spacing: 0px;
+  --cactus-display-medium-line-height: 52px;
+  --cactus-display-small-font-family: "Ubuntu", Helvetica;
+  --cactus-display-small-font-size: 36px;
+  --cactus-display-small-font-style: normal;
+  --cactus-display-small-font-weight: 400;
+  --cactus-display-small-letter-spacing: 0px;
+  --cactus-display-small-line-height: 44px;
+  --cactus-elevation-light-02: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px
+    0px rgba(0, 0, 0, 0.3);
+  --cactus-heading-medium-emphasis-font-family: "Ubuntu", Helvetica;
+  --cactus-heading-medium-emphasis-font-size: 28px;
+  --cactus-heading-medium-emphasis-font-style: normal;
+  --cactus-heading-medium-emphasis-font-weight: 500;
+  --cactus-heading-medium-emphasis-letter-spacing: 0px;
+  --cactus-heading-medium-emphasis-line-height: 36px;
+  --cactus-heading-small-font-family: "Ubuntu", Helvetica;
+  --cactus-heading-small-font-size: 24px;
+  --cactus-heading-small-font-style: normal;
+  --cactus-heading-small-font-weight: 400;
+  --cactus-heading-small-letter-spacing: 0px;
+  --cactus-heading-small-line-height: 32px;
+  --cactus-label-large-font-family: "Ubuntu", Helvetica;
+  --cactus-label-large-font-size: 14px;
+  --cactus-label-large-font-style: normal;
+  --cactus-label-large-font-weight: 500;
+  --cactus-label-large-letter-spacing: 0px;
+  --cactus-label-large-line-height: 20px;
+  --cactus-label-small-font-family: "Ubuntu", Helvetica;
+  --cactus-label-small-font-size: 10px;
+  --cactus-label-small-font-style: normal;
+  --cactus-label-small-font-weight: 500;
+  --cactus-label-small-letter-spacing: 0px;
+  --cactus-label-small-line-height: 16px;
+  --cactus-title-large-font-family: "Ubuntu", Helvetica;
+  --cactus-title-large-font-size: 22px;
+  --cactus-title-large-font-style: normal;
+  --cactus-title-large-font-weight: 400;
+  --cactus-title-large-letter-spacing: 0px;
+  --cactus-title-large-line-height: 28px;
+  --cactus-title-medium-emphasis-font-family: "Ubuntu", Helvetica;
+  --cactus-title-medium-emphasis-font-size: 16px;
+  --cactus-title-medium-emphasis-font-style: normal;
+  --cactus-title-medium-emphasis-font-weight: 700;
+  --cactus-title-medium-emphasis-letter-spacing: 0px;
+  --cactus-title-medium-emphasis-line-height: 24px;
+  --cactus-tokens-primitive-green-green-200: rgba(184, 236, 174, 1);
+  --cactus-tokens-primitive-green-green-700: rgba(53, 116, 30, 1);
+  --cactus-tokens-primitive-neutral-neutral-50: rgba(250, 250, 250, 1);
+  --cactus-tokens-primitive-neutral-neutral-900: rgba(33, 33, 33, 1);
+  --cactus-tokens-primitive-olive-olive-100: rgba(221, 238, 216, 1);
+  --cactus-tokens-primitive-olive-olive-200: rgba(187, 221, 177, 1);
+  --cactus-tokens-primitive-olive-olive-300: rgba(146, 196, 130, 1);
+  --cactus-tokens-primitive-olive-olive-50: rgba(242, 248, 240, 1);
+  --cactus-tokens-primitive-olive-olive-500: rgba(63, 118, 47, 1);
+  --cactus-tokens-primitive-olive-olive-600: rgba(53, 96, 40, 1);
+  --cactus-tokens-primitive-olive-olive-700: rgba(41, 74, 32, 1);
+  --cactus-tokens-primitive-size-size-0: 0px;
+  --cactus-tokens-primitive-size-size-1: 2px;
+  --cactus-tokens-primitive-size-size-10: 32px;
+  --cactus-tokens-primitive-size-size-12: 40px;
+  --cactus-tokens-primitive-size-size-16: 56px;
+  --cactus-tokens-primitive-size-size-2: 4px;
+  --cactus-tokens-primitive-size-size-21: 80px;
+  --cactus-tokens-primitive-size-size-3: 6px;
+  --cactus-tokens-primitive-size-size-33: 320px;
+  --cactus-tokens-primitive-size-size-4: 8px;
+  --cactus-tokens-primitive-size-size-5: 12px;
+  --cactus-tokens-primitive-size-size-6: 16px;
+  --cactus-tokens-primitive-size-size-8: 24px;
+  --cactus-tokens-semantic-color-on-surface: var(
+    --cactus-tokens-primitive-neutral-neutral-900
+  );
+  --cactus-tokens-semantic-color-primary-on-primary: var(
+    --cactus-tokens-primitive-olive-olive-50
+  );
+  --cactus-tokens-semantic-color-primary-on-primary-container: var(
+    --cactus-tokens-primitive-olive-olive-600
+  );
+  --cactus-tokens-semantic-color-primary-on-primary-fixed-variant: var(
+    --cactus-tokens-primitive-green-green-700
+  );
+  --cactus-tokens-semantic-color-primary-primary: var(
+    --cactus-tokens-primitive-olive-olive-500
+  );
+  --cactus-tokens-semantic-color-primary-primary-container: var(
+    --cactus-tokens-primitive-olive-olive-300
+  );
+  --cactus-tokens-semantic-gap-gap-01: var(
+    --cactus-tokens-primitive-size-size-1
+  );
+  --cactus-tokens-semantic-gap-gap-02: var(
+    --cactus-tokens-primitive-size-size-2
+  );
+  --cactus-tokens-semantic-gap-gap-04: var(
+    --cactus-tokens-primitive-size-size-4
+  );
+  --cactus-tokens-semantic-gap-gap-05: var(
+    --cactus-tokens-primitive-size-size-5
+  );
+  --cactus-tokens-semantic-gap-gap-06: var(
+    --cactus-tokens-primitive-size-size-6
+  );
+  --cactus-tokens-semantic-gap-gap-08: var(
+    --cactus-tokens-primitive-size-size-8
+  );
+  --cactus-tokens-semantic-gap-gap-10: var(
+    --cactus-tokens-primitive-size-size-10
+  );
+  --cactus-tokens-semantic-gap-gap-12: var(
+    --cactus-tokens-primitive-size-size-12
+  );
+  --cactus-tokens-semantic-height-height-06: var(
+    --cactus-tokens-primitive-size-size-6
+  );
+  --cactus-tokens-semantic-height-height-08: var(
+    --cactus-tokens-primitive-size-size-8
+  );
+  --cactus-tokens-semantic-height-height-12: var(
+    --cactus-tokens-primitive-size-size-12
+  );
+  --cactus-tokens-semantic-height-height-16: var(
+    --cactus-tokens-primitive-size-size-16
+  );
+  --cactus-tokens-semantic-height-height-33: var(
+    --cactus-tokens-primitive-size-size-33
+  );
+  --cactus-tokens-semantic-padding-padding-00: var(
+    --cactus-tokens-primitive-size-size-0
+  );
+  --cactus-tokens-semantic-padding-padding-01: var(
+    --cactus-tokens-primitive-size-size-1
+  );
+  --cactus-tokens-semantic-padding-padding-02: var(
+    --cactus-tokens-primitive-size-size-2
+  );
+  --cactus-tokens-semantic-padding-padding-03: var(
+    --cactus-tokens-primitive-size-size-3
+  );
+  --cactus-tokens-semantic-padding-padding-04: var(
+    --cactus-tokens-primitive-size-size-4
+  );
+  --cactus-tokens-semantic-padding-padding-06: var(
+    --cactus-tokens-primitive-size-size-6
+  );
+  --cactus-tokens-semantic-padding-padding-08: var(
+    --cactus-tokens-primitive-size-size-8
+  );
+  --cactus-tokens-semantic-padding-padding-20: var(
+    --cactus-tokens-primitive-size-size-21
+  );
+  --cactus-tokens-semantic-radius-radius-00: var(
+    --cactus-tokens-primitive-size-size-0
+  );
+  --cactus-tokens-semantic-radius-radius-01: var(
+    --cactus-tokens-primitive-size-size-1
+  );
+  --cactus-tokens-semantic-radius-radius-04: var(
+    --cactus-tokens-primitive-size-size-4
+  );
+  --card-card-card-bg-color: var(
+    --cactus-tokens-semantic-color-primary-primary-container
+  );
+  --card-card-card-border-color: var(
+    --cactus-tokens-semantic-color-primary-on-primary-fixed-variant
+  );
+  --card-card-card-text-color: var(
+    --cactus-tokens-semantic-color-primary-on-primary-container
+  );
+  --card-card-vertical-height-card-height-vertical-xl: var(
+    --cactus-tokens-semantic-height-height-33
+  );
+  --card-card-vertical-padding-card-vertical-xl-padx: var(
+    --cactus-tokens-semantic-padding-padding-08
+  );
+  --card-card-vertical-padding-card-vertical-xl-pady: var(
+    --cactus-tokens-semantic-padding-padding-08
+  );
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-cactus-tokens-mode="light">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-cactus-tokens-mode="light"] {
+  --cactus-tokens-semantic-color-on-surface: var(
+    --cactus-tokens-primitive-neutral-neutral-900
+  );
+  --cactus-tokens-semantic-color-primary-on-primary: var(
+    --cactus-tokens-primitive-olive-olive-50
+  );
+  --cactus-tokens-semantic-color-primary-on-primary-container: var(
+    --cactus-tokens-primitive-olive-olive-600
+  );
+  --cactus-tokens-semantic-color-primary-on-primary-fixed-variant: var(
+    --cactus-tokens-primitive-green-green-700
+  );
+  --cactus-tokens-semantic-color-primary-primary: var(
+    --cactus-tokens-primitive-olive-olive-500
+  );
+  --cactus-tokens-semantic-color-primary-primary-container: var(
+    --cactus-tokens-primitive-olive-olive-300
+  );
+}
+
+[data-cactus-tokens-mode="dark"] {
+  --cactus-tokens-semantic-color-on-surface: var(
+    --cactus-tokens-primitive-neutral-neutral-50
+  );
+  --cactus-tokens-semantic-color-primary-on-primary: var(
+    --cactus-tokens-primitive-olive-olive-700
+  );
+  --cactus-tokens-semantic-color-primary-on-primary-container: var(
+    --cactus-tokens-primitive-olive-olive-100
+  );
+  --cactus-tokens-semantic-color-primary-on-primary-fixed-variant: var(
+    --cactus-tokens-primitive-green-green-200
+  );
+  --cactus-tokens-semantic-color-primary-primary: var(
+    --cactus-tokens-primitive-olive-olive-200
+  );
+  --cactus-tokens-semantic-color-primary-primary-container: var(
+    --cactus-tokens-primitive-olive-olive-600
+  );
+}
+
+:root {
+  --animate-spin: spin 1s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s var(--animation-delay, 0s) ease forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 1s var(--animation-delay, 0s) ease forwards;
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) infinite linear;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 8s infinite;
+}
+
+.animate-spin {
+  animation: var(--animate-spin);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes image-glow {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.74, 0.25, 0.76, 1);
+  }
+
+  10% {
+    opacity: 0.7;
+    animation-timing-function: cubic-bezier(0.12, 0.01, 0.08, 0.99);
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  90%,
+  to {
+    background-position: calc(-100% - var(--shimmer-width)) 0;
+  }
+
+  30%,
+  60% {
+    background-position: calc(100% + var(--shimmer-width)) 0;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}

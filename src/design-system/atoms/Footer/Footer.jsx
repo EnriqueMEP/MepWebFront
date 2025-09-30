@@ -31,25 +31,21 @@ const Footer = ({
     { id: 'contact', label: 'Contacto' }
   ];
 
-  // Estilos del contenedor principal
+  // Estilos del contenedor principal - al final del contenido
   const footerStyles = {
-    width: '100%',
-    minWidth: '100vw', // Se extiende de principio a fin
-    height: '314px',
-    paddingLeft: 'max(64px, 4vw)', // Responsive padding
-    paddingRight: 'max(64px, 4vw)',
+    width: '100%', // Todo el ancho del contenedor padre
+    height: '314px', // Altura fija
+    paddingLeft: '64px', // Padding fijo
+    paddingRight: '64px',
     paddingTop: '40px',
     paddingBottom: '40px',
     background: footerColors.background,
+    display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    display: 'flex',
-    position: 'relative',
+    position: 'relative', // Posición normal al final del contenido
     boxSizing: 'border-box',
-    // Mantiene la forma en todos los zoom levels
-    '@media (min-resolution: 1dppx)': {
-      transform: 'scale(1)',
-    }
+    flexShrink: 0 // No se encoge nunca
   };
 
   // Estilos del área del logo
