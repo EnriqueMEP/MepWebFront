@@ -30,7 +30,7 @@ const Header = ({
   const headerColors = useComponentColors('header');
 
   const navigationItems = [
-    { id: 'about', label: 'Sobre MEP Engineering' },
+    { id: 'about', label: 'Sobre MEP Engineering'},
     { id: 'projects', label: 'Lineas de negocio' },
     { id: 'contact', label: 'Contacto' }
   ];

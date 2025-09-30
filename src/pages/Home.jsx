@@ -6,7 +6,9 @@ import { textStyles } from '../design-system/foundations/typography.js';
 import { useSemanticTokens } from '../design-system/foundations/theme-hooks.js';
 
 /**
- * Home - Página principal adaptada desde diseño de Figma
+ * Home -                 width: '5.56vw', // 80px convertido a vw (80/1440*100)
+                height: '1.39vw' // 20px convertido a vw (20/1440*100)
+              }}>ina principal adaptada desde diseño de Figma
  * 
  * Estructura basada en la exportación de Figma pero usando
  * los componentes del design system existente
@@ -102,206 +104,584 @@ const Home = () => {
     }
   ];
 
-  // Estilos con tamaño fijo para consistencia visual - usando foundations
-  const homeStyles = {
-    width: '100%',
-    minHeight: 'calc(100vh - 80px)', // Al menos altura de pantalla menos header
-    paddingTop: '150px', // Espacio superior para separar del header fijo
-    paddingBottom: '150px',
-    paddingLeft: '80px',
-    paddingRight: '64px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    gap: '80px',
-    backgroundColor: semanticColors?.surface?.background || '#FFFFFF' // Usando semantic token para background de página
+  // Sistema responsive con breakpoints y media queries
+  const breakpoints = {
+    mobile: '480px',
+    tablet: '768px', 
+    desktop: '1024px',
+    large: '1440px'
   };
 
-  // Container interno simplificado
-  const contentContainerStyles = {
-    width: '100%', // Usar todo el ancho disponible dentro del padding
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0', // Sin gap - usaremos margin individual en cada sección
-    position: 'relative',
-    boxSizing: 'border-box'
-  };
+  // CSS responsive usando media queries
+  const responsiveStyles = `
+    /* Shape Global - Above 5.56vw margin, stuck to absolute right */
+    .global-shape {
+      display: none;
+    }
+    
+    @media (min-width: ${breakpoints.desktop}) {
+      .global-shape {
+        display: block;
+        position: absolute;
+        top: 13.89vw; /* Equivalent to 200px at 1440px */
+        right: 0;
+        width: 19.44vw; /* Equivalent to 280px at 1440px */
+        height: 16.67vw; /* Equivalent to 240px at 1440px */
+        z-index: 5;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .global-shape {
+        top: 17.36vw; /* Equivalent to 250px at 1440px */
+        right: 0;
+        width: 22.22vw; /* Equivalent to 320px at 1440px */
+        height: 19.44vw; /* Equivalent to 280px at 1440px */
+      }
+    }
+
+    .global-shape img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .home-container {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: ${semanticColors?.surface?.background || '#FFFFFF'};
+      box-sizing: border-box;
+      
+      /* Fixed 5.56vw margins (equivalent to 80px at 1440px) on all screen sizes */
+      padding: 2rem 5.56vw;
+      gap: 2rem;
+    }
+    
+    @media (min-width: ${breakpoints.mobile}) {
+      .home-container {
+        padding: 3rem 5.56vw;
+        gap: 3rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .home-container {
+        padding: 4rem 5.56vw;
+        gap: 4rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.desktop}) {
+      .home-container {
+        padding: 6rem 5.56vw;
+        gap: 5rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .home-container {
+        padding: 8rem 5.56vw;
+        gap: 6rem;
+      }
+    }
+
+    .content-container {
+      width: 100%;
+      max-width: calc(100vw - 11.12vw); /* Full width minus 5.56vw on each side */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .content-container {
+        max-width: 88.89vw; /* Equivalent to 1280px at 1440px viewport */
+      }
+    }
+
+    /* Hero Section Responsive */
+    .hero-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-sizing: border-box;
+      padding: 1.5rem 0;
+      min-height: 60vh;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-section {
+        flex-direction: row;
+        padding: 2.5rem 0;
+        min-height: 50vh;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .hero-section {
+        height: 33.33vw;
+        padding: 2.78vw 0;
+        min-height: auto;
+      }
+    }
+
+    .hero-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-content {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 3rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .hero-content {
+        gap: 3.33vw;
+        height: 27.78vw;
+      }
+    }
+
+    /* Text Column */
+    .hero-text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+      order: 2;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-text {
+        width: 45%;
+        order: 1;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .hero-text {
+        width: 40%;
+        height: 100%;
+        gap: 0;
+      }
+    }
+
+    .hero-text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .hero-text-content {
+        gap: 1.11vw;
+      }
+    }
+
+    .hero-button-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-button-container {
+        justify-content: flex-end;
+      }
+    }
+
+    /* Video Container */
+    .hero-video {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 16/10;
+      position: relative;
+      order: 1;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-video {
+        width: 50%;
+        max-width: none;
+        order: 2;
+        aspect-ratio: 16/9;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .hero-video {
+        width: 50.47%;
+        height: 90.5%;
+        aspect-ratio: auto;
+      }
+    }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* Statistics Section */
+    .stats-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .stats-section {
+        gap: 3rem;
+        margin-top: 5rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .stats-section {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 4rem;
+        margin-top: 6rem;
+      }
+    }
+
+    .stats-title {
+      width: 100%;
+      text-align: center;
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .stats-title {
+        width: auto;
+        text-align: left;
+        min-width: 300px;
+      }
+    }
+
+    .stats-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      justify-items: center;
+    }
+    
+    @media (min-width: ${breakpoints.mobile}) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .stats-grid {
+        display: flex;
+        gap: 2rem;
+        flex: 1;
+        justify-content: space-between;
+      }
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+      box-sizing: border-box;
+      min-width: 120px;
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .stat-item {
+        min-width: 180px;
+        gap: 0.75rem;
+      }
+    }
+
+    /* Projects Section */
+    .projects-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-section {
+        gap: 3rem;
+        margin-top: 5rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .projects-section {
+        gap: 4rem;
+        margin-top: 6rem;
+      }
+    }
+
+    .projects-title {
+      width: 100%;
+      text-align: center;
+    }
+
+    .projects-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      justify-items: center;
+    }
+    
+    @media (min-width: ${breakpoints.mobile}) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.desktop}) {
+      .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
+      }
+    }
+
+    /* Blog Section */
+    .blog-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .blog-section {
+        gap: 3rem;
+        margin-top: 5rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.desktop}) {
+      .blog-section {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .blog-section {
+        gap: 3rem;
+        margin-top: 6rem;
+      }
+    }
+
+    .blog-article {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 2rem;
+      border-radius: 0;
+      box-sizing: border-box;
+      background-color: ${semanticColors.surface?.secondary || '#f8f9fa'};
+      min-height: 400px;
+    }
+    
+    @media (min-width: ${breakpoints.desktop}) {
+      .blog-article {
+        width: calc(33.333% - 1rem);
+        max-width: none;
+        min-height: 450px;
+      }
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .blog-article {
+        min-height: 500px;
+        padding: 2.5rem;
+        gap: 2rem;
+      }
+    }
+
+    .blog-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      flex: 1;
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .blog-content {
+        gap: 1rem;
+      }
+    }
+  `;
 
   return (
-    <div style={homeStyles}>
-      <div style={contentContainerStyles}>
-        
-        {/* Hero Section - Usando solo vw para mantener proporciones exactas */}
-        <section style={{
-          width: '100%',
-          minWidth: '100vw', // Se extiende de extremo a extremo
-          height: '33.33vw', // 480px convertido a vw (480/1440*100)
-          paddingTop: '2.78vw', // 40px convertido a vw (40/1440*100)
-          paddingBottom: '2.78vw', // 40px convertido a vw
-          display: 'flex',
-          justifyContent: 'center', // Centra el contenido interno
-          alignItems: 'center',
-          position: 'relative',
-          boxSizing: 'border-box'
-        }}>
-          {/* Contenedor interno responsive */}
-          <div style={{
-            width: '88.89vw', // 1280px convertido a vw (1280/1440*100)
-            maxWidth: 'calc(100vw - 11.11vw)', // Respeta margen mínimo
-            height: '27.78vw', // 400px convertido a vw (400/1440*100)
-            padding: '0',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            position: 'relative',
-            boxSizing: 'border-box',
-            gap: '3.33vw' // 48px convertido a vw (48/1440*100)
-          }}>
-            {/* Contenedor de texto usando solo vw */}
-          <div style={{
-            width: '35.56vw', // 512px convertido a vw (512/1440*100)
-            height: '27.78vw', // 400px convertido a vw (400/1440*100)
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start'
-          }}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '16px',
-              width: '100%'
-            }}>
-              <BadgeText variant="outline" size="lg">
-                Nuevo
-              </BadgeText>
-              
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '16px',
-                width: '100%'
-              }}>
-                <h1 style={{
-                  ...textStyles.displayLarge,
-                  color: semanticColors.content.text,
-                  margin: 0,
-                  width: '100%'
-                }}>
-                  Avanzamos<br/>comprometidos
-                </h1>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: responsiveStyles }} />
+      
+      {/* Global Shape - Outside all containers */}
+      <div className="global-shape">
+        <img 
+          src="/src/design-system/foundations/img/shape.png" 
+          alt="Shape decoration"
+        />
+      </div>
+
+      <div className="home-container">
+        <div className="content-container">
+        {/* Hero Section - Responsive */}
+        <section className="hero-section">
+          <div className="hero-content">
+            {/* Columna texto */}
+            <div className="hero-text">
+              <div className="hero-text-content">
+                <BadgeText variant="outline" size="lg">
+                  Nuevo
+                </BadgeText>
                 
-                <p style={{
-                  ...textStyles.titleLarge,
-                  color: semanticColors.content.text,
-                  margin: 0,
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  gap: '1rem',
                   width: '100%'
                 }}>
-                  Nuestra compañía refuerza su identidad de marca comunicando así su 
-                  crecimiento y solidez dentro del mercado. Comprometiéndose a seguir 
-                  aportando valor a futuro.
-                </p>
+                  <h1 style={{
+                    ...textStyles.displayLarge,
+                    color: semanticColors.content.text,
+                    margin: 0,
+                    width: '100%'
+                  }}>
+                    Avanzamos<br/>comprometidos
+                  </h1>
+                  
+                  <p style={{
+                    ...textStyles.titleLarge,
+                    color: semanticColors.content.text,
+                    margin: 0,
+                    width: '100%'
+                  }}>
+                    Nuestra compañía refuerza su identidad de marca comunicando así su 
+                    crecimiento y solidez dentro del mercado. Comprometiéndose a seguir 
+                    aportando valor a futuro.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="hero-button-container">
+                <ButtonPrimary 
+                  size="xl"
+                  onClick={() => {
+                    console.log('Conocer más - Hero button clicked');
+                  }}
+                >
+                  Conocer más
+                </ButtonPrimary>
               </div>
             </div>
-            
-            {/* Contenedor del botón alineado a la derecha */}
-            <div style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'flex-end'
-            }}>
-              <ButtonPrimary 
-                size="xl"
-                onClick={() => {
-                  console.log('Conocer más - Hero button clicked');
-                }}
-              >
-                Conocer más
-              </ButtonPrimary>
+
+            {/* Video */}
+            <div className="hero-video">
+              <video
+                src="/src/design-system/foundations/video/vHome.mp4"
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+              />
             </div>
-          </div>
-          
-          {/* Video usando solo vw */}
-          <div style={{
-            width: '55.56vw', // 800px convertido a vw (800/1440*100)
-            height: '25.14vw', // 362px convertido a vw (362/1440*100)
-            position: 'relative'
-          }}>
-            <video 
-              style={{
-                width: '44.86vw', // 646px convertido a vw (646/1440*100)
-                height: '100%', 
-                objectFit: 'cover'
-              }}
-              src="/src/design-system/foundations/video/vHome.mp4" 
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-          </div>
-          
-          {/* Shape.png: responsive usando unidades relativas al viewport */}
-          <div style={{
-            position: 'absolute',
-            bottom: '-2.78vw', // -40px convertido a vw (40/1440*100)
-            right: '-5.56vw', // -80px convertido a vw (80/1440*100)
-            width: '49.38vw', // 711px convertido a vw (711/1440*100)
-            height: '14.17vw', // 204px convertido a vw (204/1440*100)
-            zIndex: 1
-          }}>
-            <img 
-              src="/src/design-system/foundations/img/shape.png"
-              alt="Shape decoration"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain'
-              }}
-            />
-          </div>
           </div>
         </section>
 
-        {/* Statistics Section - Adaptado desde ProjectsOverviewSection */}
-        <section style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: '40',
-          width: '100%',
-          marginTop: '80px' // Espacio desde la sección anterior
-        }}>
-          <h2 style={{
-            ...textStyles.displayMedium,
-            color: semanticColors.content.text,
-            margin: 0,
-            width: 'fit-content'
-          }}>
+        {/* Statistics Section - Responsive */}
+        <section className="stats-section">
+          <h2 
+            className="stats-title"
+            style={{
+              ...textStyles.displayMedium,
+              color: semanticColors.content.text,
+              margin: 0
+            }}
+          >
             MEP en cifras
           </h2>
           
-          <div style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            padding: '0 40px',
-            width: '100%'
-          }}>
+          <div className="stats-grid">
             {statsData.map((stat, index) => (
               <div
                 key={index}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-end',
-                  gap: '4px'
-                }}
+                className="stat-item"
               >
                 <div style={{
                   ...textStyles.displayMedium,
@@ -354,33 +734,20 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Projects Section - Adaptado desde StatisticsSection */}
-        <section style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: '40px',
-          width: '100%',
-          marginTop: '80px' // Espacio desde la sección anterior
-        }}>
-          <h2 style={{
-            ...textStyles.displayMedium,
-            color: semanticColors.content.text,
-            margin: 0,
-            width: '100%',
-            textAlign: 'center'
-          }}>
+        {/* Projects Section - Responsive */}
+        <section className="projects-section">
+          <h2 
+            className="projects-title"
+            style={{
+              ...textStyles.displayMedium,
+              color: semanticColors.content.text,
+              margin: 0
+            }}
+          >
             Nuestros proyectos
           </h2>
           
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '32px',
-            width: '100%'
-          }}>
+          <div className="projects-grid">
             {projectsData.map((project) => (
               <CardVertical
                 key={project.id}
@@ -400,52 +767,27 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Blog Section - Adaptado desde ProjectDetailsSection */}
-        <section style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: '24px',
-          width: '100%',
-          marginTop: '80px' // Espacio desde la sección anterior
-        }}>
+        {/* Blog Section - Responsive */}
+        <section className="blog-section">
           {blogArticles.map((article) => (
             <article
               key={article.id}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-                gap: '24px',
-                padding: '32px',
-                flex: 1,
-                borderRadius: '8px',
-                backgroundColor: semanticColors.surface?.secondary || '#f8f9fa'
-              }}
+              className="blog-article"
             >
               <time style={{
                 ...textStyles.labelLarge,
                 color: semanticColors.content.text,
-                margin: 0,
-                width: '100%',
-                height: '20px'
+                margin: 0
               }}>
                 {article.date}
               </time>
               
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '16px',
-                width: '100%'
-              }}>
+              <div className="blog-content">
                 <h2 style={{
                   ...textStyles.headingMedium,
                   fontWeight: 600,
                   color: semanticColors.content.text,
                   margin: 0,
-                  width: '100%',
-                  height: '80px',
                   overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 2,
@@ -459,8 +801,6 @@ const Home = () => {
                   ...textStyles.bodyLarge,
                   color: semanticColors.content.text,
                   margin: 0,
-                  width: '100%',
-                  height: '51px',
                   overflow: 'hidden',
                   display: '-webkit-box',
                   WebkitLineClamp: 2,
@@ -489,8 +829,9 @@ const Home = () => {
             </article>
           ))}
         </section>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
