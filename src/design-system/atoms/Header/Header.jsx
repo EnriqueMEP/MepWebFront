@@ -50,11 +50,7 @@ const Header = ({
     alignItems: 'center',
     display: 'flex',
     position: 'relative',
-    boxSizing: 'border-box',
-    // Mantiene la forma en todos los zoom levels
-    '@media (min-resolution: 1dppx)': {
-      transform: 'scale(1)',
-    }
+    boxSizing: 'border-box'
   };
 
   // Estilos del área del logo
@@ -144,7 +140,7 @@ const Header = ({
         >
           <Icon 
             name="menu" 
-            size="md"
+            size={24}
             style={{ color: '#3f762f' }} // olive.500 aplicado al icono
           />
         </div>

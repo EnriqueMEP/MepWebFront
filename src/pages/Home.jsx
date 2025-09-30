@@ -6,10 +6,10 @@ import { textStyles } from '../design-system/foundations/typography.js';
 import { useSemanticTokens } from '../design-system/foundations/theme-hooks.js';
 
 /**
- * Home - Página principal con tamaño fijo para desktop
+ * Home - Página principal adaptada desde diseño de Figma
  * 
- * Diseño fijo de 1440px que se centra en pantallas más grandes
- * y mantiene proporciones consistentes independientemente del viewport
+ * Estructura basada en la exportación de Figma pero usando
+ * los componentes del design system existente
  */
 
 const Home = () => {
@@ -20,6 +20,7 @@ const Home = () => {
   // Obtener colores semánticos para el tema actual
   const semanticColors = useSemanticTokens();
 
+  // Datos de proyectos adaptados desde Figma
   const projectsData = [
     {
       id: 1,
@@ -55,12 +56,37 @@ const Home = () => {
     }
   ];
 
+  // Datos de estadísticas adaptados desde Figma
+  const statsData = [
+    {
+      value: "3,6Gw",
+      label: "proyectados",
+      description: "en el útimo año",
+    },
+    {
+      value: "+25%",
+      label: "Crecimiento anual",
+      description: "en últimos 5 años",
+    },
+    {
+      value: "+68K hrs",
+      label: "anuales",
+      description: "de ingeniería",
+    },
+    {
+      value: "+365 Mkw",
+      label: "generados en el último año",
+      description: "",
+    },
+  ];
+
+  // Datos de blog adaptados desde Figma
   const blogArticles = [
     {
       id: 1,
       date: "6 febrero, 2024",
       title: "INSTALACIONES ELÉCTRICAS EN PROYECTOS DE AGUA",
-      excerpt: "En los últimos años, el equipo de MEP-Projects ha desempeñado un papel fundamental, liderando la ejecución de importantes proyectos de tratamiento de aguas. La interconexión entre el agua y la energía se revela no solo como una necesidad crítica, sino como un desafío. Esta complejidad no solo radica en la imperiosa necesidad de agua para la producción de energía, sino también en la interrelación entre la energía, el agua, el clima y el cambio climático."
+      excerpt: "En los últimos años, el equipo de MEP-Projects ha desempeñado un papel fundamental, liderando la ejecución de importantes proyectos de tratamiento de aguas.\nLa interconexión entre el agua y la energía se revela no solo como una necesidad crítica, sino como un desafío. Esta complejidad no solo radica en la imperiosa necesidad de agua para la producción de energía, sino también en la interrelación entre la energía, el agua, el clima y el cambio climático."
     },
     {
       id: 2, 
@@ -100,313 +126,312 @@ const Home = () => {
     boxSizing: 'border-box'
   };
 
-  const heroSectionStyles = {
-    width: '100%', // Usar todo el ancho del contenedor
-    padding: '40px 0',
-    display: 'flex',
-    justifyContent: 'space-between', 
-    alignItems: 'center',
-    gap: '40px'
-  };
-
-  const heroContentStyles = {
-    width: '512px',
-    minWidth: '400px', // Ancho mínimo para evitar encogimiento
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end', 
-    gap: '48px'
-  };
-
-  const heroTextStyles = {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: '16px'
-  };
-
-  // Usar tipografías del design system
-  const heroTitleStyles = {
-    ...textStyles.displayLarge,
-    color: semanticColors.content.text, // Token semántico para contenido
-    margin: 0
-  };
-
-  const heroDescriptionStyles = {
-    ...textStyles.titleLarge,
-    color: semanticColors.content.text, // Token semántico para contenido
-    margin: 0
-  };
-
-  const statsSectionStyles = {
-    width: '100%', // Usar todo el ancho del contenedor
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: '40px'
-  };
-
-  const sectionTitleStyles = {
-    ...textStyles.displayMedium,
-    color: semanticColors.content.text, // Token semántico para contenido
-    width: '100%', // Usar todo el ancho disponible
-    textAlign: 'center',
-    margin: 0
-  };
-
-  const statsGridStyles = {
-    width: '100%', // Usar todo el ancho disponible
-    paddingLeft: '40px',
-    paddingRight: '40px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start'
-  };
-
-  const statItemStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    gap: '2px'
-  };
-
-  const statNumberStyles = {
-    ...textStyles.displayMedium,
-    fontWeight: 700,
-    color: semanticColors.content.text, // Token semántico para contenido
-    textAlign: 'center',
-    margin: 0
-  };
-
-  const statLabelStyles = {
-    ...textStyles.headingSmall,
-    color: semanticColors.content.text, // Token semántico para contenido
-    textAlign: 'center',
-    margin: 0
-  };
-
-  const statDescriptionStyles = {
-    ...textStyles.titleLarge,
-    color: semanticColors.content.text, // Token semántico para contenido
-    textAlign: 'right',
-    margin: 0
-  };
-
-  const projectsSectionStyles = {
-    width: '100%', // Usar todo el ancho del contenedor
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: '32px'
-  };
-
-  const projectsGridStyles = {
-    width: '100%', // Usar todo el ancho disponible
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '24px',
-    flexWrap: 'wrap'
-  };
-
-  const blogSectionStyles = {
-    width: '100%', // Usar todo el ancho del contenedor
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: '24px'
-  };
-
-  const blogCardStyles = {
-    flex: '1',
-    padding: '24px',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-    alignItems: 'flex-end'
-  };
-
-  const blogDateStyles = {
-    ...textStyles.labelLarge,
-    fontWeight: 500,
-    color: semanticColors.content.text, // Token semántico para contenido
-    width: '100%',
-    margin: 0
-  };
-
-  const blogContentStyles = {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-    flex: '1'
-  };
-
-  const blogTitleStyles = {
-    ...textStyles.headingMedium,
-    fontWeight: 500,
-    color: semanticColors.content.text, // Token semántico para contenido
-    margin: 0
-  };
-
-  const blogExcerptStyles = {
-    ...textStyles.bodyLarge,
-    color: semanticColors.content.text, // Token semántico para contenido
-    margin: 0
-  };
-
   return (
     <div style={homeStyles}>
       <div style={contentContainerStyles}>
-        {/* Imagen decorativa de fondo */}
-        <img 
-          style={{
-            width: '711px',
-            height: '204px',
-            left: '-265px',
-            top: '600px',
-            position: 'absolute',
-            opacity: '0.40',
-            zIndex: 0
-          }}
-          src="https://placehold.co/711x204" 
-          alt="Decorative background"
-        />
-
-        {/* Hero Section */}
-        <div style={heroSectionStyles}>
-        <div style={heroContentStyles}>
-          <div style={heroTextStyles}>
-            <BadgeText variant="outline" size="lg">
-              Nuevo
-            </BadgeText>
-            <h1 style={heroTitleStyles}>
-              Avanzamos<br/>comprometidos
-            </h1>
-            <p style={heroDescriptionStyles}>
-              Nuestra compañía refuerza su identidad de marca comunicando así su 
-              crecimiento y solidez dentro del mercado. Comprometiéndose a seguir 
-              aportando valor a futuro.
-            </p>
-          </div>
-          <ButtonPrimary 
-            size="xl"
-            onClick={() => {
-              console.log('Conocer más - Hero button clicked');
-              // Aquí podrías navegar a una página "sobre nosotros" o mostrar más información
-            }}
-          >
-            Conocer más
-          </ButtonPrimary>
-        </div>
-        <div style={{ position: 'relative' }}>
-          <video 
-            style={{width: '646px', height: '362px'}}
-            src="/src/design-system/foundations/video/vHome.mp4" 
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-             <img 
-            style={{
-              position: 'absolute',
-              bottom: '-20px',
-              right: '-20px',
-              width: '180px',
-              height: '120px',
-              opacity: 0.7
-            }}
-            src="/src/design-system/foundations/img/shape.png" 
-            alt="Shape decoration"
-          />
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div style={statsSectionStyles}>
-        <h2 style={sectionTitleStyles}>MEP en cifras</h2>
-        <div style={statsGridStyles}>
-          <div style={statItemStyles}>
-            <div style={statNumberStyles}>3,6Gw</div>
-            <div style={statLabelStyles}>proyectados</div>
-            <div style={statDescriptionStyles}>en el último año</div>
-          </div>
-          <div style={statItemStyles}>
-            <div style={statNumberStyles}>+25%</div>
-            <div style={statLabelStyles}>Crecimiento anual</div>
-            <div style={statDescriptionStyles}>en últimos 5 años</div>
-          </div>
-          <div style={statItemStyles}>
-            <div style={statNumberStyles}>+68K hrs</div>
-            <div style={statLabelStyles}>anuales</div>
-            <div style={statDescriptionStyles}>de ingeniería</div>
-          </div>
-          <div style={statItemStyles}>
-            <div style={statNumberStyles}>+365 Mkw</div>
-            <div style={{...statDescriptionStyles, ...textStyles.bodyLarge}}>
-              generados en el último año
+        
+        {/* Hero Section - Adaptado desde Figma */}
+        <section style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '48px 0',
+          width: '100%',
+          gap: '48px'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '512px',
+            alignItems: 'flex-end',
+            justifyContent: 'flex-end',
+            gap: '48px'
+          }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '16px',
+              width: '100%'
+            }}>
+              <BadgeText variant="outline" size="lg">
+                Nuevo
+              </BadgeText>
+              
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '16px',
+                width: '100%'
+              }}>
+                <h1 style={{
+                  ...textStyles.displayLarge,
+                  color: semanticColors.content.text,
+                  margin: 0,
+                  width: '100%'
+                }}>
+                  Avanzamos<br/>comprometidos
+                </h1>
+                
+                <p style={{
+                  ...textStyles.titleLarge,
+                  color: semanticColors.content.text,
+                  margin: 0,
+                  width: '100%'
+                }}>
+                  Nuestra compañía refuerza su identidad de marca comunicando así su 
+                  crecimiento y solidez dentro del mercado. Comprometiéndose a seguir 
+                  aportando valor a futuro.
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Projects Section */}
-      <div style={projectsSectionStyles}>
-        <h2 style={sectionTitleStyles}>
-          Nuestros proyectos
-        </h2>
-        <div style={projectsGridStyles}>
-          {projectsData.map((project) => (
-            <CardVertical
-              key={project.id}
-              size="xl"
-              image={project.image}
-              badgeText={project.badgeText}
-              title={project.title}
-              description={project.description}
-              buttonText={project.buttonText}
-              buttonSelected={selectedProject === project.id}
-              onButtonClick={() => {
-                setSelectedProject(selectedProject === project.id ? null : project.id);
-                console.log(`Ver proyecto ${project.id} clicked`);
-                // Aquí podrías navegar a la página del proyecto específico
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Blog Section */}
-      <div style={blogSectionStyles}>
-        {blogArticles.map((article) => (
-          <article key={article.id} style={blogCardStyles}>
-            <div style={blogDateStyles}>{article.date}</div>
-            <div style={blogContentStyles}>
-              <h3 style={blogTitleStyles}>{article.title}</h3>
-              <p style={blogExcerptStyles}>{article.excerpt}</p>
-            </div>
+            
             <ButtonPrimary 
-              size="md"
-              selected={selectedArticle === article.id}
+              size="xl"
               onClick={() => {
-                setSelectedArticle(selectedArticle === article.id ? null : article.id);
-                console.log(`Me interesa - Article ${article.id} clicked`);
-                // Aquí podrías navegar al artículo completo o mostrar más información
+                console.log('Conocer más - Hero button clicked');
               }}
             >
-              Me interesa
+              Conocer más
             </ButtonPrimary>
-          </article>
-        ))}
-      </div>
+          </div>
+          
+          <div style={{
+            width: '646px',
+            height: '362px',
+            position: 'relative'
+          }}>
+            <video 
+              style={{width: '100%', height: '100%', objectFit: 'cover'}}
+              src="/src/design-system/foundations/video/vHome.mp4" 
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </div>
+        </section>
+
+        {/* Statistics Section - Adaptado desde ProjectsOverviewSection */}
+        <section style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '40px',
+          width: '100%'
+        }}>
+          <h2 style={{
+            ...textStyles.displayMedium,
+            color: semanticColors.content.text,
+            margin: 0,
+            width: 'fit-content'
+          }}>
+            MEP en cifras
+          </h2>
+          
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            padding: '0 40px',
+            width: '100%'
+          }}>
+            {statsData.map((stat, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-end',
+                  justifyContent: 'flex-end',
+                  gap: '4px'
+                }}
+              >
+                <div style={{
+                  ...textStyles.displayMedium,
+                  fontWeight: 600,
+                  color: semanticColors.content.text,
+                  margin: 0,
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap'
+                }}>
+                  {stat.value}
+                </div>
+                
+                {index === 3 ? (
+                  <p style={{
+                    ...textStyles.bodyLarge,
+                    color: semanticColors.content.text,
+                    margin: 0,
+                    textAlign: 'center',
+                    whiteSpace: 'nowrap'
+                  }}>
+                    {stat.label}
+                  </p>
+                ) : (
+                  <>
+                    <div style={{
+                      ...textStyles.displaySmall,
+                      color: semanticColors.content.text,
+                      margin: 0,
+                      textAlign: 'center',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {stat.label}
+                    </div>
+                    
+                    {stat.description && (
+                      <div style={{
+                        ...textStyles.headingSmall,
+                        color: semanticColors.content.text,
+                        margin: 0,
+                        textAlign: 'right',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        {stat.description}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects Section - Adaptado desde StatisticsSection */}
+        <section style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '40px',
+          width: '100%'
+        }}>
+          <h2 style={{
+            ...textStyles.displayMedium,
+            color: semanticColors.content.text,
+            margin: 0,
+            width: '100%',
+            textAlign: 'center'
+          }}>
+            Nuestros proyectos
+          </h2>
+          
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '32px',
+            width: '100%'
+          }}>
+            {projectsData.map((project) => (
+              <CardVertical
+                key={project.id}
+                size="xl"
+                image={project.image}
+                badgeText={project.badgeText}
+                title={project.title}
+                description={project.description}
+                buttonText={project.buttonText}
+                buttonSelected={selectedProject === project.id}
+                onButtonClick={() => {
+                  setSelectedProject(selectedProject === project.id ? null : project.id);
+                  console.log(`Ver proyecto ${project.id} clicked`);
+                }}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Blog Section - Adaptado desde ProjectDetailsSection */}
+        <section style={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: '24px',
+          width: '100%'
+        }}>
+          {blogArticles.map((article) => (
+            <article
+              key={article.id}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                gap: '24px',
+                padding: '32px',
+                flex: 1,
+                borderRadius: '8px',
+                backgroundColor: semanticColors.surface?.secondary || '#f8f9fa'
+              }}
+            >
+              <time style={{
+                ...textStyles.labelLarge,
+                color: semanticColors.content.text,
+                margin: 0,
+                width: '100%',
+                height: '20px'
+              }}>
+                {article.date}
+              </time>
+              
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '16px',
+                width: '100%'
+              }}>
+                <h2 style={{
+                  ...textStyles.headingMedium,
+                  fontWeight: 600,
+                  color: semanticColors.content.text,
+                  margin: 0,
+                  width: '100%',
+                  height: '80px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  textOverflow: 'ellipsis'
+                }}>
+                  {article.title}
+                </h2>
+                
+                <p style={{
+                  ...textStyles.bodyLarge,
+                  color: semanticColors.content.text,
+                  margin: 0,
+                  width: '100%',
+                  height: '51px',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  textOverflow: 'ellipsis'
+                }}>
+                  {article.excerpt.split('\n').map((line, lineIndex) => (
+                    <React.Fragment key={lineIndex}>
+                      {line}
+                      {lineIndex < article.excerpt.split('\n').length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </p>
+              </div>
+              
+              <ButtonPrimary 
+                size="md"
+                selected={selectedArticle === article.id}
+                onClick={() => {
+                  setSelectedArticle(selectedArticle === article.id ? null : article.id);
+                  console.log(`Me interesa - Article ${article.id} clicked`);
+                }}
+              >
+                Me interesa
+              </ButtonPrimary>
+            </article>
+          ))}
+        </section>
       </div>
     </div>
   );
