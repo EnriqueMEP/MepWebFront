@@ -116,33 +116,42 @@ const Home = () => {
   const responsiveStyles = `
     /* Shape - Linked to video container */
     .hero-shape {
-      display: none;
+      display: block;
+      position: absolute;
+      top: 37%;
+      right: -8%;
+      width: 40%;
+      /* Follows video height pattern */
+      height: 90.5%;
+      aspect-ratio: auto;
+      z-index: 3;
+      opacity: 1;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
       .hero-shape {
         display: block;
         position: absolute;
-        top: 0;
-        right: -20%;
-        /* Same width as video but positioned outside */
-        width: 50%;
-        /* Same aspect ratio as video */
-        height: auto;
-        aspect-ratio: 16/9;
+        top: 37%;
+        right: -8%;
+        width: 40%;
+        /* Follows video height pattern */
+        height: 90.5%;
+        aspect-ratio: auto;
         z-index: 3;
-        opacity: 0.8;
+        opacity: 1;
       }
     }
     
     @media (min-width: ${breakpoints.large}) {
       .hero-shape {
-        right: -25%;
-        width: 50.47%;
+        top: 37%;
+        right: -8%;
+        width: 40%;
         /* Follows video height pattern */
         height: 90.5%;
         aspect-ratio: auto;
-        opacity: 0.85;
+        opacity: 1;
       }
     }
 
@@ -282,7 +291,7 @@ const Home = () => {
       justify-content: space-between;
       align-items: flex-start;
       gap: 1.5rem;
-      order: 2;
+      order: 1;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
@@ -333,7 +342,7 @@ const Home = () => {
       max-width: 500px;
       aspect-ratio: 16/10;
       position: relative;
-      order: 1;
+      order: 2;
       z-index: 2;
     }
     
