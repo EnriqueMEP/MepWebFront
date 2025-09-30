@@ -133,19 +133,34 @@ const Home = () => {
     <div style={homeStyles}>
       <div style={contentContainerStyles}>
         
-        {/* Hero Section - Dimensiones exactas según especificaciones */}
+        {/* Hero Section - Contenedor centrado para resistir zoom */}
         <section style={{
-          width: '1280px',
+          width: '100%',
+          minWidth: '100vw', // Se extiende de extremo a extremo
           height: '480px',
-          padding: '40px',
+          paddingTop: '40px',
+          paddingBottom: '40px',
           display: 'flex',
+          justifyContent: 'center', // Centra el contenido interno
           alignItems: 'center',
-          justifyContent: 'space-between',
           position: 'relative',
-          boxSizing: 'border-box',
-          gap: '48px'
+          boxSizing: 'border-box'
         }}>
-          {/* Contenedor de texto: 512px x 400px hug */}
+          {/* Contenedor interno con ancho fijo */}
+          {/* Contenedor interno con ancho fijo */}
+          <div style={{
+            width: '1280px', // Ancho fijo del contenido
+            maxWidth: 'calc(100vw - 160px)', // Respeta margen mínimo en pantallas pequeñas
+            height: '400px', // Altura del contenido interno
+            padding: '0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            position: 'relative',
+            boxSizing: 'border-box',
+            gap: '48px'
+          }}>
+            {/* Contenedor de texto: 512px x 400px hug */}
           <div style={{
             width: '512px',
             height: '400px',
@@ -194,17 +209,24 @@ const Home = () => {
               </div>
             </div>
             
-            <ButtonPrimary 
-              size="xl"
-              onClick={() => {
-                console.log('Conocer más - Hero button clicked');
-              }}
-            >
-              Conocer más
-            </ButtonPrimary>
+            {/* Contenedor del botón alineado a la derecha */}
+            <div style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}>
+              <ButtonPrimary 
+                size="xl"
+                onClick={() => {
+                  console.log('Conocer más - Hero button clicked');
+                }}
+              >
+                Conocer más
+              </ButtonPrimary>
+            </div>
           </div>
           
-          {/* Video: 646px x 362px */}
+          {/* Video: 646px x 362px con shape anclado */}
           <div style={{
             width: '646px',
             height: '362px',
@@ -218,26 +240,27 @@ const Home = () => {
               muted
               playsInline
             />
+            
+            {/* Shape.png: 711px x 204px - anclado al video */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-80px', // Posicionado debajo del video
+              right: '-155px', // Más a la derecha, sobresaliendo del video
+              width: '711px',
+              height: '204px',
+              zIndex: 1 // Por encima del video
+            }}>
+              <img 
+                src="/src/design-system/foundations/img/shape.png"
+                alt="Shape decoration"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
           </div>
-          
-          {/* Shape.png: 711px x 204px - posicionado según la imagen */}
-          <div style={{
-            position: 'absolute',
-            bottom: '0',
-            right: '0',
-            width: '711px',
-            height: '204px',
-            zIndex: 0
-          }}>
-            <img 
-              src="/src/design-system/foundations/img/shape.png"
-              alt="Shape decoration"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain'
-              }}
-            />
           </div>
         </section>
 
