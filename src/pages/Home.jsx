@@ -106,9 +106,9 @@ const Home = () => {
   const homeStyles = {
     width: '100%',
     minHeight: 'calc(100vh - 80px)', // Al menos altura de pantalla menos header
-    paddingTop: '80px', // Espacio superior para separar del header fijo
-    paddingBottom: '80px',
-    paddingLeft: '64px',
+    paddingTop: '150px', // Espacio superior para separar del header fijo
+    paddingBottom: '150px',
+    paddingLeft: '80px',
     paddingRight: '64px',
     display: 'flex',
     flexDirection: 'column',
@@ -133,24 +133,26 @@ const Home = () => {
     <div style={homeStyles}>
       <div style={contentContainerStyles}>
         
-        {/* Hero Section - Sin padding superior para eliminar espacio bajo header */}
+        {/* Hero Section - Dimensiones exactas según especificaciones */}
         <section style={{
+          width: '1280px',
+          height: '480px',
+          padding: '40px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          paddingTop: '0', // Sin padding superior
-          paddingBottom: '0', // También eliminamos padding inferior por ahora
-          marginTop: '0', // Asegurar que no hay margin superior
-          width: '100%',
+          position: 'relative',
+          boxSizing: 'border-box',
           gap: '48px'
         }}>
+          {/* Contenedor de texto: 512px x 400px hug */}
           <div style={{
+            width: '512px',
+            height: '400px',
             display: 'flex',
             flexDirection: 'column',
-            width: '512px',
-            alignItems: 'flex-end',
-            justifyContent: 'flex-end',
-            gap: '48px'
+            justifyContent: 'space-between',
+            alignItems: 'flex-start'
           }}>
             <div style={{
               display: 'flex',
@@ -202,6 +204,7 @@ const Home = () => {
             </ButtonPrimary>
           </div>
           
+          {/* Video: 646px x 362px */}
           <div style={{
             width: '646px',
             height: '362px',
@@ -214,6 +217,26 @@ const Home = () => {
               loop
               muted
               playsInline
+            />
+          </div>
+          
+          {/* Shape.png: 711px x 204px - posicionado según la imagen */}
+          <div style={{
+            position: 'absolute',
+            bottom: '0',
+            right: '0',
+            width: '711px',
+            height: '204px',
+            zIndex: 0
+          }}>
+            <img 
+              src="/src/design-system/foundations/img/shape.png"
+              alt="Shape decoration"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
             />
           </div>
         </section>
