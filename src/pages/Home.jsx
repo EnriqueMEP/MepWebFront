@@ -26,35 +26,35 @@ const Home = () => {
   const projectsData = [
     {
       id: 1,
-      image: "https://placehold.co/240x120",
+      image: "src/design-system/foundations/img/p1.png",
       badgeText: "Ing. de Detalle",
       title: "Planta Fotovoltaica \"Puerto Cruz I\" de 21,15MWp",
       description: "",
-      buttonText: "Ver más"
+      buttonText: "Conocer más"
     },
     {
       id: 2,
-      image: "https://placehold.co/240x120",
-      badgeText: "Ing. de Detalle", 
+      image: "src/design-system/foundations/img/p2.png",
+      badgeText: "Ing. de Detalle",
       title: "Planta Fotovoltaica \"Puerto Cruz II\" de 25,30MWp",
       description: "",
-      buttonText: "Ver más"
+      buttonText: "Conocer más"
     },
     {
       id: 3,
-      image: "https://placehold.co/240x120",
+      image: "src/design-system/foundations/img/p3.png",
       badgeText: "Ing. Básica",
       title: "Parque Eólico \"Viento Norte\" de 45MWp",
       description: "",
-      buttonText: "Ver más"
+      buttonText: "Conocer más"
     },
     {
       id: 4,
-      image: "https://placehold.co/240x120",
+      image: "src/design-system/foundations/img/p4.png",
       badgeText: "BIM",
       title: "Instalaciones Industriales \"Complejo Agua Verde\"",
       description: "",
-      buttonText: "Ver más"
+      buttonText: "Conocer más"
     }
   ];
 
@@ -126,33 +126,6 @@ const Home = () => {
       aspect-ratio: auto;
       z-index: 3;
       opacity: 1;
-    }
-    
-    @media (min-width: ${breakpoints.tablet}) {
-      .hero-shape {
-        display: block;
-        position: absolute;
-        top: 37%;
-        right: -8%;
-        width: 40%;
-        /* Follows video height pattern */
-        height: 90.5%;
-        aspect-ratio: auto;
-        z-index: 3;
-        opacity: 1;
-      }
-    }
-    
-    @media (min-width: ${breakpoints.large}) {
-      .hero-shape {
-        top: 37%;
-        right: -8%;
-        width: 40%;
-        /* Follows video height pattern */
-        height: 90.5%;
-        aspect-ratio: auto;
-        opacity: 1;
-      }
     }
 
     .hero-shape img {
@@ -291,7 +264,7 @@ const Home = () => {
       justify-content: space-between;
       align-items: flex-start;
       gap: 1.5rem;
-      order: 1;
+      order: 2;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
@@ -342,7 +315,7 @@ const Home = () => {
       max-width: 500px;
       aspect-ratio: 16/10;
       position: relative;
-      order: 2;
+      order: 1;
       z-index: 2;
     }
     
@@ -394,11 +367,9 @@ const Home = () => {
     
     @media (min-width: ${breakpoints.large}) {
       .stats-section {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
         gap: 4rem;
         margin-top: 6rem;
+        align-items: flex-start;
       }
     }
 
@@ -407,11 +378,9 @@ const Home = () => {
       text-align: center;
     }
     
-    @media (min-width: ${breakpoints.large}) {
+    @media (min-width: ${breakpoints.tablet}) {
       .stats-title {
-        width: auto;
         text-align: left;
-        min-width: 300px;
       }
     }
 
@@ -439,10 +408,8 @@ const Home = () => {
     
     @media (min-width: ${breakpoints.large}) {
       .stats-grid {
-        display: flex;
-        gap: 2rem;
-        flex: 1;
-        justify-content: space-between;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.8rem;
       }
     }
 
@@ -474,12 +441,14 @@ const Home = () => {
       margin-top: 4rem;
       padding: 0;
       box-sizing: border-box;
+      position: relative;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
       .projects-section {
         gap: 3rem;
         margin-top: 5rem;
+        align-items: flex-start;
       }
     }
     
@@ -487,47 +456,78 @@ const Home = () => {
       .projects-section {
         gap: 4rem;
         margin-top: 6rem;
+        align-items: flex-start;
       }
+    }
+
+    /* Projects Shape - Left positioned, opposite to hero shape */
+    .projects-shape {
+      display: block;
+      position: absolute;
+      top: 20%;
+      left: -8%;
+      width: 40%;
+      height: 80%;
+      aspect-ratio: auto;
+      z-index: 0;
+      opacity: 1;
+    }
+
+    .projects-shape img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: opacity(0.85) saturate(1.2);
+      transition: all 0.3s ease;
+      transform: scaleX(-1); /* Flip horizontally to mirror the hero shape */
     }
 
     .projects-title {
       width: 100%;
       text-align: center;
     }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-title {
+        width: auto;
+        text-align: left;
+        min-width: 300px;
+      }
+    }
 
     .projects-grid {
       width: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
       justify-items: center;
     }
     
     @media (min-width: ${breakpoints.mobile}) {
       .projects-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 1rem;
       }
     }
     
     @media (min-width: ${breakpoints.tablet}) {
       .projects-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
       }
     }
     
     @media (min-width: ${breakpoints.desktop}) {
       .projects-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
       }
     }
     
     @media (min-width: ${breakpoints.large}) {
       .projects-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 2.5rem;
+        gap: 1.8rem;
       }
     }
 
@@ -573,7 +573,7 @@ const Home = () => {
       flex-direction: column;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 1.5rem;
+      gap: 1rem;
       padding: 2rem;
       border-radius: 0;
       box-sizing: border-box;
@@ -586,6 +586,7 @@ const Home = () => {
         width: calc(33.333% - 1rem);
         max-width: none;
         min-height: 450px;
+        gap: 1.2rem;
       }
     }
     
@@ -593,7 +594,7 @@ const Home = () => {
       .blog-article {
         min-height: 500px;
         padding: 2.5rem;
-        gap: 2rem;
+        gap: 1.5rem;
       }
     }
 
@@ -703,7 +704,7 @@ const Home = () => {
           >
             MEP en cifras
           </h2>
-          
+
           <div className="stats-grid">
             {statsData.map((stat, index) => (
               <div
@@ -791,6 +792,14 @@ const Home = () => {
                 }}
               />
             ))}
+          </div>
+
+          {/* Projects Shape - Left positioned, opposite to hero shape */}
+          <div className="projects-shape">
+            <img 
+              src="/src/design-system/foundations/img/shape.png" 
+              alt="Projects section decoration"
+            />
           </div>
         </section>
 
