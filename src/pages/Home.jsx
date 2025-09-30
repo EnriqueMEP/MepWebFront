@@ -102,17 +102,20 @@ const Home = () => {
     }
   ];
 
-  // Estilos con tamaño fijo para consistencia visual
+  // Estilos con tamaño fijo para consistencia visual - usando foundations
   const homeStyles = {
-    width: '100%', // Todo el ancho del contenedor de 1440px
+    width: '100%',
     minHeight: 'calc(100vh - 80px)', // Al menos altura de pantalla menos header
-    padding: '80px 64px', // Padding fijo igual al header/footer
+    paddingTop: '80px', // Espacio superior para separar del header fijo
+    paddingBottom: '80px',
+    paddingLeft: '64px',
+    paddingRight: '64px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '80px',
-    background: 'var(--Semantic-Color-Surfaces-background-default, #FAFAFA)'
+    backgroundColor: semanticColors?.surface?.background || '#FFFFFF' // Usando semantic token para background de página
   };
 
   // Container interno simplificado
@@ -121,7 +124,7 @@ const Home = () => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '80px',
+    gap: '0', // Sin gap - usaremos margin individual en cada sección
     position: 'relative',
     boxSizing: 'border-box'
   };
@@ -130,12 +133,14 @@ const Home = () => {
     <div style={homeStyles}>
       <div style={contentContainerStyles}>
         
-        {/* Hero Section - Adaptado desde Figma */}
+        {/* Hero Section - Sin padding superior para eliminar espacio bajo header */}
         <section style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '48px 0',
+          paddingTop: '0', // Sin padding superior
+          paddingBottom: '0', // También eliminamos padding inferior por ahora
+          marginTop: '0', // Asegurar que no hay margin superior
           width: '100%',
           gap: '48px'
         }}>
@@ -218,8 +223,9 @@ const Home = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          gap: '40px',
-          width: '100%'
+          gap: '40',
+          width: '100%',
+          marginTop: '80px' // Espacio desde la sección anterior
         }}>
           <h2 style={{
             ...textStyles.displayMedium,
@@ -305,7 +311,8 @@ const Home = () => {
           flexDirection: 'column',
           alignItems: 'flex-start',
           gap: '40px',
-          width: '100%'
+          width: '100%',
+          marginTop: '80px' // Espacio desde la sección anterior
         }}>
           <h2 style={{
             ...textStyles.displayMedium,
@@ -349,7 +356,8 @@ const Home = () => {
           display: 'flex',
           alignItems: 'flex-start',
           gap: '24px',
-          width: '100%'
+          width: '100%',
+          marginTop: '80px' // Espacio desde la sección anterior
         }}>
           {blogArticles.map((article) => (
             <article

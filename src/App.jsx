@@ -43,8 +43,8 @@ function App() {
               onMenuClick={handleMenuClick}
             />
             
-            {/* Contenido principal con padding-top para el header fijo */}
-            <main style={{ paddingTop: '80px', width: '100%' }}>
+            {/* Contenido principal sin padding-top para eliminar espacio bajo header */}
+            <main style={{ paddingTop: '0', width: '100%' }}>
               <Home />
               
               {/* Footer al final del contenido */}
