@@ -114,36 +114,50 @@ const Home = () => {
 
   // CSS responsive usando media queries
   const responsiveStyles = `
-    /* Shape Global - Above 5.56vw margin, stuck to absolute right */
-    .global-shape {
+    /* Shape - Linked to video container */
+    .hero-shape {
       display: none;
     }
     
-    @media (min-width: ${breakpoints.desktop}) {
-      .global-shape {
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-shape {
         display: block;
         position: absolute;
-        top: 13.89vw; /* Equivalent to 200px at 1440px */
-        right: 0;
-        width: 19.44vw; /* Equivalent to 280px at 1440px */
-        height: 16.67vw; /* Equivalent to 240px at 1440px */
-        z-index: 5;
+        top: 0;
+        right: -20%;
+        /* Same width as video but positioned outside */
+        width: 50%;
+        /* Same aspect ratio as video */
+        height: auto;
+        aspect-ratio: 16/9;
+        z-index: 3;
+        opacity: 0.8;
       }
     }
     
     @media (min-width: ${breakpoints.large}) {
-      .global-shape {
-        top: 17.36vw; /* Equivalent to 250px at 1440px */
-        right: 0;
-        width: 22.22vw; /* Equivalent to 320px at 1440px */
-        height: 19.44vw; /* Equivalent to 280px at 1440px */
+      .hero-shape {
+        right: -25%;
+        width: 50.47%;
+        /* Follows video height pattern */
+        height: 90.5%;
+        aspect-ratio: auto;
+        opacity: 0.85;
       }
     }
 
-    .global-shape img {
+    .hero-shape img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      filter: opacity(0.8) saturate(1.1);
+      transition: all 0.3s ease;
+    }
+    
+    @media (min-width: ${breakpoints.large}) {
+      .hero-shape img {
+        filter: opacity(0.85) saturate(1.2);
+      }
     }
 
     .home-container {
@@ -313,13 +327,14 @@ const Home = () => {
       }
     }
 
-    /* Video Container */
+    /* Video Container - Complemented with shape */
     .hero-video {
       width: 100%;
       max-width: 500px;
       aspect-ratio: 16/10;
       position: relative;
       order: 1;
+      z-index: 2;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
@@ -328,6 +343,7 @@ const Home = () => {
         max-width: none;
         order: 2;
         aspect-ratio: 16/9;
+        z-index: 2;
       }
     }
     
@@ -336,6 +352,7 @@ const Home = () => {
         width: 50.47%;
         height: 90.5%;
         aspect-ratio: auto;
+        z-index: 2;
       }
     }
 
@@ -344,6 +361,7 @@ const Home = () => {
       height: 100%;
       object-fit: cover;
       border-radius: 0;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     }
 
     /* Statistics Section */
@@ -589,14 +607,6 @@ const Home = () => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: responsiveStyles }} />
-      
-      {/* Global Shape - Outside all containers */}
-      <div className="global-shape">
-        <img 
-          src="/src/design-system/foundations/img/shape.png" 
-          alt="Shape decoration"
-        />
-      </div>
 
       <div className="home-container">
         <div className="content-container">
@@ -659,6 +669,14 @@ const Home = () => {
                 loop 
                 muted 
                 playsInline
+              />
+            </div>
+
+            {/* Shape - Linked to video within same container */}
+            <div className="hero-shape">
+              <img 
+                src="/src/design-system/foundations/img/shape.png" 
+                alt="Shape decoration"
               />
             </div>
           </div>
