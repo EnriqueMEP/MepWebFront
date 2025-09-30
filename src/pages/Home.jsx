@@ -133,37 +133,36 @@ const Home = () => {
     <div style={homeStyles}>
       <div style={contentContainerStyles}>
         
-        {/* Hero Section - Contenedor centrado para resistir zoom */}
+        {/* Hero Section - Usando solo vw para mantener proporciones exactas */}
         <section style={{
           width: '100%',
           minWidth: '100vw', // Se extiende de extremo a extremo
-          height: '480px',
-          paddingTop: '40px',
-          paddingBottom: '40px',
+          height: '33.33vw', // 480px convertido a vw (480/1440*100)
+          paddingTop: '2.78vw', // 40px convertido a vw (40/1440*100)
+          paddingBottom: '2.78vw', // 40px convertido a vw
           display: 'flex',
           justifyContent: 'center', // Centra el contenido interno
           alignItems: 'center',
           position: 'relative',
           boxSizing: 'border-box'
         }}>
-          {/* Contenedor interno con ancho fijo */}
-          {/* Contenedor interno con ancho fijo */}
+          {/* Contenedor interno responsive */}
           <div style={{
-            width: '1280px', // Ancho fijo del contenido
-            maxWidth: 'calc(100vw - 160px)', // Respeta margen mínimo en pantallas pequeñas
-            height: '400px', // Altura del contenido interno
+            width: '88.89vw', // 1280px convertido a vw (1280/1440*100)
+            maxWidth: 'calc(100vw - 11.11vw)', // Respeta margen mínimo
+            height: '27.78vw', // 400px convertido a vw (400/1440*100)
             padding: '0',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             position: 'relative',
             boxSizing: 'border-box',
-            gap: '48px'
+            gap: '3.33vw' // 48px convertido a vw (48/1440*100)
           }}>
-            {/* Contenedor de texto: 512px x 400px hug */}
+            {/* Contenedor de texto usando solo vw */}
           <div style={{
-            width: '512px',
-            height: '400px',
+            width: '35.56vw', // 512px convertido a vw (512/1440*100)
+            height: '27.78vw', // 400px convertido a vw (400/1440*100)
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -226,40 +225,44 @@ const Home = () => {
             </div>
           </div>
           
-          {/* Video: 646px x 362px con shape anclado */}
+          {/* Video usando solo vw */}
           <div style={{
-            width: '646px',
-            height: '362px',
+            width: '55.56vw', // 800px convertido a vw (800/1440*100)
+            height: '25.14vw', // 362px convertido a vw (362/1440*100)
             position: 'relative'
           }}>
             <video 
-              style={{width: '100%', height: '100%', objectFit: 'cover'}}
+              style={{
+                width: '44.86vw', // 646px convertido a vw (646/1440*100)
+                height: '100%', 
+                objectFit: 'cover'
+              }}
               src="/src/design-system/foundations/video/vHome.mp4" 
               autoPlay
               loop
               muted
               playsInline
             />
-            
-            {/* Shape.png: 711px x 204px - anclado al video */}
-            <div style={{
-              position: 'absolute',
-              bottom: '-80px', // Posicionado debajo del video
-              right: '-155px', // Más a la derecha, sobresaliendo del video
-              width: '711px',
-              height: '204px',
-              zIndex: 1 // Por encima del video
-            }}>
-              <img 
-                src="/src/design-system/foundations/img/shape.png"
-                alt="Shape decoration"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain'
-                }}
-              />
-            </div>
+          </div>
+          
+          {/* Shape.png: responsive usando unidades relativas al viewport */}
+          <div style={{
+            position: 'absolute',
+            bottom: '-2.78vw', // -40px convertido a vw (40/1440*100)
+            right: '-5.56vw', // -80px convertido a vw (80/1440*100)
+            width: '49.38vw', // 711px convertido a vw (711/1440*100)
+            height: '14.17vw', // 204px convertido a vw (204/1440*100)
+            zIndex: 1
+          }}>
+            <img 
+              src="/src/design-system/foundations/img/shape.png"
+              alt="Shape decoration"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
+            />
           </div>
           </div>
         </section>
