@@ -6,7 +6,7 @@ import { textStyles } from '../design-system/foundations/typography.js';
 import { useSemanticTokens } from '../design-system/foundations/theme-hooks.js';
 
 /**
- * Home - Layout con escalado proporcional perfecto
+ * Home - Layout con escalado proporcional completo
  */
 
 const Home = () => {
@@ -254,7 +254,7 @@ const Home = () => {
       display: block;
     }
 
-    /* Shape - DELANTE del video (z-index: 2) */
+    /* Shape Hero - DELANTE del video (z-index: 2), opacity: 1 */
     .hero-shape {
       display: none;
     }
@@ -269,7 +269,7 @@ const Home = () => {
         height: 48.61vw;
         z-index: 2;
         pointer-events: none;
-        opacity: 0.4;
+        opacity: 1;
       }
 
       .hero-shape img {
@@ -279,7 +279,32 @@ const Home = () => {
       }
     }
 
-    /* Projects Shape - Position absolute */
+    /* Projects Section con shape relativo al título */
+    .projects-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-section {
+        gap: 2.22vw;
+      }
+    }
+
+    .projects-title-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Projects Shape - Ajustado con el texto "Nuestros proyectos", opacity: 1 */
     .projects-shape {
       display: none;
     }
@@ -288,19 +313,47 @@ const Home = () => {
       .projects-shape {
         display: block;
         position: absolute;
-        bottom: 15vw;
-        left: -18vw;
+        top: -3vw;
+        left: -20vw;
         width: 49.31vw;
         height: 14.17vw;
-        z-index: 0;
+        z-index: -1;
         pointer-events: none;
-        opacity: 0.4;
+        opacity: 1;
       }
 
       .projects-shape img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+      }
+    }
+
+    /* Projects Grid - gap: 8 (0.56vw) */
+    .projects-grid {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-grid {
+        justify-content: space-between;
+        gap: 0.56vw;
+      }
+    }
+
+    /* Escalado de Cards */
+    .projects-grid > * {
+      transform-origin: center;
+    }
+
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-grid > * {
+        transform: scale(calc(1vw / 14.4));
       }
     }
 
@@ -352,46 +405,6 @@ const Home = () => {
       .stat-item {
         min-width: auto;
         flex: 1;
-      }
-    }
-
-    /* Projects Section */
-    .projects-section {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    @media (min-width: ${breakpoints.tablet}) {
-      .projects-section {
-        gap: 2.22vw;
-      }
-    }
-
-    .projects-title-container {
-      width: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-
-    .projects-grid {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: ${breakpoints.tablet}) {
-      .projects-grid {
-        justify-content: space-between;
-        gap: 1.67vw;
       }
     }
 
@@ -484,6 +497,14 @@ const Home = () => {
       }
     }
 
+    /* Escalado de botones del blog */
+    @media (min-width: ${breakpoints.tablet}) {
+      .blog-article button {
+        transform: scale(calc(1vw / 14.4));
+        transform-origin: right center;
+      }
+    }
+
     /* Typography - Escalado proporcional */
     .text-display-large {
       font-size: clamp(2rem, 3.96vw, 3.96vw);
@@ -556,6 +577,22 @@ const Home = () => {
       line-height: 1.43;
       word-wrap: break-word;
     }
+
+    /* Escalado del botón hero */
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-text > button {
+        transform: scale(calc(1vw / 14.4));
+        transform-origin: right center;
+      }
+    }
+
+    /* Escalado del badge */
+    @media (min-width: ${breakpoints.tablet}) {
+      .hero-text-content > div:first-child {
+        transform: scale(calc(1vw / 14.4));
+        transform-origin: left center;
+      }
+    }
   `;
 
   return (
@@ -601,7 +638,7 @@ const Home = () => {
                   playsInline
                 />
                 
-                {/* Shape DELANTE del video */}
+                {/* Shape DELANTE del video con opacity: 1 */}
                 <div className="hero-shape">
                   <img 
                     src="/src/design-system/foundations/img/shape.png" 
@@ -654,17 +691,17 @@ const Home = () => {
 
           {/* Projects Section */}
           <section className="projects-section">
-            {/* Projects Shape */}
-            <div className="projects-shape">
-              <img 
-                src="/src/design-system/foundations/img/shape2.png" 
-                alt=""
-              />
-            </div>
-
             <div className="projects-title-container">
               <div className="text-display-medium" style={{ color: semanticColors.content.text }}>
                 Nuestros proyectos
+              </div>
+              
+              {/* Projects Shape ajustado con el título, opacity: 1 */}
+              <div className="projects-shape">
+                <img 
+                  src="/src/design-system/foundations/img/shape2.png" 
+                  alt=""
+                />
               </div>
             </div>
             
