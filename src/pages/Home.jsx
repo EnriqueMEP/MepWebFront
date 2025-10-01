@@ -114,32 +114,26 @@ const Home = () => {
 
   // CSS responsive usando media queries
   const responsiveStyles = `
-    /* Shape - Linked to video container */
+    /* Hero Shape - Fixed decoration element in layout - IN FRONT */
     .hero-shape {
       display: block;
       position: absolute;
-      top: 37%;
-      right: -8%;
-      width: 40%;
-      /* Follows video height pattern */
-      height: 90.5%;
+      top: 15vh;
+      right: -5vw;
+      width: 35vw;
+      height: 70vh;
       aspect-ratio: auto;
-      z-index: 3;
+      z-index: 10;
       opacity: 1;
+      pointer-events: none;
     }
 
     .hero-shape img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: opacity(0.8) saturate(1.1);
+      filter: none;
       transition: all 0.3s ease;
-    }
-    
-    @media (min-width: ${breakpoints.large}) {
-      .hero-shape img {
-        filter: opacity(0.85) saturate(1.2);
-      }
     }
 
     .home-container {
@@ -460,63 +454,26 @@ const Home = () => {
       }
     }
 
-    /* Projects Shape - Linked to projects section, same behavior as hero shape */
+    /* Projects Shape - Fixed decoration element in layout - BEHIND content */
     .projects-shape {
       display: block;
       position: absolute;
-      top: 37%;
-      left: -8%;
-      width: 40%;
-      height: 90.5%;
+      top: -25vh;
+      left: -5vw;
+      width: 35vw;
+      height: 70vh;
       aspect-ratio: auto;
-      z-index: 1;
+      z-index: 0;
       opacity: 1;
-    }
-    
-    @media (min-width: ${breakpoints.tablet}) {
-      .projects-shape {
-        top: 37%;
-        left: -8%;
-        width: 40%;
-        height: 90.5%;
-        aspect-ratio: auto;
-        z-index: 1;
-      }
-    }
-    
-    @media (min-width: ${breakpoints.large}) {
-      .projects-shape {
-        top: 37%;
-        left: -8%;
-        width: 40%;
-        height: 90.5%;
-        aspect-ratio: auto;
-        z-index: 1;
-      }
-    }
-        height: 90.5%;
-        aspect-ratio: auto;
-      }
-    }
-    
-    @media (min-width: ${breakpoints.large}) {
-      .projects-shape {
-        top: 30%;
-        left: -8%;
-        width: 40%;
-        height: 90.5%;
-        aspect-ratio: auto;
-        z-index: 1;
-      }
+      pointer-events: none;
     }
 
     .projects-shape img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: opacity(0.85) saturate(1.2);
+      filter: none;
       transition: all 0.3s ease;
-      /* No transform - keep original orientation */
     }
 
     .projects-title {
@@ -838,7 +795,7 @@ const Home = () => {
           {/* Projects Shape - Left positioned, opposite to hero shape */}
           <div className="projects-shape">
             <img 
-              src="/src/design-system/foundations/img/shape.png" 
+              src="/src/design-system/foundations/img/shape2.png" 
               alt="Projects section decoration"
             />
           </div>
