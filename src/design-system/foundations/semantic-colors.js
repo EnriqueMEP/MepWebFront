@@ -682,7 +682,7 @@ export const darkTheme = {
   // ==========================================
   buttonGhostDefault: {
     background: 'transparent',
-    text: primitiveColors.olive[400],       // #6ca35c - más brillante en dark
+    text: primitiveColors.olive[200],       // #6ca35c - más brillante en dark
     border: 'transparent'
   },
   buttonGhostHover: {
