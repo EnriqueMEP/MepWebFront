@@ -653,20 +653,20 @@ const Home = () => {
             {blogArticles.map((article) => (
               <article key={article.id} className="blog-article">
                 <div className="blog-date text-label-large" style={{ 
-                  color: semanticColors.onSurface.background
+                  color: semanticColors.content.text
                 }}>
                   {article.date}
                 </div>
                 
                 <div className="blog-content">
                   <div className="blog-title text-heading-medium" style={{ 
-                    color: semanticColors.onSurface.background
+                    color: semanticColors.content.text
                   }}>
                     {article.title}
                   </div>
                   
                   <div className="blog-excerpt text-body-large" style={{ 
-                    color: semanticColors.onSurface.background
+                    color: semanticColors.content.text
                   }}>
                     {article.excerpt}
                   </div>
