@@ -4,6 +4,7 @@ import BadgeText from '../design-system/atoms/Badge/BadgeText.jsx';
 import CardVertical from '../design-system/atoms/Card/CardVertical.jsx';
 import { textStyles } from '../design-system/foundations/typography.js';
 import { useSemanticTokens } from '../design-system/foundations/theme-hooks.js';
+import { injectResponsiveClasses } from '../design-system/foundations/responsive-classes.js';
 
 /**
  * Home - Layout con escalado proporcional completo
@@ -14,6 +15,11 @@ const Home = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
   
   const semanticColors = useSemanticTokens();
+
+  // Inyectar clases responsivas al montar el componente
+  React.useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
 
   const projectsData = [
     {
@@ -431,13 +437,11 @@ const Home = () => {
       width: 100%;
       max-width: 400px;
       padding: 1.5rem;
-      border-radius: 0.56vw;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 1rem;
-      background-color: ${semanticColors.surface?.secondary || '#f8f9fa'};
-      min-height: 400px;
+      background-color: transparent;
     }
 
     @media (min-width: ${breakpoints.tablet}) {
@@ -446,8 +450,12 @@ const Home = () => {
         max-width: none;
         padding: 1.67vw;
         gap: 1.11vw;
-        min-height: 34.72vw;
       }
+    }
+
+    .blog-date {
+      width: 100%;
+      text-align: left;
     }
 
     .blog-content {
@@ -483,18 +491,11 @@ const Home = () => {
 
     .blog-excerpt {
       width: 100%;
-      height: 51px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
-    }
-
-    @media (min-width: ${breakpoints.tablet}) {
-      .blog-excerpt {
-        height: 3.54vw;
-      }
     }
 
     /* Escalado de botones del blog */
@@ -503,79 +504,6 @@ const Home = () => {
         transform: scale(calc(1vw / 14.4));
         transform-origin: right center;
       }
-    }
-
-    /* Typography - Escalado proporcional */
-    .text-display-large {
-      font-size: clamp(2rem, 3.96vw, 3.96vw);
-      font-family: Ubuntu;
-      font-weight: 400;
-      line-height: 1.12;
-      word-wrap: break-word;
-    }
-
-    .text-title-large {
-      font-size: clamp(1rem, 1.53vw, 1.53vw);
-      font-family: Ubuntu;
-      font-weight: 400;
-      line-height: 1.27;
-      word-wrap: break-word;
-    }
-
-    .text-display-medium {
-      font-size: clamp(1.75rem, 3.13vw, 3.13vw);
-      font-family: Ubuntu;
-      font-weight: 400;
-      line-height: 1.16;
-      word-wrap: break-word;
-    }
-
-    .text-display-medium-bold {
-      font-size: clamp(1.75rem, 3.13vw, 3.13vw);
-      font-family: Ubuntu;
-      font-weight: 700;
-      line-height: 1.16;
-      word-wrap: break-word;
-    }
-
-    .text-display-small {
-      font-size: clamp(1.5rem, 2.5vw, 2.5vw);
-      font-family: Ubuntu;
-      font-weight: 400;
-      line-height: 1.22;
-      word-wrap: break-word;
-    }
-
-    .text-heading-small {
-      font-size: clamp(1rem, 1.67vw, 1.67vw);
-      font-family: Ubuntu;
-      font-weight: 400;
-      line-height: 1.33;
-      word-wrap: break-word;
-    }
-
-    .text-body-large {
-      font-size: clamp(0.875rem, 1.11vw, 1.11vw);
-      font-family: Roboto;
-      font-weight: 400;
-      line-height: 1.5;
-      word-wrap: break-word;
-    }
-
-    .text-heading-medium {
-      font-size: clamp(1.25rem, 1.94vw, 1.94vw);
-      font-family: Ubuntu;
-      font-weight: 500;
-      line-height: 1.29;
-      word-wrap: break-word;
-    }
-
-    .text-label-large {
-      font-size: clamp(0.75rem, 0.97vw, 0.97vw);
-      font-family: Ubuntu;
-      font-weight: 500;
-      line-height: 1.43;
-      word-wrap: break-word;
     }
 
     /* Escalado del botón hero */
@@ -665,13 +593,9 @@ const Home = () => {
                     {stat.value}
                   </div>
                   
-                  <div style={{ 
+                  <div className={index === 3 ? "text-body-large" : "text-display-small"} style={{ 
                     color: semanticColors.content.text,
-                    textAlign: 'center',
-                    fontSize: index === 3 ? 'clamp(0.875rem, 1.11vw, 1.11vw)' : 'clamp(1.5rem, 2.5vw, 2.5vw)',
-                    fontFamily: index === 3 ? 'Roboto' : 'Ubuntu',
-                    fontWeight: '400',
-                    lineHeight: index === 3 ? '1.5' : '1.22'
+                    textAlign: 'center'
                   }}>
                     {stat.label}
                   </div>
@@ -728,19 +652,22 @@ const Home = () => {
           <section className="blog-section">
             {blogArticles.map((article) => (
               <article key={article.id} className="blog-article">
-                <div className="text-label-large" style={{ 
-                  color: semanticColors.content.text,
-                  height: 'auto'
+                <div className="blog-date text-label-large" style={{ 
+                  color: semanticColors.onSurface.background
                 }}>
                   {article.date}
                 </div>
                 
                 <div className="blog-content">
-                  <div className="blog-title text-heading-medium" style={{ color: semanticColors.content.text }}>
+                  <div className="blog-title text-heading-medium" style={{ 
+                    color: semanticColors.onSurface.background
+                  }}>
                     {article.title}
                   </div>
                   
-                  <div className="blog-excerpt text-body-large" style={{ color: semanticColors.content.text }}>
+                  <div className="blog-excerpt text-body-large" style={{ 
+                    color: semanticColors.onSurface.background
+                  }}>
                     {article.excerpt}
                   </div>
                 </div>
