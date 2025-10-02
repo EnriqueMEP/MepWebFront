@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
 import { textStyles } from '../../foundations/typography.js';
 import Icon from '../../foundations/icons/Icon.jsx';
+import { injectResponsiveClasses, getTypographyClass } from '../../foundations/responsive-classes.js';
 
 /**
  * ButtonPrimary - Botón Primary Unificado
@@ -9,6 +10,7 @@ import Icon from '../../foundations/icons/Icon.jsx';
  * Usa useComponentColors para soporte automático de dark/light mode
  * Tamaños: sm, md, lg, xl
  * Estados: default, hover, selected, disabled
+ * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  */
 
 const SIZES = {
@@ -62,11 +64,20 @@ export const ButtonPrimary = ({
   const sizeConfig = SIZES[size] || SIZES.md;
   const [isHovering, setIsHovering] = useState(false);
 
+  // Inyectar clases CSS responsivas al montar
+  React.useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
+
   // Obtener colores semánticos para primary button
   const primaryColors = useComponentColors('buttonPrimaryDefault');
   const primaryHoverColors = useComponentColors('buttonPrimaryHover');
   const primarySelectedColors = useComponentColors('buttonPrimarySelected');
   const primaryDisabledColors = useComponentColors('buttonPrimaryDisabled');
+
+  // Obtener clases CSS escalables
+  const typographyClass = getTypographyClass('button', size);
+  const sizeClass = `btn-size-${size}`;
 
   const getStateColors = () => {
     if (disabled) return {
@@ -96,23 +107,17 @@ export const ButtonPrimary = ({
     justifyContent: 'center',
     gap: sizeConfig.gap,
     
-    // Fixed sizing - no expansion on zoom
-    height: sizeConfig.height,
-    width: sizeConfig.width,
-    padding: sizeConfig.padding,
-    flexShrink: 0, // Prevent shrinking on zoom
-    
     // Colors from semantic-colors with theme support
     backgroundColor: stateColors.backgroundColor,
     color: stateColors.color,
     border: 'none',
     borderRadius: '0',
     
-    // Dynamic typography from foundations
+    // NO usar typography fijos - se aplican via className responsiva
     fontFamily: sizeConfig.typography.fontFamily,
-    fontSize: sizeConfig.typography.fontSize,
     fontWeight: sizeConfig.typography.fontWeight,
     lineHeight: sizeConfig.typography.lineHeight,
+    // fontSize se aplica via typographyClass responsiva
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -124,6 +129,18 @@ export const ButtonPrimary = ({
     // Custom styles
     ...style
   };
+
+  // Generar className combinando clases escalables y clases originales
+  const combinedClassName = [
+    `btn-primary-${size}`,
+    'component-base',
+    'component-flex-center', 
+    'component-interactive',
+    typographyClass,
+    sizeClass,
+    disabled && 'component-disabled',
+    className
+  ].filter(Boolean).join(' ');
 
   const handleMouseEnter = () => {
     if (!disabled && !selected) {
@@ -144,7 +161,7 @@ export const ButtonPrimary = ({
   return (
     <button
       ref={buttonRef}
-      className={`btn-primary-${size} ${className}`}
+      className={combinedClassName}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
@@ -173,6 +190,3 @@ export const ButtonPrimary = ({
 };
 
 export default ButtonPrimary;
-
-
-
