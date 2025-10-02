@@ -433,6 +433,31 @@ const Home = () => {
       }
     }
 
+    /* Blog Shape - Posicionado en la esquina derecha del blog, opacity: 1 */
+    .blog-shape {
+      display: none;
+    }
+
+    @media (min-width: ${breakpoints.tablet}) {
+      .blog-shape {
+        display: block;
+        position: absolute;
+        top: -9.8vw;
+        right: -9.5vw;
+        width: 49.31vw;
+        height: 48.61vw;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 1;
+      }
+
+      .blog-shape img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
     .blog-article {
       width: 100%;
       max-width: 400px;
@@ -650,6 +675,14 @@ const Home = () => {
 
           {/* Blog Section */}
           <section className="blog-section">
+            {/* Blog Shape - similar al del hero pero posicionado en el blog */}
+            <div className="blog-shape">
+              <img 
+                src="/src/design-system/foundations/img/shape.png" 
+                alt=""
+              />
+            </div>
+
             {blogArticles.map((article) => (
               <article key={article.id} className="blog-article">
                 <div className="blog-date text-label-large" style={{ 
