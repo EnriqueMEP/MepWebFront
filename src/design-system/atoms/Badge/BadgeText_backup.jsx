@@ -1,6 +1,5 @@
 import React from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
-import { injectResponsiveClasses, getTypographyClass } from '../../foundations/responsive-classes.js';
 
 /**
  * BadgeText - Etiqueta con texto corto, útil para clasificar o resaltar
@@ -10,7 +9,6 @@ import { injectResponsiveClasses, getTypographyClass } from '../../foundations/r
  * - 4 tamaños: sm, md, lg, xl con diferentes paddings y fuentes
  * - 3 variantes: primary, secondary, outline
  * - Soporte para light/dark mode automático
- * - ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  * 
  * Casos de uso:
  * - Mostrar categorías o estados nominales (ej. Beta, Nuevo, Activo)
@@ -32,25 +30,67 @@ const BadgeText = ({
   style = {},
   ...props
 }) => {
-  // Inyectar clases CSS responsivas al montar
-  React.useEffect(() => {
-    injectResponsiveClasses();
-  }, []);
-
   // Obtener colores del sistema semántico
   const colors = useComponentColors(`badge${variant.charAt(0).toUpperCase() + variant.slice(1)}`);
 
-  // Obtener clases CSS escalables
-  const typographyClass = getTypographyClass('badge', size);
-  const sizeClass = `badge-size-${size}`;
+  // Configuración de tamaños siguiendo la especificación exacta
+  const sizeConfig = {
+    sm: { 
+      height: 16,
+      paddingX: 6,
+      paddingY: 2,
+      fontSize: 10,
+      fontWeight: '500',
+      lineHeight: '16px'
+    },
+    md: { 
+      height: 20,
+      paddingX: 12,
+      paddingY: 4,
+      fontSize: 10,
+      fontWeight: '700',
+      lineHeight: '16px'
+    },
+    lg: { 
+      height: 24,
+      paddingX: 16,
+      paddingY: 4,
+      fontSize: 12,
+      fontWeight: '700',
+      lineHeight: '16px'
+    },
+    xl: { 
+      height: 32,
+      paddingX: 20,
+      paddingY: 4,
+      fontSize: 14,
+      fontWeight: '700',
+      lineHeight: '20px'
+    }
+  };
 
-  // Estilos base mínimos (solo colores y propiedades no escalables)
+  const currentSize = sizeConfig[size] || sizeConfig.md;
+
+  // Estilos del badge
   const badgeStyles = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: currentSize.height,
+    paddingLeft: currentSize.paddingX,
+    paddingRight: currentSize.paddingX,
+    paddingTop: currentSize.paddingY,
+    paddingBottom: currentSize.paddingY,
     backgroundColor: colors.backgroundColor,
     color: colors.color,
+    borderRadius: 2,
+    fontSize: currentSize.fontSize,
+    fontWeight: currentSize.fontWeight,
+    lineHeight: currentSize.lineHeight,
     fontFamily: 'Ubuntu, sans-serif',
-    fontWeight: size === 'sm' ? '500' : '700',
     textAlign: 'center',
+    whiteSpace: 'nowrap',
+    userSelect: 'none',
     // Para variante outline
     ...(variant === 'outline' && {
       outline: `1px solid ${colors.borderColor}`,
@@ -60,19 +100,9 @@ const BadgeText = ({
     ...style
   };
 
-  // Generar className combinando clases escalables
-  const combinedClassName = [
-    'component-base',
-    'component-flex-center',
-    'component-no-wrap',
-    typographyClass,
-    sizeClass,
-    className
-  ].filter(Boolean).join(' ');
-
   return (
     <span
-      className={combinedClassName}
+      className={`badge-text badge-text-${variant} badge-text-${size} ${className}`}
       style={badgeStyles}
       role="status"
       aria-label={`Badge ${variant}: ${children}`}

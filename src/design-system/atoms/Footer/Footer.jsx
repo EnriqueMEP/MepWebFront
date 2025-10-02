@@ -1,5 +1,6 @@
 import React from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
+import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import ButtonGhost from '../Button/ButtonGhost.jsx';
 import Icon from '../../foundations/icons/Icon.jsx';
 import mepLogo from '../../foundations/img/mep_logo.svg';
@@ -8,11 +9,11 @@ import mepLogo from '../../foundations/img/mep_logo.svg';
  * Footer - Pie de página principal de la aplicación
  * 
  * Estructura:
- * - Logo MEP arriba a la izquierda (104x40px)
- * - Navegación vertical con 4 botones Ghost MD con iconos left/right
+ * - Logo MEP arriba a la izquierda
+ * - Navegación vertical con botones Ghost MD con iconos left/right
  * 
- * Dimensiones: 1440x314px con padding lateral 64px y vertical 40px
  * Usa colores semánticos primary-container para background
+ * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  */
 
 const Footer = ({
@@ -21,6 +22,11 @@ const Footer = ({
   className = '',
   ...props
 }) => {
+  // Inyectar clases CSS responsivas al montar
+  React.useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
+
   // Colores semánticos para el footer
   const footerColors = useComponentColors('footer');
 
@@ -31,76 +37,49 @@ const Footer = ({
     { id: 'contact', label: 'Contacto' }
   ];
 
-  // Estilos del contenedor principal - al final del contenido
+  // Estilos base mínimos (solo colores y propiedades no escalables)
   const footerStyles = {
-    width: '100%', // Todo el ancho del contenedor padre
-    height: '314px', // Altura fija
-    paddingLeft: '64px', // Padding fijo
-    paddingRight: '64px',
-    paddingTop: '40px',
-    paddingBottom: '40px',
     background: footerColors.background,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    position: 'relative', // Posición normal al final del contenido
-    boxSizing: 'border-box',
-    flexShrink: 0 // No se encoge nunca
+    ...props.style
   };
 
-  // Estilos del área del logo
-  const logoAreaStyles = {
-    width: '104px',
-    height: '40px',
-    position: 'relative',
-    overflow: 'hidden'
-  };
-
-  const logoStyles = {
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain'
-  };
-
-  // Estilos del área de navegación vertical
-  const navigationStyles = {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    gap: '16px',
-    display: 'flex'
-  };
+  // Generar className combinando clases escalables
+  const footerClassName = [
+    'component-base',
+    'footer-component',
+    className
+  ].filter(Boolean).join(' ');
 
   return (
     <footer
-      className={`footer ${className}`}
+      className={footerClassName}
       style={footerStyles}
       {...props}
     >
-      {/* Logo MEP */}
-      <div style={logoAreaStyles}>
-        <img 
-          src={mepLogo} 
-          alt="MEP Logo" 
-          style={logoStyles}
-        />
-      </div>
+      <div className="footer-container">
+        {/* Logo Area */}
+        <div className="footer-logo">
+          <img 
+            src={mepLogo}
+            alt="MEP Engineering"
+          />
+        </div>
 
-      {/* Navegación Vertical */}
-      <nav style={navigationStyles}>
-        {navigationItems.map((item) => (
-          <ButtonGhost
-            key={item.id}
-            size="md"
-            leftIcon="userFollow" // Icono de flecha hacia la derecha a la izquierda
-            rightIcon="userFollow" // Icono de flecha hacia la derecha a la derecha
-            selected={activeNavItem === item.id}
-            onClick={() => onNavClick(item.id)}
-          >
-            {item.label}
-          </ButtonGhost>
-        ))}
-      </nav>
+        {/* Navigation Area */}
+        <nav className="footer-nav">
+          {navigationItems.map((item) => (
+            <ButtonGhost
+              key={item.id}
+              size="md"
+              selected={activeNavItem === item.id}
+              onClick={() => onNavClick(item.id)}
+              leftIcon="arrowRight"
+            >
+              {item.label}
+            </ButtonGhost>
+          ))}
+        </nav>
+      </div>
     </footer>
   );
 };

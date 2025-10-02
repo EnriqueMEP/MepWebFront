@@ -12,11 +12,11 @@ import Icon from '../../foundations/icons/Icon.jsx';
  * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  */
 
-export const ButtonGhost = ({
+const ButtonGhost = ({
   children = 'Button',
   size = 'md',
-  leftIcon,  // Nombre del icono (string) o null
-  rightIcon, // Nombre del icono (string) o null
+  leftIcon,
+  rightIcon,
   onClick,
   disabled = false,
   selected = false,
@@ -29,7 +29,64 @@ export const ButtonGhost = ({
     injectResponsiveClasses();
   }, []);
 
+  // Determinar el estado para los colores
+  const colorState = disabled ? 'buttonGhostDisabled' :
+                    selected ? 'buttonGhostSelected' :
+                    'buttonGhost';
+  
+  const colors = useComponentColors(colorState);
+  const hoverColors = useComponentColors('buttonGhostHover');
+
+  // Obtener clases CSS escalables
+  const typographyClass = getTypographyClass('button', size);
+  const sizeClass = `btn-size-${size}`;
+  
+  // Para iconos mantenemos compatibilidad con valores numéricos
+  const iconSize = getSizeValue('button', size, 'iconSize');
+
+  // Estilos base mínimos (solo colores y propiedades no escalables)
+  const buttonStyles = {
+    backgroundColor: 'transparent',
+    color: colors.color,
+    border: 'none',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    fontFamily: 'Ubuntu, sans-serif',
+    fontWeight: size === 'xl' ? 700 : 500,
+    outline: 'none',
+    ...style
+  };
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const finalStyles = {
+    ...buttonStyles,
+    ...(isHovered && !disabled && !selected ? {
+      color: hoverColors.color
+    } : {})
+  };
+
+  // Generar className combinando clases escalables
+  const combinedClassName = [
+    'component-base',
+    'component-flex-center', 
+    'component-interactive',
+    typographyClass,
+    sizeClass,
+    disabled && 'component-disabled',
+    className
+  ].filter(Boolean).join(' ');
+  size = 'md',
+  leftIcon,  // Nombre del icono (string) o null
+  rightIcon, // Nombre del icono (string) o null
+  onClick,
+  disabled = false,
+  selected = false,
+  className = '',
+  style = {},
+  ...props
+}) => {
   const buttonRef = useRef(null);
+  const sizeConfig = SIZES[size] || SIZES.md;
   const [isHovering, setIsHovering] = useState(false);
 
   // Limpiar estado hover cuando el botón cambia a selected
@@ -45,13 +102,6 @@ export const ButtonGhost = ({
   const ghostSelectedColors = useComponentColors('buttonGhostSelected'); 
   const ghostDisabledColors = useComponentColors('buttonGhostDisabled');
 
-  // Obtener clases CSS escalables
-  const typographyClass = getTypographyClass('button', size);
-  const sizeClass = `btn-size-${size}`;
-  
-  // Para iconos mantenemos compatibilidad con valores numéricos
-  const iconSize = getSizeValue('button', size, 'iconSize');
-
   const getColors = () => {
     if (disabled) return { color: ghostDisabledColors.text };
     if (selected) return { color: ghostSelectedColors.text };
@@ -61,8 +111,19 @@ export const ButtonGhost = ({
 
   const currentColors = getColors();
 
-  // Estilos base mínimos (solo colores y propiedades no escalables)
   const buttonStyles = {
+    // Layout foundations
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: sizeConfig.gap,
+
+    // Fixed sizing - no expansion on zoom
+    height: sizeConfig.height,
+    width: sizeConfig.width,
+    padding: sizeConfig.padding,
+    flexShrink: 0, // Prevent shrinking on zoom
+
     // Colors from semantic-colors - Ghost style
     backgroundColor: 'transparent',
     color: currentColors.color,
@@ -72,6 +133,12 @@ export const ButtonGhost = ({
     // Borde inferior solo cuando está seleccionado
     borderBottom: selected ? `2px solid ${currentColors.color}` : '2px solid transparent',
 
+    // Dynamic typography from foundations
+    fontFamily: sizeConfig.typography.fontFamily,
+    fontSize: sizeConfig.typography.fontSize,
+    fontWeight: sizeConfig.typography.fontWeight,
+    lineHeight: sizeConfig.typography.lineHeight,
+
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
     transition: 'all 0.2s ease-in-out',
@@ -79,24 +146,9 @@ export const ButtonGhost = ({
     outline: 'none',
     opacity: disabled ? 0.6 : 1,
 
-    // Typography weight específico para XL
-    fontWeight: size === 'xl' ? 700 : 500,
-    fontFamily: 'Ubuntu, sans-serif',
-
     // Custom styles
     ...style
   };
-
-  // Generar className combinando clases escalables
-  const combinedClassName = [
-    'component-base',
-    'component-flex-center', 
-    'component-interactive',
-    typographyClass,
-    sizeClass,
-    disabled && 'component-disabled',
-    className
-  ].filter(Boolean).join(' ');
 
   const handleMouseEnter = () => {
     if (!disabled) {
@@ -117,31 +169,28 @@ export const ButtonGhost = ({
   return (
     <button
       ref={buttonRef}
-      className={combinedClassName}
+      className={`btn-ghost-${size} ${className}`}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       disabled={disabled}
+      type="button"
       {...props}
     >
       {leftIcon && (
-        <Icon 
-          name={leftIcon} 
-          size={iconSize}
-          color="currentColor" 
+        <Icon
+          name={leftIcon}
+          size={sizeConfig.iconSize}
+          color={currentColors.color}
         />
       )}
-      
-      <span className="component-flex-center component-no-wrap">
-        {children}
-      </span>
-      
+      <span>{children}</span>
       {rightIcon && (
-        <Icon 
-          name={rightIcon} 
-          size={iconSize}
-          color="currentColor" 
+        <Icon
+          name={rightIcon}
+          size={sizeConfig.iconSize}
+          color={currentColors.color}
         />
       )}
     </button>
@@ -149,3 +198,4 @@ export const ButtonGhost = ({
 };
 
 export default ButtonGhost;
+

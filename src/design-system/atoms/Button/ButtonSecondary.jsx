@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
-import { textStyles } from '../../foundations/typography.js';
+import { injectResponsiveClasses, getTypographyClass, getSizeValue } from '../../foundations/responsive-classes.js';
 import Icon from '../../foundations/icons/Icon.jsx';
 
 /**
@@ -8,42 +8,8 @@ import Icon from '../../foundations/icons/Icon.jsx';
  * Usa tokens semánticos adaptativos para light/dark mode
  * Tamaños: sm, md, lg, xl
  * Estados: normal, hover, selected, disabled
+ * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  */
-
-const SIZES = {
-  sm: {
-    height: '32px',
-    width: 'fit-content', // max-width fijo según Figma
-    padding: '8px 12px',
-    gap: '12px',
-    typography: textStyles.buttonSmall,
-    iconSize: 16
-  },
-  md: {
-    height: '40px',
-    width: 'fit-content', // se ajusta al contenido pero sin expandir
-    padding: '8px 16px',
-    gap: '12px',
-    typography: textStyles.buttonMedium,
-    iconSize: 20
-  },
-  lg: {
-    height: '48px',
-    width: 'fit-content', // se ajusta al contenido pero sin expandir
-    padding: '8px 20px',
-    gap: '12px',
-    typography: textStyles.buttonLarge,
-    iconSize: 24
-  },
-  xl: {
-    height: '56px',
-    width: 'fit-content', // se ajusta al contenido pero sin expandir
-    padding: '8px 24px',
-    gap: '12px',
-    typography: { ...textStyles.buttonXL, fontWeight: 700 }, // XL usa font-weight: 700
-    iconSize: 32
-  }
-};
 
 export const ButtonSecondary = ({
   children = 'Button',
@@ -57,64 +23,50 @@ export const ButtonSecondary = ({
   style = {},
   ...props
 }) => {
+  // Inyectar clases CSS responsivas al montar
+  useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
+
   const buttonRef = useRef(null);
-  const sizeConfig = SIZES[size] || SIZES.md;
+  const [isHovering, setIsHovering] = useState(false);
+
+  // Limpiar estado hover cuando el botón cambia a selected
+  useEffect(() => {
+    if (selected) {
+      setIsHovering(false);
+    }
+  }, [selected]);
 
   // Obtener colores semánticos para secondary button
-  const secondaryColors = useComponentColors('buttonSecondary');
+  const secondaryColors = useComponentColors('buttonSecondaryDefault');
   const secondaryHoverColors = useComponentColors('buttonSecondaryHover');
+  const secondarySelectedColors = useComponentColors('buttonSecondarySelected'); 
   const secondaryDisabledColors = useComponentColors('buttonSecondaryDisabled');
 
-  // Definir colores base según el estado actual (sin hover)
-  const getBaseColors = () => {
-    if (disabled) return secondaryDisabledColors; // Estado deshabilitado
-    if (selected) return secondaryColors; // Estado seleccionado usa default
-    return secondaryColors; // Estado normal usa secondary
+  // Obtener clases CSS escalables
+  const typographyClass = getTypographyClass('button', size);
+  const sizeClass = `btn-size-${size}`;
+  
+  // Para iconos mantenemos compatibilidad con valores numéricos
+  const iconSize = getSizeValue('button', size, 'iconSize');
+
+  const getColors = () => {
+    if (disabled) return secondaryDisabledColors;
+    if (selected) return secondarySelectedColors;
+    if (isHovering && !disabled && !selected) return secondaryHoverColors;
+    return secondaryColors;
   };
 
-  // Definir colores de hover según el estado actual
-  const getHoverColors = () => {
-    if (disabled) return getBaseColors(); // Sin cambios si está disabled
-    if (selected) return getBaseColors(); // Sin cambios si está selected
-    // Estado normal hover: usar secondaryHover
-    return secondaryHoverColors;
-  };
+  const currentColors = getColors();
 
-  const baseColors = getBaseColors();
-  const hoverColors = getHoverColors();
-
-  // Estado para color actual del ícono
-  const [currentIconColor, setCurrentIconColor] = useState(baseColors.text);
-
-  // Sincronizar color del ícono cuando cambien los props
-  useEffect(() => {
-    setCurrentIconColor(baseColors.text);
-  }, [baseColors.text]);
-
+  // Estilos base mínimos (solo colores y propiedades no escalables)
   const buttonStyles = {
-    // Layout foundations
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: sizeConfig.gap,
-
-    // Fixed sizing - no expansion on zoom
-    height: sizeConfig.height,
-    width: sizeConfig.width,
-    padding: sizeConfig.padding,
-    flexShrink: 0, // Prevent shrinking on zoom
-
-    // Colors from semantic tokens
-    backgroundColor: baseColors.background,
-    color: baseColors.text,
-    border: 'none',
+    // Colors from semantic-colors - Secondary style
+    backgroundColor: currentColors.backgroundColor || currentColors.background,
+    color: currentColors.color || currentColors.text,
+    border: currentColors.borderColor ? `1px solid ${currentColors.borderColor}` : 'none',
     borderRadius: '0',
-
-    // Dynamic typography from foundations
-    fontFamily: sizeConfig.typography.fontFamily,
-    fontSize: sizeConfig.typography.fontSize,
-    fontWeight: sizeConfig.typography.fontWeight,
-    lineHeight: sizeConfig.typography.lineHeight,
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -123,25 +75,34 @@ export const ButtonSecondary = ({
     outline: 'none',
     opacity: disabled ? 0.6 : 1,
 
+    // Typography weight específico para XL
+    fontWeight: size === 'xl' ? 700 : 500,
+    fontFamily: 'Ubuntu, sans-serif',
+
     // Custom styles
     ...style
   };
 
+  // Generar className combinando clases escalables
+  const combinedClassName = [
+    'component-base',
+    'component-flex-center', 
+    'component-interactive',
+    typographyClass,
+    sizeClass,
+    disabled && 'component-disabled',
+    className
+  ].filter(Boolean).join(' ');
+
   const handleMouseEnter = () => {
-    if (!disabled && !selected && buttonRef.current) {
-      // Aplicar colores de hover
-      buttonRef.current.style.backgroundColor = hoverColors.background;
-      buttonRef.current.style.color = hoverColors.text;
-      setCurrentIconColor(hoverColors.text);
+    if (!disabled) {
+      setIsHovering(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (!disabled && !selected && buttonRef.current) {
-      // Restaurar colores base según estado actual
-      buttonRef.current.style.backgroundColor = baseColors.background;
-      buttonRef.current.style.color = baseColors.text;
-      setCurrentIconColor(baseColors.text);
+    if (!disabled) {
+      setIsHovering(false);
     }
   };
 
@@ -149,34 +110,34 @@ export const ButtonSecondary = ({
     if (!disabled && onClick) onClick(e);
   };
 
-  // Color dinámico para iconos
-  const iconColor = currentIconColor;
-
   return (
     <button
       ref={buttonRef}
-      className={`btn-secondary-${size} ${className}`}
+      className={combinedClassName}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       disabled={disabled}
-      type="button"
       {...props}
     >
       {leftIcon && (
-        <Icon
-          name={leftIcon}
-          size={sizeConfig.iconSize}
-          color={iconColor}
+        <Icon 
+          name={leftIcon} 
+          size={iconSize}
+          color="currentColor" 
         />
       )}
-      <span>{children}</span>
+      
+      <span className="component-flex-center component-no-wrap">
+        {children}
+      </span>
+      
       {rightIcon && (
-        <Icon
-          name={rightIcon}
-          size={sizeConfig.iconSize}
-          color={iconColor}
+        <Icon 
+          name={rightIcon} 
+          size={iconSize}
+          color="currentColor" 
         />
       )}
     </button>
@@ -184,4 +145,3 @@ export const ButtonSecondary = ({
 };
 
 export default ButtonSecondary;
-

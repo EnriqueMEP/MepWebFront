@@ -1,6 +1,5 @@
 import React from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
-import { injectResponsiveClasses, getTypographyClass } from '../../foundations/responsive-classes.js';
 
 /**
  * BadgeNumber - Contador numérico dentro del badge
@@ -10,7 +9,6 @@ import { injectResponsiveClasses, getTypographyClass } from '../../foundations/r
  * - 4 tamaños: sm, md, lg, xl con diferentes paddings y fuentes
  * - 3 variantes: primary, secondary, outline
  * - Soporte para light/dark mode automático
- * - ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  * 
  * Casos de uso:
  * - Indicar cantidad de notificaciones o ítems pendientes
@@ -32,28 +30,66 @@ const BadgeNumber = ({
   style = {},
   ...props
 }) => {
-  // Inyectar clases CSS responsivas al montar
-  React.useEffect(() => {
-    injectResponsiveClasses();
-  }, []);
-
   // Obtener colores del sistema semántico
   const colors = useComponentColors(`badge${variant.charAt(0).toUpperCase() + variant.slice(1)}`);
 
-  // Obtener clases CSS escalables
-  const typographyClass = getTypographyClass('badge', size);
-  const sizeClass = `badge-size-${size}`;
+  // Configuración de tamaños siguiendo la especificación exacta
+  const sizeConfig = {
+    sm: { 
+      height: 16,
+      padding: 4,
+      fontSize: 10,
+      fontWeight: '500',
+      lineHeight: '16px',
+      minWidth: 16
+    },
+    md: { 
+      height: 20,
+      padding: 6,
+      fontSize: 12,
+      fontWeight: '500',
+      lineHeight: '16px',
+      minWidth: 20
+    },
+    lg: { 
+      height: 24,
+      padding: 8,
+      fontSize: 14,
+      fontWeight: '500',
+      lineHeight: '20px',
+      minWidth: 24
+    },
+    xl: { 
+      height: 32,
+      padding: 12,
+      fontSize: 14,
+      fontWeight: '700',
+      lineHeight: '20px',
+      minWidth: 32
+    }
+  };
 
-  // Procesar el número para mostrar
-  const displayNumber = typeof children === 'number' && children > 99 ? '99+' : children;
+  const currentSize = sizeConfig[size] || sizeConfig.md;
 
-  // Estilos base mínimos (solo colores y propiedades no escalables)
+  // Estilos del badge
   const badgeStyles = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: currentSize.height,
+    minWidth: currentSize.minWidth,
+    padding: currentSize.padding,
     backgroundColor: colors.backgroundColor,
     color: colors.color,
+    borderRadius: 2,
+    fontSize: currentSize.fontSize,
+    fontWeight: currentSize.fontWeight,
+    lineHeight: currentSize.lineHeight,
     fontFamily: 'Ubuntu, sans-serif',
-    fontWeight: '500',
     textAlign: 'center',
+    whiteSpace: 'nowrap',
+    userSelect: 'none',
+    gap: 10, // Según especificación
     // Para variante outline
     ...(variant === 'outline' && {
       outline: `1px solid ${colors.borderColor}`,
@@ -63,25 +99,22 @@ const BadgeNumber = ({
     ...style
   };
 
-  // Generar className combinando clases escalables
-  const combinedClassName = [
-    'component-base',
-    'component-flex-center',
-    'component-no-wrap',
-    typographyClass,
-    sizeClass,
-    className
-  ].filter(Boolean).join(' ');
+  // Formatear número para mostrar (limitar dígitos)
+  const displayNumber = () => {
+    const num = parseInt(children, 10);
+    if (isNaN(num)) return children;
+    return num > 99 ? '99+' : num.toString();
+  };
 
   return (
     <span
-      className={combinedClassName}
+      className={`badge-number badge-number-${variant} badge-number-${size} ${className}`}
       style={badgeStyles}
       role="status"
-      aria-label={`Count: ${displayNumber}`}
+      aria-label={`${displayNumber()} notifications`}
       {...props}
     >
-      {displayNumber}
+      {displayNumber()}
     </span>
   );
 };

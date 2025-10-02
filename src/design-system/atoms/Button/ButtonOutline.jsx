@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
-import { textStyles } from '../../foundations/typography.js';
+import { injectResponsiveClasses, getTypographyClass, getSizeValue } from '../../foundations/responsive-classes.js';
 import Icon from '../../foundations/icons/Icon.jsx';
 
 /**
@@ -9,42 +9,8 @@ import Icon from '../../foundations/icons/Icon.jsx';
  * Tamaños: sm, md, lg, xl
  * Estados: normal, hover, selected, disabled
  * Background transparente, border color igual al texto
+ * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
  */
-
-const SIZES = {
-  sm: {
-    height: '32px',
-    width: 'fit-content', // max-width fijo según Figma
-    padding: '8px 12px',
-    gap: '12px',
-    typography: textStyles.buttonSmall,
-    iconSize: 16
-  },
-  md: {
-    height: '40px',
-    width: 'fit-content', // se ajusta al contenido pero sin expandir
-    padding: '8px 16px',
-    gap: '12px',
-    typography: textStyles.buttonMedium,
-    iconSize: 20
-  },
-  lg: {
-    height: '48px',
-    width: 'fit-content', // se ajusta al contenido pero sin expandir
-    padding: '8px 20px',
-    gap: '12px',
-    typography: textStyles.buttonLarge,
-    iconSize: 24
-  },
-  xl: {
-    height: '56px',
-    width: 'fit-content', // se ajusta al contenido pero sin expandir
-    padding: '8px 24px',
-    gap: '12px',
-    typography: { ...textStyles.buttonXL, fontWeight: 700 }, // XL usa font-weight: 700
-    iconSize: 32
-  }
-};
 
 export const ButtonOutline = ({
   children = 'Button',
@@ -58,94 +24,50 @@ export const ButtonOutline = ({
   style = {},
   ...props
 }) => {
+  // Inyectar clases CSS responsivas al montar
+  useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
+
   const buttonRef = useRef(null);
-  const sizeConfig = SIZES[size] || SIZES.md;
+  const [isHovering, setIsHovering] = useState(false);
+
+  // Limpiar estado hover cuando el botón cambia a selected
+  useEffect(() => {
+    if (selected) {
+      setIsHovering(false);
+    }
+  }, [selected]);
 
   // Obtener colores semánticos para outline button
-  const outlineColors = useComponentColors('buttonOutline');
+  const outlineColors = useComponentColors('buttonOutlineDefault');
   const outlineHoverColors = useComponentColors('buttonOutlineHover');
-  const outlineSelectedColors = useComponentColors('buttonOutlineSelected');
+  const outlineSelectedColors = useComponentColors('buttonOutlineSelected'); 
   const outlineDisabledColors = useComponentColors('buttonOutlineDisabled');
 
-  // Definir colores base según el estado actual (sin hover)
-  const getBaseColors = () => {
-    if (disabled) {
-      // Estado deshabilitado: usar tokens específicos de disabled
-      return { 
-        color: outlineDisabledColors.text, 
-        borderColor: outlineDisabledColors.border,
-        backgroundColor: 'transparent'
-      };
-    }
-    if (selected) {
-      // Estado seleccionado: usar tokens específicos de selected
-      return { 
-        color: outlineSelectedColors.text, 
-        borderColor: outlineSelectedColors.border,
-        backgroundColor: 'transparent'
-      };
-    }
-    // Estado normal: usar colores default
-    return { 
-      color: outlineColors.text, 
-      borderColor: outlineColors.border,
-      backgroundColor: 'transparent'
-    };
+  // Obtener clases CSS escalables
+  const typographyClass = getTypographyClass('button', size);
+  const sizeClass = `btn-size-${size}`;
+  
+  // Para iconos mantenemos compatibilidad con valores numéricos
+  const iconSize = getSizeValue('button', size, 'iconSize');
+
+  const getColors = () => {
+    if (disabled) return outlineDisabledColors;
+    if (selected) return outlineSelectedColors;
+    if (isHovering && !disabled && !selected) return outlineHoverColors;
+    return outlineColors;
   };
 
-  // Definir colores de hover según el estado actual
-  const getHoverColors = () => {
-    if (disabled) {
-      return getBaseColors(); // Sin cambios si está disabled
-    }
-    if (selected) {
-      return getBaseColors(); // Sin cambios si está selected
-    }
-    // Estado normal hover: usar tokens específicos de hover
-    return {
-      color: outlineHoverColors.text,
-      borderColor: outlineHoverColors.border,
-      backgroundColor: 'transparent'
-    };
-  };
+  const currentColors = getColors();
 
-  const baseColors = getBaseColors();
-  const hoverColors = getHoverColors();
-
-  // Estado para color actual del ícono
-  const [currentIconColor, setCurrentIconColor] = useState(baseColors.color);
-
-  // Sincronizar color del ícono cuando cambien los props
-  useEffect(() => {
-    setCurrentIconColor(baseColors.color);
-  }, [baseColors.color]);
-
+  // Estilos base mínimos (solo colores y propiedades no escalables)
   const buttonStyles = {
-    // Layout foundations
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: sizeConfig.gap,
-
-    // Fixed sizing - no expansion on zoom
-    height: sizeConfig.height,
-    width: sizeConfig.width,
-    padding: sizeConfig.padding,
-    flexShrink: 0, // Prevent shrinking on zoom
-
-    // Colors from semantic tokens - Outline style
-    backgroundColor: baseColors.backgroundColor,
-    color: baseColors.color,
-    borderWidth: '2px',
-    borderStyle: 'solid', 
-    borderColor: baseColors.borderColor,
-    borderRadius: '0', // Rectángulos sin bordes redondeados
-
-    // Dynamic typography from foundations
-    fontFamily: sizeConfig.typography.fontFamily,
-    fontSize: sizeConfig.typography.fontSize,
-    fontWeight: sizeConfig.typography.fontWeight,
-    lineHeight: sizeConfig.typography.lineHeight,
+    // Colors from semantic-colors - Outline style
+    backgroundColor: currentColors.backgroundColor || 'transparent',
+    color: currentColors.color || currentColors.text,
+    border: `1px solid ${currentColors.borderColor || currentColors.color || currentColors.text}`,
+    borderRadius: '0',
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -154,27 +76,34 @@ export const ButtonOutline = ({
     outline: 'none',
     opacity: disabled ? 0.6 : 1,
 
+    // Typography weight específico para XL
+    fontWeight: size === 'xl' ? 700 : 500,
+    fontFamily: 'Ubuntu, sans-serif',
+
     // Custom styles
     ...style
   };
 
+  // Generar className combinando clases escalables
+  const combinedClassName = [
+    'component-base',
+    'component-flex-center', 
+    'component-interactive',
+    typographyClass,
+    sizeClass,
+    disabled && 'component-disabled',
+    className
+  ].filter(Boolean).join(' ');
+
   const handleMouseEnter = () => {
-    if (!disabled && !selected && buttonRef.current) {
-      // Aplicar colores de hover según el estado actual
-      buttonRef.current.style.color = hoverColors.color;
-      buttonRef.current.style.borderColor = hoverColors.borderColor;
-      buttonRef.current.style.backgroundColor = hoverColors.backgroundColor;
-      setCurrentIconColor(hoverColors.color);
+    if (!disabled) {
+      setIsHovering(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (!disabled && !selected && buttonRef.current) {
-      // Restaurar colores base según estado actual
-      buttonRef.current.style.color = baseColors.color;
-      buttonRef.current.style.borderColor = baseColors.borderColor;
-      buttonRef.current.style.backgroundColor = baseColors.backgroundColor;
-      setCurrentIconColor(baseColors.color);
+    if (!disabled) {
+      setIsHovering(false);
     }
   };
 
@@ -185,28 +114,31 @@ export const ButtonOutline = ({
   return (
     <button
       ref={buttonRef}
-      className={`btn-outline-${size} ${className}`}
+      className={combinedClassName}
       style={buttonStyles}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       disabled={disabled}
-      type="button"
       {...props}
     >
       {leftIcon && (
-        <Icon
-          name={leftIcon}
-          size={sizeConfig.iconSize}
-          color={currentIconColor}
+        <Icon 
+          name={leftIcon} 
+          size={iconSize}
+          color="currentColor" 
         />
       )}
-      <span>{children}</span>
+      
+      <span className="component-flex-center component-no-wrap">
+        {children}
+      </span>
+      
       {rightIcon && (
-        <Icon
-          name={rightIcon}
-          size={sizeConfig.iconSize}
-          color={currentIconColor}
+        <Icon 
+          name={rightIcon} 
+          size={iconSize}
+          color="currentColor" 
         />
       )}
     </button>
@@ -214,4 +146,3 @@ export const ButtonOutline = ({
 };
 
 export default ButtonOutline;
-
