@@ -1,5 +1,5 @@
 import React from 'react';
-import { useComponentColors } from '../../foundations/theme-hooks.js';
+import { useComponentColors, useTheme } from '../../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import ButtonGhost from '../Button/ButtonGhost.jsx';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
@@ -32,8 +32,9 @@ const Header = ({
     injectResponsiveClasses();
   }, []);
 
-  // Colores semánticos para el header
+  // Colores semánticos para el header y sistema de tema
   const headerColors = useComponentColors('header');
+  const { toggleTheme } = useTheme();
 
   const navigationItems = [
     { id: 'about', label: 'Sobre MEP Engineering'},
@@ -87,12 +88,33 @@ const Header = ({
         <div className="header-actions">
           <ButtonPrimary
             size="sm"
+            leftIcon="user"
             selected={isLoginSelected}
             onClick={onLoginClick}
           >
             Iniciar sesión
           </ButtonPrimary>
           
+          {/* Botón de cambio de tema - siempre visible */}
+          <button
+            className="header-theme-button"
+            onClick={toggleTheme}
+            aria-label="Cambiar tema"
+            style={{
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '8px'
+            }}
+          >
+            <Icon 
+              name="menu" 
+              size={20}
+              color={headerColors.text || 'currentColor'}
+            />
+          </button>
+          
+          {/* Botón de menú original - solo visible en mobile */}
           <button
             className="header-menu-button"
             onClick={onMenuClick}
