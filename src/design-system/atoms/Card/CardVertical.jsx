@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
 import { textStyles } from '../../foundations/typography.js';
+import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
 import BadgeText from '../Badge/BadgeText.jsx';
 
@@ -9,52 +10,36 @@ import BadgeText from '../Badge/BadgeText.jsx';
  * 
  * Estructura:
  * - Imagen en la parte superior
- * - Badge outline absoluto posicionado sobre la imagen
- * - Contenido con título, descripción y botón primary con icono arrowRightLong
+ * - Contenido con badge, título, descripción y botón primary con icono arrowRightLong
  * 
  * Tamaños: sm, md, lg, xl
  * Usa colores semánticos adaptativos para light/dark mode
+ * ACTUALIZADO: Usa clases CSS escalables para comportamiento de zoom consistente
  */
 
 const SIZES = {
   sm: {
-    width: '160px',
-    height: '240px',
-    imageHeight: '120px',
     contentPadding: '12px',
-    badgePosition: { left: '12px', top: '12px' },
-    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 }, // 14px, 700
-    descriptionTypography: textStyles.captionRegular, // 12px, 400
+    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 },
+    descriptionTypography: textStyles.captionRegular,
     buttonSize: 'sm'
   },
   md: {
-    width: '180px',
-    height: '260px',
-    imageHeight: '120px',
     contentPadding: '16px',
-    badgePosition: { left: '12px', top: '12px' },
-    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 }, // 14px, 700
-    descriptionTypography: textStyles.captionRegular, // 12px, 400
+    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 },
+    descriptionTypography: textStyles.captionRegular,
     buttonSize: 'sm'
   },
   lg: {
-    width: '200px',
-    height: '280px',
-    imageHeight: '140px',
     contentPadding: '18px',
-    badgePosition: { left: '16px', top: '16px' },
-    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 }, // 14px, 700
-    descriptionTypography: textStyles.captionRegular, // 12px, 400
+    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 },
+    descriptionTypography: textStyles.captionRegular,
     buttonSize: 'sm'
   },
   xl: {
-    width: '240px',
-    height: '320px',
-    imageHeight: '149px',
     contentPadding: '20px',
-    badgePosition: { left: '20px', top: '20px' },
-    titleTypography: { ...textStyles.buttonLarge, fontWeight: 700 }, // 16px, 700
-    descriptionTypography: textStyles.buttonMedium, // 14px, 400
+    titleTypography: { ...textStyles.buttonLarge, fontWeight: 700 },
+    descriptionTypography: textStyles.buttonMedium,
     buttonSize: 'sm'
   }
 };
@@ -75,29 +60,30 @@ export const CardVertical = ({
   const sizeConfig = SIZES[size] || SIZES.md;
   const cardColors = useComponentColors('cardDefault');
 
-  // Generar imagen con dimensiones correctas para el tamaño
-  const imageWidth = parseInt(sizeConfig.width);
-  const imageHeight = parseInt(sizeConfig.imageHeight);
-  const imageSrc = image.includes('placehold.co') 
-    ? `https://placehold.co/${imageWidth}x${imageHeight}`
-    : image;
+  // Inyectar clases CSS responsivas al montar
+  useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
+
+  // Obtener clase CSS escalable para la card
+  const sizeClass = `card-size-${size}`;
 
   const cardStyles = {
-    width: sizeConfig.width,
-    height: sizeConfig.height,
     position: 'relative',
-    boxShadow: '0px 2px 6px 2px rgba(0, 0, 0, 0.15)',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     display: 'inline-flex',
+    overflow: 'hidden',
     ...style
   };
 
   const imageStyles = {
     alignSelf: 'stretch',
-    height: sizeConfig.imageHeight,
-    objectFit: 'cover'
+    objectFit: 'cover',
+    display: 'block',
+    margin: 0,
+    padding: 0
   };
 
   const contentStyles = {
@@ -108,8 +94,8 @@ export const CardVertical = ({
     borderTop: `1px solid ${cardColors.border}`,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    gap: size === 'sm' ? '6px' : '10px',
-    display: 'inline-flex',
+    gap: '8px',
+    display: 'flex',
     flexDirection: 'column'
   };
 
@@ -120,7 +106,7 @@ export const CardVertical = ({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     gap: '16px',
-    display: 'inline-flex'
+    display: 'flex'
   };
 
   const textAreaStyles = {
@@ -130,37 +116,23 @@ export const CardVertical = ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    gap: '4px',
-    display: 'flex',
-    minHeight: size === 'sm' ? '60px' : size === 'md' ? '80px' : '100px'
-  };
-
-  const textContentStyles = {
-    alignSelf: 'stretch',
-    flex: '1 1 0',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: '2px',
+    gap: '8px',
     display: 'flex'
   };
 
   const titleStyles = {
     alignSelf: 'stretch',
-    justifyContent: 'center',
-    flexDirection: 'column',
     color: cardColors.text,
     ...sizeConfig.titleTypography,
+    lineHeight: size === 'sm' ? '1.2' : '1.3',
     wordBreak: 'break-word',
     overflowWrap: 'break-word',
     hyphens: 'auto',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
-    WebkitLineClamp: size === 'sm' ? 2 : size === 'md' ? 2 : 3, // Más líneas para títulos largos
-    WebkitBoxOrient: 'vertical',
-    lineHeight: size === 'sm' ? '1.2' : '1.3',
-    minHeight: size === 'sm' ? '24px' : '32px' // Altura mínima para evitar colapso
+    WebkitLineClamp: size === 'sm' ? 2 : size === 'md' ? 2 : 3,
+    WebkitBoxOrient: 'vertical'
   };
 
   const descriptionStyles = {
@@ -168,17 +140,16 @@ export const CardVertical = ({
     flex: '1 1 0',
     color: cardColors.text,
     ...sizeConfig.descriptionTypography,
+    lineHeight: '1.4',
+    opacity: 0.8,
     wordBreak: 'break-word',
     overflowWrap: 'break-word',
     hyphens: 'auto',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
-    WebkitLineClamp: size === 'sm' ? 3 : size === 'md' ? 4 : size === 'lg' ? 5 : 6, // Más líneas para mejor ajuste
-    WebkitBoxOrient: 'vertical',
-    lineHeight: '1.4',
-    opacity: 0.8,
-    minHeight: size === 'sm' ? '36px' : '48px' // Altura mínima para evitar colapso
+    WebkitLineClamp: size === 'sm' ? 3 : size === 'md' ? 4 : size === 'lg' ? 5 : 6,
+    WebkitBoxOrient: 'vertical'
   };
 
   const buttonAreaStyles = {
@@ -187,35 +158,41 @@ export const CardVertical = ({
     alignItems: 'flex-end',
     gap: '10px',
     display: 'flex',
-    flexShrink: 0,
-    minHeight: '32px'
+    flexShrink: 0
   };
 
-  const badgeStyles = {
-    position: 'absolute',
-    left: sizeConfig.badgePosition.left,
-    top: sizeConfig.badgePosition.top,
-    zIndex: 1
-  };
+  // Combinar clases CSS escalables
+  const combinedClassName = [
+    'component-base',
+    sizeClass,
+    `card-vertical-${size}`,
+    className
+  ].filter(Boolean).join(' ');
 
   return (
     <div
-      className={`card-vertical-${size} ${className}`}
+      className={combinedClassName}
       style={cardStyles}
       {...props}
     >
-      {/* Imagen */}
-      <img style={imageStyles} src={imageSrc} alt={title} />
+      {/* Imagen pegada al borde */}
+      <img className="card-image" style={imageStyles} src={image} alt={title} />
       
       {/* Contenido */}
       <div style={contentStyles}>
+        {/* Badge ANTES del título */}
+        <BadgeText variant="outline" size="sm">
+          {badgeText}
+        </BadgeText>
+
         <div style={contentInnerStyles}>
           {/* Área de texto */}
           <div style={textAreaStyles}>
-            <div style={textContentStyles}>
-              <div style={titleStyles}>{title}</div>
-              <div style={descriptionStyles}>{description}</div>
+            {/* Título con tipografía del SIZES */}
+            <div style={titleStyles}>
+              {title}
             </div>
+            <div style={descriptionStyles}>{description}</div>
           </div>
           
           {/* Área del botón */}
@@ -230,13 +207,6 @@ export const CardVertical = ({
             </ButtonPrimary>
           </div>
         </div>
-      </div>
-      
-      {/* Badge absoluto */}
-      <div style={badgeStyles}>
-        <BadgeText variant="outline" size="sm">
-          {badgeText}
-        </BadgeText>
       </div>
     </div>
   );

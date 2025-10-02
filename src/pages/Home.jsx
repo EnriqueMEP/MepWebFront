@@ -36,7 +36,7 @@ const Home = () => {
       id: 3,
       image: "src/design-system/foundations/img/p3.png",
       badgeText: "Ing. Básica",
-      title: "Parque Eólico \"Viento Norte\" de 45MWp",
+      title: "Planta Fotovoltaica \"Puerto Cruz I\" de 21,15MWp",
       description: "",
       buttonText: "Conocer más"
     },
