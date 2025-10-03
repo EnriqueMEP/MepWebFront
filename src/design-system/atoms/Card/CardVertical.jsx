@@ -1,45 +1,80 @@
 import React, { useEffect } from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
-import { textStyles } from '../../foundations/typography.js';
-import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
+import { injectResponsiveClasses, getTypographyClass } from '../../foundations/responsive-classes.js';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
 import BadgeText from '../Badge/BadgeText.jsx';
 
-/**
- * CardVertical - Tarjeta vertical con imagen, badge, título, descripción y botón
- * 
- * Estructura:
- * - Imagen en la parte superior
- * - Contenido con badge, título, descripción y botón primary con icono arrowRightLong
- * 
- * Tamaños: sm, md, lg, xl
- * Usa colores semánticos adaptativos para light/dark mode
- * ACTUALIZADO: Usa clases CSS escalables para comportamiento de zoom consistente
- */
-
 const SIZES = {
   sm: {
-    contentPadding: '12px',
-    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 },
-    descriptionTypography: textStyles.captionRegular,
+    width: 'clamp(140px, 11.11vw, 11.11vw)',
+    imageAspectRatio: '3/2',
+    contentPadding: 'clamp(10px, 0.83vw, 0.83vw)',
+    titleTypography: {
+      fontFamily: 'Ubuntu, sans-serif',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontWeight: 700,
+      lineHeight: '1.33'
+    },
+    descriptionTypography: {
+      fontFamily: 'Roboto, sans-serif',
+      fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
+      fontWeight: 400,
+      lineHeight: '1.33'
+    },
     buttonSize: 'sm'
   },
   md: {
-    contentPadding: '16px',
-    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 },
-    descriptionTypography: textStyles.captionRegular,
+    width: 'clamp(160px, 12.5vw, 12.5vw)',
+    imageAspectRatio: '3/2',
+    contentPadding: 'clamp(12px, 1.11vw, 1.11vw)',
+    titleTypography: {
+      fontFamily: 'Ubuntu, sans-serif',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontWeight: 700,
+      lineHeight: '1.33'
+    },
+    descriptionTypography: {
+      fontFamily: 'Roboto, sans-serif',
+      fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
+      fontWeight: 400,
+      lineHeight: '1.33'
+    },
     buttonSize: 'sm'
   },
   lg: {
-    contentPadding: '18px',
-    titleTypography: { ...textStyles.buttonMedium, fontWeight: 700 },
-    descriptionTypography: textStyles.captionRegular,
+    width: 'clamp(180px, 13.89vw, 13.89vw)',
+    imageAspectRatio: '3/2',
+    contentPadding: 'clamp(14px, 1.25vw, 1.25vw)',
+    titleTypography: {
+      fontFamily: 'Ubuntu, sans-serif',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontWeight: 700,
+      lineHeight: '1.33'
+    },
+    descriptionTypography: {
+      fontFamily: 'Roboto, sans-serif',
+      fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
+      fontWeight: 400,
+      lineHeight: '1.33'
+    },
     buttonSize: 'sm'
   },
   xl: {
-    contentPadding: '20px',
-    titleTypography: { ...textStyles.buttonLarge, fontWeight: 700 },
-    descriptionTypography: textStyles.buttonMedium,
+    width: 'clamp(200px, 16.67vw, 16.67vw)',
+    imageAspectRatio: '3/2',
+    contentPadding: 'clamp(16px, 1.39vw, 1.39vw)',
+    titleTypography: {
+      fontFamily: 'Ubuntu, sans-serif',
+      fontSize: 'clamp(13px, 0.97vw, 0.97vw)',
+      fontWeight: 700,
+      lineHeight: '1.43'
+    },
+    descriptionTypography: {
+      fontFamily: 'Roboto, sans-serif',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontWeight: 400,
+      lineHeight: '1.33'
+    },
     buttonSize: 'sm'
   }
 };
@@ -49,7 +84,7 @@ export const CardVertical = ({
   image = 'https://placehold.co/180x120',
   badgeText = 'Badge',
   title = 'Title',
-  description = 'Description',
+  description = '',
   buttonText = 'Button',
   buttonSelected = false,
   onButtonClick,
@@ -60,108 +95,117 @@ export const CardVertical = ({
   const sizeConfig = SIZES[size] || SIZES.md;
   const cardColors = useComponentColors('cardDefault');
 
-  // Inyectar clases CSS responsivas al montar
   useEffect(() => {
     injectResponsiveClasses();
   }, []);
 
-  // Obtener clase CSS escalable para la card
+  const titleTypographyClass = getTypographyClass('card', size);
   const sizeClass = `card-size-${size}`;
 
-  const cardStyles = {
+  const articleStyles = {
+    width: sizeConfig.width,
     position: 'relative',
+    display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    display: 'inline-flex',
-    overflow: 'hidden',
     ...style
   };
 
-  const imageStyles = {
-    alignSelf: 'stretch',
-    objectFit: 'cover',
-    display: 'block',
+  const figureStyles = {
+    position: 'relative',
+    width: '100%',
+    aspectRatio: sizeConfig.imageAspectRatio,
     margin: 0,
-    padding: 0
+    padding: 0,
+    overflow: 'hidden'
   };
 
-  const contentStyles = {
-    alignSelf: 'stretch',
-    flex: '1 1 0',
+  const imageStyles = {
+    width: '100%',
+    height: '100%',
+    display: 'block',
+    objectFit: 'cover'
+  };
+
+  const contentWrapperStyles = {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'flex-start',
+    gap: 'clamp(8px, 0.69vw, 0.69vw)',
     padding: sizeConfig.contentPadding,
+    position: 'relative',
     backgroundColor: cardColors.background,
     borderTop: `1px solid ${cardColors.border}`,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: '8px',
-    display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    minHeight: 'clamp(100px, 8.33vw, 8.33vw)'
   };
 
   const contentInnerStyles = {
+    display: 'flex',
+    alignItems: 'flex-end',
+    gap: 'clamp(12px, 1.11vw, 1.11vw)',
     flex: '1 1 0',
     alignSelf: 'stretch',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    gap: '16px',
-    display: 'flex'
+    position: 'relative'
   };
 
-  const textAreaStyles = {
-    alignSelf: 'stretch',
-    flex: '1 1 0',
-    flexShrink: 0,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+  const textOuterStyles = {
+    display: 'flex',
     alignItems: 'flex-start',
-    gap: '8px',
-    display: 'flex'
+    gap: 'clamp(6px, 0.56vw, 0.56vw)',
+    flex: '1 1 0',
+    alignSelf: 'stretch',
+    width: '100%',
+    flexDirection: 'column',
+    position: 'relative'
+  };
+
+  const textInnerStyles = {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: 'clamp(2px, 0.14vw, 0.14vw)',
+    alignSelf: 'stretch',
+    width: '100%',
+    flexDirection: 'column',
+    position: 'relative'
   };
 
   const titleStyles = {
     alignSelf: 'stretch',
+    fontFamily: sizeConfig.titleTypography.fontFamily,
+    fontWeight: sizeConfig.titleTypography.fontWeight,
+    fontSize: sizeConfig.titleTypography.fontSize,
     color: cardColors.text,
-    ...sizeConfig.titleTypography,
-    lineHeight: size === 'sm' ? '1.2' : '1.3',
-    wordBreak: 'break-word',
-    overflowWrap: 'break-word',
-    hyphens: 'auto',
+    lineHeight: sizeConfig.titleTypography.lineHeight,
+    wordWrap: 'break-word',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
-    WebkitLineClamp: size === 'sm' ? 2 : size === 'md' ? 2 : 3,
+    WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical'
   };
 
   const descriptionStyles = {
     alignSelf: 'stretch',
-    flex: '1 1 0',
+    fontFamily: sizeConfig.descriptionTypography.fontFamily,
+    fontWeight: sizeConfig.descriptionTypography.fontWeight,
+    fontSize: sizeConfig.descriptionTypography.fontSize,
     color: cardColors.text,
-    ...sizeConfig.descriptionTypography,
-    lineHeight: '1.4',
-    opacity: 0.8,
-    wordBreak: 'break-word',
-    overflowWrap: 'break-word',
-    hyphens: 'auto',
+    lineHeight: sizeConfig.descriptionTypography.lineHeight,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
-    WebkitLineClamp: size === 'sm' ? 3 : size === 'md' ? 4 : size === 'lg' ? 5 : 6,
-    WebkitBoxOrient: 'vertical'
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    wordWrap: 'break-word'
   };
 
-  const buttonAreaStyles = {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-    gap: '10px',
+  const buttonContainerStyles = {
     display: 'flex',
-    flexShrink: 0
+    alignSelf: 'flex-end'
   };
 
-  // Combinar clases CSS escalables
   const combinedClassName = [
     'component-base',
     sizeClass,
@@ -170,33 +214,40 @@ export const CardVertical = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div
+    <article
       className={combinedClassName}
-      style={cardStyles}
+      style={articleStyles}
       {...props}
     >
-      {/* Imagen pegada al borde */}
-      <img className="card-image" style={imageStyles} src={image} alt={title} />
-      
-      {/* Contenido */}
-      <div style={contentStyles}>
-        {/* Badge ANTES del título */}
+      <figure style={figureStyles}>
+        <img
+          style={imageStyles}
+          alt={title}
+          src={image}
+        />
+      </figure>
+
+      <div style={contentWrapperStyles}>
         <BadgeText variant="outline" size="sm">
           {badgeText}
         </BadgeText>
 
         <div style={contentInnerStyles}>
-          {/* Área de texto */}
-          <div style={textAreaStyles}>
-            {/* Título con tipografía del SIZES */}
-            <div style={titleStyles}>
-              {title}
+          <div style={textOuterStyles}>
+            <div style={textInnerStyles}>
+              <h2 style={titleStyles}>
+                {title}
+              </h2>
+
+              {description && (
+                <p style={descriptionStyles}>
+                  {description}
+                </p>
+              )}
             </div>
-            <div style={descriptionStyles}>{description}</div>
           </div>
-          
-          {/* Área del botón */}
-          <div style={buttonAreaStyles}>
+
+          <div style={buttonContainerStyles}>
             <ButtonPrimary
               size={sizeConfig.buttonSize}
               rightIcon="arrowRightLong"
@@ -208,7 +259,7 @@ export const CardVertical = ({
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
