@@ -340,7 +340,7 @@ const Home = () => {
       }
     }
 
-    /* Projects Grid - spacing proporcional y consistente */
+    /* Projects Grid - cards más juntas con márgenes laterales */
     .projects-grid {
       width: 100%;
       display: flex;
@@ -352,8 +352,9 @@ const Home = () => {
     
     @media (min-width: ${breakpoints.tablet}) {
       .projects-grid {
-        justify-content: space-between;
-        gap: 1.39vw; /* Espacio proporcional entre cards - más equilibrado */
+        justify-content: center; /* Cambio: centradas en lugar de space-between */
+        gap: 0.69vw; /* Reducido: cards más juntas entre sí */
+        padding: 0 2.78vw; /* Nuevo: margen izquierdo y derecho */
       }
     }
 
