@@ -271,8 +271,8 @@ const Home = () => {
         position: absolute;
         top: -5vw;
         right: -10vw;
-        width: 49.31vw;
-        height: 48.61vw;
+        width: 40vw;
+        height: 52vw;
         z-index: 2;
         pointer-events: none;
         opacity: 1;
@@ -319,9 +319,9 @@ const Home = () => {
       .projects-shape {
         display: block;
         position: absolute;
-        top: -3vw;
+        top: -7vw;
         left: -20vw;
-        width: 49.31vw;
+        width: 51.77vw;
         height: 14.17vw;
         z-index: -1;
         pointer-events: none;
@@ -444,8 +444,8 @@ const Home = () => {
         position: absolute;
         top: -9.8vw;
         right: -9.5vw;
-        width: 49.31vw;
-        height: 48.61vw;
+        width: 42vw;
+        height: 45.8vw;
         z-index: -1;
         pointer-events: none;
         opacity: 1;
