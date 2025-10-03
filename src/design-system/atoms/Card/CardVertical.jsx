@@ -107,7 +107,6 @@ export const CardVertical = ({
     injectResponsiveClasses();
   }, []);
 
-  // Estructura siguiendo exactamente el HTML de Figma
   const cardStyles = {
     display: 'flex',
     flexDirection: 'column',
@@ -117,7 +116,6 @@ export const CardVertical = ({
     flexShrink: 0,
     height: sizeConfig.height,
     position: 'relative',
-    boxShadow: '0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3)',
     ...style
   };
 
