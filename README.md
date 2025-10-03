@@ -1,48 +1,189 @@
-# MepWebFront - Design System
+# MEP Web Frontend - Documentación Principal
 
-Un sistema de diseño moderno con soporte para modo claro/oscuro y componentes atómicos reutilizables construido con React + Vite.
+## 📋 Índice
+- [Introducción](#introducción)
+- [Arquitectura del Proyecto](#arquitectura-del-proyecto)
+- [Guías Específicas](#guías-específicas)
+- [Configuración y Setup](#configuración-y-setup)
+- [Desarrollo](#desarrollo)
+- [Contribución](#contribución)
 
-## 🎯 Descripción General
+## 🚀 Introducción
 
-Este proyecto implementa un **Design System completo** siguiendo la metodología de Atomic Design con un sistema de tokens semánticos que soporta múltiples temas de manera automática.
+MEP Web Frontend es una aplicación React moderna construida con Vite que implementa un sistema de diseño completo y modular. El proyecto utiliza un enfoque de design system con componentes reutilizables, foundations semánticas y un sistema de plantillas para desarrollo rápido.
 
-### Características Principales:
-- ✅ **Atomic Design**: Estructura organizada en atoms, molecules, organisms
-- ✅ **Design Tokens**: Sistema semántico de colores adaptativos
-- ✅ **Tema Dinámico**: Soporte automático para Light/Dark mode
-- ✅ **Componentes React**: Botones con estados completos y variantes
-- ✅ **Iconografía**: Sistema unificado de iconos SVG con Remix Icons
-- ✅ **TypeScript Ready**: Estructura preparada para migración a TS
+### Tecnologías principales
+- **React 18** - Biblioteca principal
+- **Vite** - Build tool y dev server
+- **JavaScript ES6+** - Lenguaje principal
+- **CSS-in-JS** - Estilos dinámicos
+- **Design System** - Sistema de diseño modular
 
 ## 🏗️ Arquitectura del Proyecto
 
 ```
-src/
-├── design-system/           # 🎨 Sistema de Diseño Principal
-│   ├── foundations/         # 🏛️ Fundamentos del Design System
-│   │   ├── colors.js        # Paleta base de colores
-│   │   ├── semantic-colors.js # Tokens semánticos adaptativos
-│   │   ├── theme-hooks.js   # Hooks para consumir tokens
-│   │   ├── typography.js    # Sistema tipográfico
-│   │   ├── elevation.js     # Sombras y elevaciones
-│   │   └── icons/          # Sistema de iconografía
-│   │       ├── Icon.jsx    # Componente base de iconos
-│   │       ├── svg-imports.js # Importaciones dinámicas SVG
-│   │       ├── Fill/       # Iconos rellenos
-│   │       └── Line/       # Iconos de línea
-│   └── atoms/              # ⚛️ Componentes Atómicos
-│       └── Button/         # Sistema completo de botones
-│           ├── Primary/    # Botones primarios (4 tamaños)
-│           ├── Secondary/  # Botones secundarios (4 tamaños)
-│           ├── Outline/    # Botones outline (4 tamaños)
-│           └── Ghost/      # Botones ghost (4 tamaños)
-├── App.jsx                 # 🚀 Demo navegable del sistema
-└── main.jsx               # ⚡ Entry point
+MepWebFront/
+├── public/                          # Archivos estáticos
+├── src/
+│   ├── design-system/              # Sistema de diseño completo
+│   │   ├── foundations/            # Fundamentos del sistema
+│   │   │   ├── colors.js           # Colores del sistema
+│   │   │   ├── typography.js       # Sistema tipográfico
+│   │   │   ├── layout.js           # Layouts y spacing
+│   │   │   ├── shapes.js           # Shapes decorativos
+│   │   │   ├── theme-hooks.js      # Hooks de tema
+│   │   │   ├── responsive-classes.js # Sistema responsive
+│   │   │   ├── icons/              # Sistema de iconos
+│   │   │   ├── img/                # Imágenes del sistema
+│   │   │   └── video/              # Videos del sistema
+│   │   ├── atoms/                  # Componentes básicos
+│   │   │   ├── Button/             # Componentes de botón
+│   │   │   ├── Badge/              # Componentes de badge
+│   │   │   ├── Card/               # Componentes de tarjeta
+│   │   │   ├── Header/             # Componentes de header
+│   │   │   ├── Footer/             # Componentes de footer
+│   │   │   ├── sections/           # Secciones reutilizables
+│   │   │   └── PageTemplate.jsx    # Plantilla base de página
+│   │   └── TEMPLATE_SYSTEM_GUIDE.md # Guía del sistema de plantillas
+│   ├── pages/                      # Páginas de la aplicación
+│   │   ├── Home.jsx               # Página principal original
+│   │   ├── Home_New.jsx           # Página principal con nuevo sistema
+│   │   └── ExamplePage.jsx        # Ejemplo de nueva página
+│   ├── App.jsx                     # Componente principal
+│   └── main.jsx                    # Punto de entrada
+├── package.json                    # Dependencias y scripts
+├── vite.config.js                 # Configuración de Vite
+└── README.md                      # Este archivo
 ```
 
-## 🎨 Sistema de Design Tokens
+## 📚 Guías Específicas
 
-### Filosofía de Tokens Semánticos
+### Para Desarrolladores
+- [**Sistema de Diseño**](src/design-system/README.md) - Cómo usar y extender el design system
+- [**Sistema de Plantillas**](src/design-system/TEMPLATE_SYSTEM_GUIDE.md) - Crear páginas rápidamente
+- [**Componentes**](src/design-system/atoms/README.md) - Documentación de componentes
+- [**Foundations**](src/design-system/foundations/README.md) - Fundamentos del sistema
+
+### Para Diseñadores
+- [**Colores y Temas**](src/design-system/foundations/COLORS_README.md) - Sistema de colores
+- [**Tipografía**](src/design-system/foundations/TYPOGRAPHY_README.md) - Sistema tipográfico
+- [**Iconografía**](src/design-system/foundations/icons/README.md) - Sistema de iconos
+
+### Para Project Managers
+- [**Estructura del Proyecto**](ARCHITECTURE.md) - Visión general de la arquitectura
+- [**Flujo de Desarrollo**](DEVELOPMENT_FLOW.md) - Proceso de desarrollo
+
+## ⚙️ Configuración y Setup
+
+### Requisitos previos
+- Node.js 16+ 
+- npm o yarn
+
+### Instalación
+```bash
+# Clonar el repositorio
+git clone [repository-url]
+cd MepWebFront
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Build para producción
+npm run build
+
+# Preview del build
+npm run preview
+```
+
+### Scripts disponibles
+```bash
+npm run dev      # Servidor de desarrollo
+npm run build    # Build de producción
+npm run preview  # Preview del build
+npm run lint     # Linting del código
+```
+
+## 🔧 Desarrollo
+
+### Crear una nueva página
+```jsx
+import PageTemplate from '../design-system/atoms/PageTemplate.jsx';
+import { HeroSection } from '../design-system/atoms/sections/index.js';
+
+const NuevaPagina = () => (
+  <PageTemplate>
+    <HeroSection title="Mi Página" />
+  </PageTemplate>
+);
+```
+
+### Agregar un nuevo componente
+1. Crear en `src/design-system/atoms/[Componente]/`
+2. Seguir convenciones del design system
+3. Incluir documentación JSDoc
+4. Exportar en `index.js`
+
+### Modificar estilos globales
+- **Colores**: `src/design-system/foundations/colors.js`
+- **Tipografía**: `src/design-system/foundations/typography.js`  
+- **Spacing**: `src/design-system/foundations/layout.js`
+
+## 🎯 Características Principales
+
+### ✅ Sistema de Diseño Completo
+- Componentes reutilizables y modulares
+- Tokens de diseño consistentes
+- Sistema de colores semánticos
+- Tipografía escalable
+
+### ✅ Sistema de Plantillas
+- Creación rápida de páginas nuevas
+- Secciones predefinidas configurables
+- Layout responsive automático
+- Spacing consistente
+
+### ✅ Responsive Design
+- Mobile-first approach
+- Breakpoints consistentes
+- Escalado proporcional con vw
+- Clamp() para fluidez
+
+### ✅ Performance
+- Lazy loading de componentes
+- Optimización de bundle
+- CSS-in-JS optimizado
+- Hot module replacement
+
+## 🔄 Flujo de Contribución
+
+1. **Fork** del repositorio
+2. **Crear rama** para feature/fix
+3. **Desarrollar** siguiendo las convenciones
+4. **Testear** localmente
+5. **Crear PR** con descripción clara
+6. **Review** y merge
+
+## 📞 Soporte
+
+Para preguntas o problemas:
+- Revisar documentación específica en cada carpeta
+- Consultar ejemplos en `ExamplePage.jsx`
+- Seguir patrones existentes en el código
+
+## 🔍 Recursos Adicionales
+
+- [React Documentation](https://react.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Design System Principles](https://www.designsystems.com/)
+
+---
+
+**Versión del Proyecto**: 1.0.0  
+**Última Actualización**: Octubre 2025  
+**Mantenido por**: Equipo MEP
 En lugar de usar colores directos (`blue[500]`), utilizamos **tokens semánticos** que se adaptan automáticamente al tema:
 
 ```javascript
