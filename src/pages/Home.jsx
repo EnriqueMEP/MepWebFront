@@ -290,7 +290,7 @@ const Home = () => {
       }
     }
 
-    /* Projects Section con shape relativo al título */
+    /* Projects Section con spacing consistente */
     .projects-section {
       width: 100%;
       display: flex;
@@ -303,7 +303,7 @@ const Home = () => {
     
     @media (min-width: ${breakpoints.tablet}) {
       .projects-section {
-        gap: 2.22vw;
+        gap: 2.78vw; /* Consistente con otras secciones */
       }
     }
 
@@ -340,7 +340,7 @@ const Home = () => {
       }
     }
 
-    /* Projects Grid - gap: 8 (0.56vw) */
+    /* Projects Grid - spacing proporcional y consistente */
     .projects-grid {
       width: 100%;
       display: flex;
@@ -353,19 +353,14 @@ const Home = () => {
     @media (min-width: ${breakpoints.tablet}) {
       .projects-grid {
         justify-content: space-between;
-        gap: 0.56vw;
+        gap: 1.39vw; /* Espacio proporcional entre cards - más equilibrado */
       }
     }
 
-    /* Escalado de Cards */
+    /* Escalado de Cards - removido para mantener tamaños naturales */
     .projects-grid > * {
       transform-origin: center;
-    }
-
-    @media (min-width: ${breakpoints.tablet}) {
-      .projects-grid > * {
-        transform: scale(calc(1vw / 14.4));
-      }
+      /* transform: scale() removido - las cards usan clamp() interno */
     }
 
     /* Statistics Section */
