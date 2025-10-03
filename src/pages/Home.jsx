@@ -60,7 +60,12 @@ const Home = () => {
     {
       value: "3,6Gw",
       label: "proyectados",
-      description: "en el útimo año",
+      description: "",
+    },
+     {
+      value: "+3,6m3",
+      label: "agua",
+      description: "",
     },
     {
       value: "+25%",
@@ -68,13 +73,13 @@ const Home = () => {
       description: "en últimos 5 años",
     },
     {
-      value: "+68K hrs",
+      value: "+70K hrs",
       label: "anuales",
       description: "de ingeniería",
     },
     {
-      value: "+365 Mkw",
-      label: "generados en el último año",
+      value: "+4500M €",
+      label: "CAPEX",
       description: "",
     },
   ];
@@ -546,6 +551,19 @@ const Home = () => {
         transform-origin: left center;
       }
     }
+
+    /* Espacios en blanco - sin contenido ni color */
+    .empty-space {
+      width: 100%;
+      height: 4rem;
+      background: transparent;
+    }
+    
+    @media (min-width: ${breakpoints.tablet}) {
+      .empty-space {
+        height: 4vw;
+      }
+    }
   `;
 
   return (
@@ -602,6 +620,9 @@ const Home = () => {
             </div>
           </section>
 
+          {/* Espacio vacío 1 - después del hero */}
+          <div className="empty-space"></div>
+
           {/* Statistics Section */}
           <section className="stats-section">
             <div className="text-display-medium" style={{ color: semanticColors.content.text }}>
@@ -618,17 +639,17 @@ const Home = () => {
                     {stat.value}
                   </div>
                   
-                  <div className={index === 3 ? "text-body-large" : "text-display-small"} style={{ 
+                  <div className="text-display-small" style={{ 
                     color: semanticColors.content.text,
-                    textAlign: 'center'
+                    textAlign: index === 2 ? 'right' : 'center'
                   }}>
                     {stat.label}
                   </div>
                   
-                  {stat.description && index !== 3 && (
+                  {stat.description && (
                     <div className="text-heading-small" style={{ 
                       color: semanticColors.content.text,
-                      textAlign: index === 0 ? 'right' : 'center'
+                      textAlign: 'center'
                     }}>
                       {stat.description}
                     </div>
@@ -637,6 +658,9 @@ const Home = () => {
               ))}
             </div>
           </section>
+
+          {/* Espacio vacío 2 - después de estadísticas */}
+          <div className="empty-space"></div>
 
           {/* Projects Section */}
           <section className="projects-section">
@@ -672,6 +696,9 @@ const Home = () => {
               ))}
             </div>
           </section>
+
+          {/* Espacio vacío 3 - después de proyectos */}
+          <div className="empty-space"></div>
 
           {/* Blog Section */}
           <section className="blog-section">
