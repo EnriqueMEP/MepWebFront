@@ -186,7 +186,7 @@ const Header = ({
             selected={isLoginSelected}
             onClick={onLoginClick}
           >
-            Iniciar sesión
+            Log In
           </ButtonPrimary>
           
           {/* Botón de cambio de tema - siempre visible */}

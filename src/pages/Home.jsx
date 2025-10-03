@@ -575,7 +575,7 @@ const Home = () => {
                 </div>
                 
                 <ButtonPrimary 
-                  size="xl"
+                  size="md"
                   onClick={() => console.log('Conocer más clicked')}
                 >
                   Conocer más
