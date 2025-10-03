@@ -353,7 +353,7 @@ const Home = () => {
     @media (min-width: ${breakpoints.tablet}) {
       .projects-grid {
         justify-content: center; /* Cambio: centradas en lugar de space-between */
-        gap: 0.69vw; /* Reducido: cards más juntas entre sí */
+        gap: 1.6vw; /* 8px adaptado a vw (8/1440 ≈ 0.56vw) */
         padding: 0 2.78vw; /* Nuevo: margen izquierdo y derecho */
       }
     }
