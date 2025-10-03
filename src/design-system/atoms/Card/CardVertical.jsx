@@ -1,87 +1,95 @@
 import React, { useEffect } from 'react';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
-import { injectResponsiveClasses, getTypographyClass } from '../../foundations/responsive-classes.js';
+import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
 import BadgeText from '../Badge/BadgeText.jsx';
 
 const SIZES = {
   sm: {
     width: 'clamp(140px, 11.11vw, 11.11vw)',
-    imageAspectRatio: '3/2',
+    height: 'clamp(200px, 16.67vw, 16.67vw)',
+    imageHeight: 'clamp(70px, 5.56vw, 5.56vw)',
     contentPadding: 'clamp(10px, 0.83vw, 0.83vw)',
+    contentGap: 'clamp(10px, 0.83vw, 0.83vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
       fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
       fontWeight: 700,
-      lineHeight: '1.33'
+      lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
       fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
       fontWeight: 400,
-      lineHeight: '1.33'
+      lineHeight: '1.43'
     },
     buttonSize: 'sm'
   },
   md: {
     width: 'clamp(160px, 12.5vw, 12.5vw)',
-    imageAspectRatio: '3/2',
+    height: 'clamp(220px, 18.06vw, 18.06vw)',
+    imageHeight: 'clamp(80px, 6.25vw, 6.25vw)',
     contentPadding: 'clamp(12px, 1.11vw, 1.11vw)',
+    contentGap: 'clamp(12px, 1.11vw, 1.11vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontSize: 'clamp(12px, 0.97vw, 0.97vw)',
       fontWeight: 700,
-      lineHeight: '1.33'
+      lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
       fontWeight: 400,
-      lineHeight: '1.33'
+      lineHeight: '1.43'
     },
     buttonSize: 'sm'
   },
   lg: {
     width: 'clamp(180px, 13.89vw, 13.89vw)',
-    imageAspectRatio: '3/2',
+    height: 'clamp(240px, 19.44vw, 19.44vw)',
+    imageHeight: 'clamp(90px, 6.94vw, 6.94vw)',
     contentPadding: 'clamp(14px, 1.25vw, 1.25vw)',
+    contentGap: 'clamp(14px, 1.25vw, 1.25vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontSize: 'clamp(13px, 1.11vw, 1.11vw)',
       fontWeight: 700,
-      lineHeight: '1.33'
+      lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
+      fontSize: 'clamp(12px, 0.97vw, 0.97vw)',
       fontWeight: 400,
-      lineHeight: '1.33'
+      lineHeight: '1.43'
     },
     buttonSize: 'sm'
   },
   xl: {
     width: 'clamp(200px, 16.67vw, 16.67vw)',
-    imageAspectRatio: '3/2',
-    contentPadding: 'clamp(16px, 1.39vw, 1.39vw)',
+    height: 'clamp(280px, 22.22vw, 22.22vw)',
+    imageHeight: 'clamp(100px, 8.33vw, 8.33vw)',
+    contentPadding: 'clamp(16px, 1.67vw, 1.67vw)',
+    contentGap: 'clamp(16px, 1.67vw, 1.67vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: 'clamp(13px, 0.97vw, 0.97vw)',
+      fontSize: 'clamp(14px, 1.11vw, 1.11vw)',
       fontWeight: 700,
-      lineHeight: '1.43'
+      lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
+      fontSize: 'clamp(13px, 0.97vw, 0.97vw)',
       fontWeight: 400,
-      lineHeight: '1.33'
+      lineHeight: '1.43'
     },
-    buttonSize: 'sm'
+    buttonSize: 'md'
   }
 };
 
 export const CardVertical = ({
   size = 'md',
-  image = 'https://placehold.co/180x120',
+  image = 'https://placehold.co/240x120',
   badgeText = 'Badge',
   title = 'Title',
   description = '',
@@ -99,155 +107,163 @@ export const CardVertical = ({
     injectResponsiveClasses();
   }, []);
 
-  const titleTypographyClass = getTypographyClass('card', size);
-  const sizeClass = `card-size-${size}`;
-
-  const articleStyles = {
-    width: sizeConfig.width,
-    position: 'relative',
+  // Estructura siguiendo exactamente el HTML de Figma
+  const cardStyles = {
     display: 'flex',
     flexDirection: 'column',
+    gap: '0px',
     alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flexShrink: 0,
+    height: sizeConfig.height,
+    position: 'relative',
+    boxShadow: '0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3)',
     ...style
   };
 
-  const figureStyles = {
+  const imgStyles = {
+    flexShrink: 0,
+    width: sizeConfig.width,
+    height: sizeConfig.imageHeight,
     position: 'relative',
-    width: '100%',
-    aspectRatio: sizeConfig.imageAspectRatio,
-    margin: 0,
-    padding: 0,
-    overflow: 'hidden'
+    objectFit: 'cover',
+    display: 'block'
   };
 
-  const imageStyles = {
-    width: '100%',
-    height: '100%',
-    display: 'block',
-    objectFit: 'cover'
-  };
-
-  const contentWrapperStyles = {
-    display: 'flex',
-    width: '100%',
-    alignItems: 'flex-start',
-    gap: 'clamp(8px, 0.69vw, 0.69vw)',
+  const oContainerStyles = {
+    background: cardColors.background,
+    borderStyle: 'solid',
+    borderColor: cardColors.border,
+    borderWidth: '1px 0px 0px 0px',
     padding: sizeConfig.contentPadding,
-    position: 'relative',
-    backgroundColor: cardColors.background,
-    borderTop: `1px solid ${cardColors.border}`,
-    flexDirection: 'column',
-    minHeight: 'clamp(100px, 8.33vw, 8.33vw)'
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '10px',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: '1',
+    width: sizeConfig.width,
+    position: 'relative'
   };
 
-  const contentInnerStyles = {
+  const oContainer2Styles = {
     display: 'flex',
+    flexDirection: 'column',
+    gap: sizeConfig.contentGap,
     alignItems: 'flex-end',
-    gap: 'clamp(12px, 1.11vw, 1.11vw)',
-    flex: '1 1 0',
+    justifyContent: 'flex-start',
     alignSelf: 'stretch',
-    flexDirection: 'column',
+    flex: '1',
     position: 'relative'
   };
 
-  const textOuterStyles = {
+  const oContainer3Styles = {
     display: 'flex',
-    alignItems: 'flex-start',
-    gap: 'clamp(6px, 0.56vw, 0.56vw)',
-    flex: '1 1 0',
-    alignSelf: 'stretch',
-    width: '100%',
     flexDirection: 'column',
+    gap: 'clamp(4px, 0.28vw, 0.28vw)',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    alignSelf: 'stretch',
+    flex: '1',
     position: 'relative'
   };
 
-  const textInnerStyles = {
+  const oContainer4Styles = {
     display: 'flex',
-    alignItems: 'flex-start',
+    flexDirection: 'column',
     gap: 'clamp(2px, 0.14vw, 0.14vw)',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     alignSelf: 'stretch',
-    width: '100%',
-    flexDirection: 'column',
+    flexShrink: 0,
     position: 'relative'
   };
 
   const titleStyles = {
-    alignSelf: 'stretch',
-    fontFamily: sizeConfig.titleTypography.fontFamily,
-    fontWeight: sizeConfig.titleTypography.fontWeight,
-    fontSize: sizeConfig.titleTypography.fontSize,
     color: cardColors.text,
+    textAlign: 'left',
+    fontFamily: sizeConfig.titleTypography.fontFamily,
+    fontSize: sizeConfig.titleTypography.fontSize,
     lineHeight: sizeConfig.titleTypography.lineHeight,
-    wordWrap: 'break-word',
-    overflow: 'hidden',
+    fontWeight: sizeConfig.titleTypography.fontWeight,
+    position: 'relative',
+    alignSelf: 'stretch',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  };
+
+  const bodySmallStyles = {
+    color: cardColors.text,
+    textAlign: 'left',
+    fontFamily: sizeConfig.descriptionTypography.fontFamily,
+    fontSize: sizeConfig.descriptionTypography.fontSize,
+    lineHeight: sizeConfig.descriptionTypography.lineHeight,
+    fontWeight: sizeConfig.descriptionTypography.fontWeight,
+    position: 'relative',
+    alignSelf: 'stretch',
+    flex: '1',
     textOverflow: 'ellipsis',
+    overflow: 'hidden',
     display: '-webkit-box',
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical'
   };
 
-  const descriptionStyles = {
-    alignSelf: 'stretch',
-    fontFamily: sizeConfig.descriptionTypography.fontFamily,
-    fontWeight: sizeConfig.descriptionTypography.fontWeight,
-    fontSize: sizeConfig.descriptionTypography.fontSize,
-    color: cardColors.text,
-    lineHeight: sizeConfig.descriptionTypography.lineHeight,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    display: '-webkit-box',
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
-    wordWrap: 'break-word'
-  };
-
-  const buttonContainerStyles = {
+  const oContainer5Styles = {
     display: 'flex',
-    alignSelf: 'flex-end'
+    flexDirection: 'column',
+    gap: '10px',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    alignSelf: 'stretch',
+    flexShrink: 0,
+    position: 'relative'
   };
-
-  const combinedClassName = [
-    'component-base',
-    sizeClass,
-    `card-vertical-${size}`,
-    className
-  ].filter(Boolean).join(' ');
 
   return (
     <article
-      className={combinedClassName}
-      style={articleStyles}
+      className={`card-vertical-${size} ${className}`}
+      style={cardStyles}
       {...props}
     >
-      <figure style={figureStyles}>
-        <img
-          style={imageStyles}
-          alt={title}
-          src={image}
-        />
-      </figure>
-
-      <div style={contentWrapperStyles}>
-        <BadgeText variant="outline" size="sm">
-          {badgeText}
-        </BadgeText>
-
-        <div style={contentInnerStyles}>
-          <div style={textOuterStyles}>
-            <div style={textInnerStyles}>
-              <h2 style={titleStyles}>
+      {/* Imagen */}
+      <img 
+        className="img" 
+        style={imgStyles} 
+        src={image} 
+        alt={title} 
+      />
+      
+      {/* Contenedor principal */}
+      <div className="o-container" style={oContainerStyles}>
+        <div className="o-container2" style={oContainer2Styles}>
+          
+          {/* Contenedor de badge y texto */}
+          <div className="o-container3" style={oContainer3Styles}>
+            
+            {/* Badge */}
+            <div className="badge-text">
+              <BadgeText variant="outline" size="sm">
+                {badgeText}
+              </BadgeText>
+            </div>
+            
+            {/* Contenedor de título y descripción */}
+            <div className="o-container4" style={oContainer4Styles}>
+              <div className="title-small-emphasis" style={titleStyles}>
                 {title}
-              </h2>
-
+              </div>
               {description && (
-                <p style={descriptionStyles}>
+                <div className="body-small" style={bodySmallStyles}>
                   {description}
-                </p>
+                </div>
               )}
             </div>
           </div>
-
-          <div style={buttonContainerStyles}>
+          
+          {/* Contenedor del botón */}
+          <div className="o-container5" style={oContainer5Styles}>
             <ButtonPrimary
               size={sizeConfig.buttonSize}
               rightIcon="arrowRightLong"
