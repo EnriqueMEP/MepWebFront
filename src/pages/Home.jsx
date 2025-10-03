@@ -62,7 +62,7 @@ const Home = () => {
       label: "proyectados",
       description: "",
     },
-     {
+    {
       value: "+3,6m3",
       label: "agua",
       description: "",
@@ -397,9 +397,9 @@ const Home = () => {
     
     @media (min-width: ${breakpoints.tablet}) {
       .stats-grid {
-        padding: 0 2.78vw;
+        padding: 0;
         flex-wrap: nowrap;
-        gap: 2vw;
+        gap: 1.5vw;
       }
     }
 
