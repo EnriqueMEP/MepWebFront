@@ -39,6 +39,9 @@ const ProjectsSection = ({
       align-items: center;
       gap: 2rem;
       position: relative;
+      z-index: 50;
+      isolation: isolate;
+      position: relative;
       z-index: 10;
     }
     
@@ -55,7 +58,8 @@ const ProjectsSection = ({
       align-items: center;
       position: relative;
       margin-bottom: 0.5rem;
-      z-index: 20;
+      z-index: 100 !important;
+      isolation: isolate;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
@@ -65,14 +69,45 @@ const ProjectsSection = ({
     }
 
     /* Projects Shape - Ajustado con el texto "Nuestros proyectos", opacity: 1 */
-    ${generateShapeStyles(shapes.projects, 'projects-shape')}
+    .projects-shape {
+      display: none;
+    }
+
+    @media (min-width: ${breakpoints.tablet}) {
+      .projects-shape {
+        display: block;
+        position: absolute;
+        top: -7vw;
+        left: -20vw;
+        width: 51.77vw;
+        height: 14.17vw;
+        z-index: -100 !important;
+        pointer-events: none;
+        opacity: 1;
+      }
+
+      .projects-shape img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: -100 !important;
+      }
+    }
 
     /* Projects Grid - cards más juntas con márgenes laterales */
     ${generateGridStyles(grids.projects, 'projects-grid')}
 
+    .projects-grid {
+      position: relative;
+      z-index: 150 !important;
+      isolation: isolate;
+    }
+
     /* Escalado de Cards - removido para mantener tamaños naturales */
     .projects-grid > * {
       transform-origin: center;
+      position: relative;
+      z-index: 160 !important;
       /* transform: scale() removido - las cards usan clamp() interno */
     }
   `;
@@ -81,7 +116,7 @@ const ProjectsSection = ({
     <>
       <style dangerouslySetInnerHTML={{ __html: projectsStyles }} />
       
-      <section className="projects-section">
+      <section className="projects-section" style={{ position: 'relative', zIndex: 50, isolation: 'isolate' }}>
         <div className="projects-title-container">
           <div className="text-display-medium" style={{ color: semanticColors.content.text }}>
             {title}

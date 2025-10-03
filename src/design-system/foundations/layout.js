@@ -152,7 +152,7 @@ export const shapes = {
       left: '-20vw',
       width: '51.77vw',
       height: '14.17vw',
-      zIndex: -10, // Asegurar que esté detrás del título y cards
+      zIndex: -100, // Z-index muy bajo para estar definitivamente detrás
       pointerEvents: 'none',
       opacity: 1
     }
