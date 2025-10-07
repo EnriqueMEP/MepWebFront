@@ -198,12 +198,20 @@ const Header = ({
               background: 'transparent',
               border: 'none',
               cursor: 'pointer',
+<<<<<<< HEAD
               padding: 'clamp(0.5rem, 0.56vw, 0.56vw)'
+=======
+              padding: '8px'
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
             }}
           >
             <Icon 
               name="menu" 
+<<<<<<< HEAD
               size="md"
+=======
+              size={20}
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
               color={headerColors.text || 'currentColor'}
             />
           </button>
@@ -221,7 +229,11 @@ const Header = ({
           >
             <Icon 
               name="menu" 
+<<<<<<< HEAD
               size="lg"
+=======
+              size={24}
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
               color={headerColors.text || 'currentColor'}
             />
           </button>

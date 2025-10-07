@@ -48,6 +48,7 @@ export const ButtonSecondary = ({
   const typographyClass = getTypographyClass('button', size);
   const sizeClass = `btn-size-${size}`;
   
+<<<<<<< HEAD
   // Mapear tamaño de botón a tamaño de icono semántico
   const getIconSize = (buttonSize) => {
     const sizeMap = {
@@ -60,6 +61,10 @@ export const ButtonSecondary = ({
   };
   
   const iconSize = getIconSize(size);
+=======
+  // Para iconos mantenemos compatibilidad con valores numéricos
+  const iconSize = getSizeValue('button', size, 'iconSize');
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
 
   const getColors = () => {
     if (disabled) return secondaryDisabledColors;

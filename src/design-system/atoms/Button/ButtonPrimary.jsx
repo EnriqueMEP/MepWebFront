@@ -78,6 +78,7 @@ export const ButtonPrimary = ({
   // Obtener clases CSS escalables
   const typographyClass = getTypographyClass('button', size);
   const sizeClass = `btn-size-${size}`;
+<<<<<<< HEAD
   
   // Mapear tamaño de botón a tamaño de icono semántico
   const getIconSize = (buttonSize) => {
@@ -91,6 +92,8 @@ export const ButtonPrimary = ({
   };
   
   const iconSize = getIconSize(size);
+=======
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
 
   const getStateColors = () => {
     if (disabled) return {
@@ -186,7 +189,11 @@ export const ButtonPrimary = ({
       {leftIcon && (
         <Icon 
           name={leftIcon} 
+<<<<<<< HEAD
           size={iconSize} 
+=======
+          size={sizeConfig.iconSize} 
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
           color={stateColors.color}
         />
       )}
@@ -194,7 +201,11 @@ export const ButtonPrimary = ({
       {rightIcon && (
         <Icon 
           name={rightIcon} 
+<<<<<<< HEAD
           size={iconSize} 
+=======
+          size={sizeConfig.iconSize} 
+>>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
           color={stateColors.color}
         />
       )}
