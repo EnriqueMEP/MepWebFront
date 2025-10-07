@@ -1,48 +1,32 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { svgLineIcons, svgFillIcons } from './svg-imports.js';
 import { injectResponsiveClasses } from '../responsive-classes.js';
-=======
-import React from 'react';
-import { svgLineIcons, svgFillIcons } from './svg-imports.js';
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
 
 /**
  * Componente Icon Universal
  * Usa exactamente los archivos SVG originales importados directamente
  * Sin copias ni inventos - solo los SVGs reales
-<<<<<<< HEAD
  * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
-=======
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
  */
 const Icon = ({ 
   name, 
   type = 'line', 
-<<<<<<< HEAD
-  size = 'md', // Cambiado a usar tamaños semánticos: sm, md, lg, xl
-=======
-  size = 24, 
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
+  size = 'md', // Cambiado a usar tamaños semánticos: sm, md, lg, xl (pero con compatibilidad hacia atrás)
   color = 'currentColor',
   className = '',
   style = {},
   ...props 
 }) => {
-<<<<<<< HEAD
   // Inyectar clases CSS responsivas al montar
   useEffect(() => {
     injectResponsiveClasses();
   }, []);
 
-=======
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
   // Seleccionar el conjunto de iconos correcto
   const iconSet = type === 'fill' ? svgFillIcons : svgLineIcons;
   const svgContent = iconSet[name];
 
-<<<<<<< HEAD
-  // Mapear tamaño semántico a clase CSS
+  // Mapear tamaño semántico a clase CSS con compatibilidad hacia atrás
   const getSizeClass = (size) => {
     if (typeof size === 'number') {
       // Compatibilidad hacia atrás - convertir px a tamaño semántico más cercano
@@ -65,8 +49,6 @@ const Icon = ({
 
   const sizeClass = getSizeClass(size);
 
-=======
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
   // Si no existe el icono, mostrar error
   if (!svgContent) {
     const availableIcons = Object.keys(iconSet);
@@ -74,33 +56,19 @@ const Icon = ({
     
     return (
       <div 
-<<<<<<< HEAD
         className={`icon-error ${sizeClass} ${className}`}
         style={{ 
-=======
-        style={{ 
-          width: size, 
-          height: size, 
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
           backgroundColor: '#fef2f2', 
           display: 'inline-flex', 
           alignItems: 'center', 
           justifyContent: 'center',
-<<<<<<< HEAD
           fontSize: 'clamp(0.5rem, 0.56vw, 0.56vw)',
-=======
-          fontSize: Math.max(8, size * 0.3),
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
           color: '#dc2626',
           borderRadius: '2px',
           fontWeight: 'bold',
           border: '1px solid #fecaca',
           ...style
         }}
-<<<<<<< HEAD
-=======
-        className={`icon-error ${className}`}
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
         title={`Icon not found: ${name} (${type})`}
         {...props}
       >
@@ -109,7 +77,6 @@ const Icon = ({
     );
   }
 
-<<<<<<< HEAD
   // Procesar el SVG original para aplicar color (tamaño se maneja con CSS)
   const processedSvg = svgContent
     .replace(/width="[^"]*"/g, 'width="100%"')
@@ -132,26 +99,6 @@ const Icon = ({
         color: color,
         ...style
       }}
-=======
-  // Procesar el SVG original para aplicar tamaño y color
-  const processedSvg = svgContent
-    .replace(/width="[^"]*"/g, `width="${size}"`)
-    .replace(/height="[^"]*"/g, `height="${size}"`)
-    .replace(/fill="[^"]*"/g, `fill="${color}"`);
-
-  return (
-    <div
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: size,
-        height: size,
-        color: color,
-        ...style
-      }}
-      className={`icon-${type} ${className}`}
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
       {...props}
       aria-label={name}
       dangerouslySetInnerHTML={{ __html: processedSvg }}

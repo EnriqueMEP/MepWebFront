@@ -49,23 +49,8 @@ export const ButtonGhost = ({
   const typographyClass = getTypographyClass('button', size);
   const sizeClass = `btn-size-${size}`;
   
-<<<<<<< HEAD
-  // Mapear tamaño de botón a tamaño de icono semántico
-  const getIconSize = (buttonSize) => {
-    const sizeMap = {
-      sm: 'sm',    // 16px -> sm
-      md: 'md',    // 20px -> md  
-      lg: 'lg',    // 24px -> lg
-      xl: 'xl'     // 32px -> xl
-    };
-    return sizeMap[buttonSize] || 'md';
-  };
-  
-  const iconSize = getIconSize(size);
-=======
   // Para iconos mantenemos compatibilidad con valores numéricos
   const iconSize = getSizeValue('button', size, 'iconSize');
->>>>>>> 1c2f8e479a4da00e94b650f0c970d265cb46ef08
 
   const getColors = () => {
     if (disabled) return { color: ghostDisabledColors.text };
