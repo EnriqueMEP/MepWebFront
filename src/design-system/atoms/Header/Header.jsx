@@ -52,7 +52,7 @@ const Header = ({
   // Colores semánticos para el header y sistema de tema
   const headerColors = useComponentColors('header');
   const ghostButtonColors = useComponentColors('buttonGhost');
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   // Hooks de React Router
   const location = useLocation();
@@ -225,11 +225,11 @@ const Header = ({
             Log In
           </ButtonPrimary>
           
-          {/* Botón de cambio de tema - visible en PC/tablet, usa energia.svg */}
+          {/* Botón de cambio de tema - visible en PC/tablet */}
           <button
             className="header-theme-button"
             onClick={toggleTheme}
-            aria-label="Cambiar tema"
+            aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
             style={{
               background: 'transparent',
               border: 'none',
@@ -238,7 +238,7 @@ const Header = ({
             }}
           >
             <Icon 
-              name="energia" 
+              name={theme === 'light' ? 'luna' : 'sol'}
               size={20}
               color={headerColors.text || 'currentColor'}
             />
@@ -320,7 +320,7 @@ const Header = ({
             <div className="mobile-theme-section">
               <ButtonGhost
                 size="md"
-                leftIcon="energia"
+                leftIcon={theme === 'light' ? 'luna' : 'sol'}
                 onClick={handleMobileThemeToggle}
               >
                 Cambiar tema
