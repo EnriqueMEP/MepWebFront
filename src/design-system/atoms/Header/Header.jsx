@@ -40,6 +40,8 @@ const Header = ({
 }) => {
   // Estado local para controlar el menú desplegable móvil
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Estado para controlar qué dropdown está abierto en móvil
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
 
   // Inyectar clases CSS responsivas al montar
   React.useEffect(() => {
@@ -54,24 +56,36 @@ const Header = ({
   // Función para manejar el toggle del menú móvil
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    setActiveMobileDropdown(null); // Cerrar cualquier dropdown abierto
   };
 
-  // Función para cerrar el menú móvil al hacer clic en un elemento
+  // Función para manejar clic en navegación móvil (igual que PC)
   const handleMobileNavClick = (itemId) => {
-    onNavClick(itemId);
-    setIsMobileMenuOpen(false);
+    const item = navigationItems.find(nav => nav.id === itemId);
+    
+    if (item && item.hasDropdown) {
+      // Si tiene dropdown, toggle del dropdown (igual que PC)
+      setActiveMobileDropdown(activeMobileDropdown === itemId ? null : itemId);
+    } else {
+      // Si no tiene dropdown, navegar y cerrar menú
+      onNavClick(itemId);
+      setIsMobileMenuOpen(false);
+      setActiveMobileDropdown(null);
+    }
   };
 
   // Función para manejar clic en dropdown item desde móvil
   const handleMobileDropdownClick = (itemId) => {
     onDropdownItemClick(itemId);
     setIsMobileMenuOpen(false);
+    setActiveMobileDropdown(null);
   };
 
   // Función para manejar cambio de tema desde móvil
   const handleMobileThemeToggle = () => {
     toggleTheme();
     setIsMobileMenuOpen(false);
+    setActiveMobileDropdown(null);
   };
 
   const navigationItems = [
@@ -254,9 +268,15 @@ const Header = ({
         </div>
       </div>
 
-      {/* Menú móvil desplegable */}
+      {/* Menú móvil desplegable - usa estilos del header */}
       {isMobileMenuOpen && (
-        <div className="mobile-menu">
+        <div 
+          className="mobile-menu"
+          style={{
+            background: headerColors.background, // Mismo fondo que header
+            borderTop: `1px solid ${headerColors.border || 'rgba(0, 0, 0, 0.1)'}`
+          }}
+        >
           <div className="mobile-menu-content">
             {/* Elementos de navegación */}
             {navigationItems.map((item) => (
@@ -270,8 +290,8 @@ const Header = ({
                   {item.label}
                 </ButtonGhost>
                 
-                {/* Subelementos del dropdown si los tiene */}
-                {item.hasDropdown && (
+                {/* Subelementos del dropdown - solo si está activo */}
+                {item.hasDropdown && activeMobileDropdown === item.id && (
                   <div className="mobile-dropdown-items">
                     {item.id === 'about' && (
                       <>
@@ -394,10 +414,9 @@ const Header = ({
             top: 100%;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
+            /* Fondo y bordes se aplican inline para usar colores del tema */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             max-height: 80vh;
@@ -422,10 +441,13 @@ const Header = ({
             display: flex;
             flex-direction: column;
             gap: 8px;
+            padding-top: 8px;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            margin-left: 12px;
           }
 
           .mobile-theme-section {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 16px;
             margin-top: 8px;
           }

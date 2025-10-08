@@ -214,6 +214,49 @@ const Footer = ({
           </div>
         ))}
       </div>
+
+      {/* CSS responsivo igual que Header - PC/tablet original, solo móvil adaptado */}
+      <style jsx>{`
+        /* PC y Tablet - mantener comportamiento original */
+        @media (min-width: 768px) {
+          .footer-component {
+            /* Mantener estilos originales */
+          }
+        }
+
+        /* Solo móvil - adaptación responsiva */
+        @media (max-width: 767px) {
+          .footer-component {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: clamp(2rem, 4vw, 4vw) !important;
+            padding: clamp(2rem, 6vw, 6vw) !important;
+            height: auto !important;
+            min-height: auto !important;
+          }
+          
+          .footer-component > div:first-child {
+            width: 100%;
+            align-items: center;
+          }
+          
+          .footer-component > div:last-child {
+            width: 100% !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: clamp(2rem, 4vw, 4vw) !important;
+          }
+          
+          .footer-component > div:last-child > div {
+            text-align: center;
+            align-items: center;
+          }
+          
+          .footer-component h3 {
+            text-align: center;
+          }
+        }
+      `}</style>
     </footer>
   );
 };
