@@ -81,6 +81,13 @@ const Header = ({
     setActiveMobileDropdown(null);
   };
 
+  // Función para manejar login desde móvil
+  const handleMobileLoginClick = () => {
+    onLoginClick();
+    setIsMobileMenuOpen(false);
+    setActiveMobileDropdown(null);
+  };
+
   // Función para manejar cambio de tema desde móvil
   const handleMobileThemeToggle = () => {
     toggleTheme();
@@ -220,7 +227,9 @@ const Header = ({
 
         {/* Right Actions Area */}
         <div className="header-actions">
+          {/* Botón Login - solo visible en PC/tablet */}
           <ButtonPrimary
+            className="header-login-button"
             size="sm"
             leftIcon="user"
             selected={isLoginSelected}
@@ -355,6 +364,18 @@ const Header = ({
               </div>
             ))}
             
+            {/* Botón Login en el menú móvil */}
+            <div className="mobile-login-section">
+              <ButtonPrimary
+                size="md"
+                leftIcon="user"
+                selected={isLoginSelected}
+                onClick={handleMobileLoginClick}
+              >
+                Log In
+              </ButtonPrimary>
+            </div>
+            
             {/* Botón de cambio de tema en el menú móvil */}
             <div className="mobile-theme-section">
               <ButtonGhost
@@ -402,6 +423,10 @@ const Header = ({
             display: block !important;
           }
           
+          .header-login-button {
+            display: none !important;
+          }
+          
           .mobile-menu {
             display: block !important;
           }
@@ -444,6 +469,12 @@ const Header = ({
             padding-top: 8px;
             border-left: 2px solid rgba(255, 255, 255, 0.2);
             margin-left: 12px;
+          }
+
+          .mobile-login-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 16px;
+            margin-top: 8px;
           }
 
           .mobile-theme-section {

@@ -70,14 +70,14 @@ const Footer = ({
   const footerStyles = {
     width: '100%',
     maxWidth: '100vw', // Evitar desbordamiento
-    height: 'clamp(19.63rem, 21.81vw, 21.81vw)', // 314px responsive
-    padding: '4.17vw 5.56vw', // 60px arriba/abajo (4.17vw), 80px izquierda/derecha (5.56vw)
+    height: 'clamp(19.63rem, 21.81vw, 21.81vw)', // 314px responsive - solo para desktop
+    padding: '4.17vw 5.56vw', // 60px arriba/abajo (4.17vw), 80px izquierda/derecha (5.56vw) - solo desktop
     background: footerColors.background,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     boxSizing: 'border-box',
-    overflow: 'hidden', // Evitar desbordamiento de contenido
+    // overflow removido para permitir contenido móvil
     ...props.style
   };
 
@@ -165,95 +165,222 @@ const Footer = ({
       style={footerStyles}
       {...props}
     >
-      {/* Sección Izquierda */}
-      <div style={leftSectionStyles}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 1.67vw, 1.67vw)' }}>
-          {/* Logo */}
-          <div style={logoStyles}>
+      {/* Estructura para PC/Tablet (>= 768px) */}
+      <div className="footer-desktop">
+        {/* Sección Izquierda */}
+        <div style={leftSectionStyles}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 1.67vw, 1.67vw)' }}>
+            {/* Logo */}
+            <div style={logoStyles}>
+              <img 
+                src={mepLogo}
+                alt="MEP Engineering"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </div>
+
+            {/* Dirección */}
+            <div style={addressContainerStyles}>
+              <p style={addressTextStyles}>Calle Diego LLorente, 40.</p>
+              <p style={addressTextStyles}>Los Palacios y Villafranca.</p>
+              <p style={addressTextStyles}>41720 Sevilla</p>
+            </div>
+          </div>
+
+          {/* Imagen de licencias */}
+          <img 
+            src={licenciasImg}
+            alt="Licencias"
+            style={licenciasStyles}
+          />
+        </div>
+
+        {/* Sección Derecha - Columnas de navegación */}
+        <div style={rightSectionStyles}>
+          {navigationColumns.map((column, index) => (
+            <div key={index} style={columnStyles}>
+              <h3 style={columnTitleStyles}>{column.title}</h3>
+              <div style={columnItemsStyles}>
+                {column.items.map((item) => (
+                  <ButtonGhost
+                    key={item.id}
+                    size="md"
+                    selected={selectedItem === item.id}
+                    disabled={false}
+                    onClick={() => onNavClick(item.id)}
+                  >
+                    {item.label}
+                  </ButtonGhost>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Estructura para Móvil (< 768px) - Completamente nueva */}
+      <div className="footer-mobile">
+        {/* Navegación primero */}
+        <div className="footer-mobile-navigation">
+          {navigationColumns.map((column, index) => (
+            <div key={index} className="footer-mobile-column">
+              <h3 className="footer-mobile-title">{column.title}</h3>
+              <div className="footer-mobile-buttons">
+                {column.items.map((item) => (
+                  <ButtonGhost
+                    key={item.id}
+                    size="md"
+                    selected={selectedItem === item.id}
+                    disabled={false}
+                    onClick={() => onNavClick(item.id)}
+                  >
+                    {item.label}
+                  </ButtonGhost>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Logo y dirección al final */}
+        <div className="footer-mobile-info">
+          <div className="footer-mobile-logo">
             <img 
               src={mepLogo}
               alt="MEP Engineering"
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
-
-          {/* Dirección */}
-          <div style={addressContainerStyles}>
-            <p style={addressTextStyles}>Calle Diego LLorente, 40.</p>
-            <p style={addressTextStyles}>Los Palacios y Villafranca.</p>
-            <p style={addressTextStyles}>41720 Sevilla</p>
+          <div className="footer-mobile-address">
+            <p>Calle Diego LLorente, 40.</p>
+            <p>Los Palacios y Villafranca.</p>
+            <p>41720 Sevilla</p>
           </div>
+          <img 
+            className="footer-mobile-licenses"
+            src={licenciasImg}
+            alt="Licencias"
+          />
         </div>
-
-        {/* Imagen de licencias */}
-        <img 
-          src={licenciasImg}
-          alt="Licencias"
-          style={licenciasStyles}
-        />
       </div>
 
-      {/* Sección Derecha - Columnas de navegación */}
-      <div style={rightSectionStyles}>
-        {navigationColumns.map((column, index) => (
-          <div key={index} style={columnStyles}>
-            <h3 style={columnTitleStyles}>{column.title}</h3>
-            <div style={columnItemsStyles}>
-              {column.items.map((item) => (
-                <ButtonGhost
-                  key={item.id}
-                  size="md"
-                  selected={selectedItem === item.id}
-                  disabled={false}
-                  onClick={() => onNavClick(item.id)}
-                >
-                  {item.label}
-                </ButtonGhost>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* CSS responsivo igual que Header - PC/tablet original, solo móvil adaptado */}
+      {/* CSS responsivo - Estructuras completamente separadas */}
       <style jsx>{`
-        /* PC y Tablet - mantener comportamiento original */
+        /* PC y Tablet (768px+) - Solo mostrar estructura desktop */
         @media (min-width: 768px) {
-          .footer-component {
-            /* Mantener estilos originales */
+          .footer-desktop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+          }
+          
+          .footer-mobile {
+            display: none;
           }
         }
 
-        /* Solo móvil - adaptación responsiva */
+        /* Móvil (<768px) - Solo mostrar estructura móvil */
         @media (max-width: 767px) {
           .footer-component {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: clamp(2rem, 4vw, 4vw) !important;
-            padding: clamp(2rem, 6vw, 6vw) !important;
             height: auto !important;
-            min-height: auto !important;
+            padding: 0 !important;
           }
           
-          .footer-component > div:first-child {
+          .footer-desktop {
+            display: none;
+          }
+          
+          .footer-mobile {
+            display: flex;
+            flex-direction: column;
             width: 100%;
-            align-items: center;
+            padding: 2rem 1.5rem;
+            gap: 3rem;
+            min-height: auto;
           }
           
-          .footer-component > div:last-child {
+          /* Navegación móvil */
+          .footer-mobile-navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            width: 100%;
+          }
+          
+          .footer-mobile-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+          }
+          
+          .footer-mobile-title {
+            color: ${footerColors.text || '#000'};
+            font-size: 1.375rem;
+            font-family: ${textStyles.titleLargeEmphasis.fontFamily};
+            font-weight: ${textStyles.titleLargeEmphasis.fontWeight};
+            line-height: ${textStyles.titleLargeEmphasis.lineHeight};
+            margin: 0;
+            padding: 0;
+          }
+          
+          .footer-mobile-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+          }
+          
+          .footer-mobile-buttons button {
             width: 100% !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: clamp(2rem, 4vw, 4vw) !important;
+            justify-content: flex-start !important;
+            text-align: left !important;
           }
           
-          .footer-component > div:last-child > div {
-            text-align: center;
+          /* Información empresa móvil */
+          .footer-mobile-info {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
           }
           
-          .footer-component h3 {
+          .footer-mobile-logo {
+            width: 140px;
+            height: 54px;
+          }
+          
+          .footer-mobile-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+          
+          .footer-mobile-address {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+          }
+          
+          .footer-mobile-address p {
+            color: ${footerColors.text || '#000'};
+            font-size: 1rem;
+            font-family: ${textStyles.bodyLarge.fontFamily};
+            font-weight: ${textStyles.bodyLarge.fontWeight};
+            line-height: ${textStyles.bodyLarge.lineHeight};
+            margin: 0;
             text-align: center;
+          }
+          
+          .footer-mobile-licenses {
+            width: 296px;
+            height: 56px;
+            object-fit: contain;
           }
         }
       `}</style>
