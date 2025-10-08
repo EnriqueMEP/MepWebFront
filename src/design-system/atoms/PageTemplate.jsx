@@ -1,11 +1,27 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import Header from './Header/Header.jsx';
+import Footer from './Footer/Footer.jsx';
 import { useSemanticTokens } from '../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../foundations/responsive-classes.js';
 
 /**
- * PageTemplate - Plantilla base simplificada para debug
+ * PageTemplate - Plantilla base para todas las páginas
+ * 
+ * Incluye:
+ * - Meta tags para SEO (title, description)
+ * - Header con navegación
+ * - Contenido principal
+ * - Footer
+ * - Estilos responsivos
  */
-const PageTemplate = ({ children, className = '' }) => {
+const PageTemplate = ({ 
+  children, 
+  title = "MEP Engineering", 
+  description = "Ingeniería especializada en proyectos técnicos y soluciones innovadoras",
+  currentPage = "",
+  className = '' 
+}) => {
   const semanticColors = useSemanticTokens();
 
   // Inyectar clases responsivas al montar el componente
@@ -13,21 +29,31 @@ const PageTemplate = ({ children, className = '' }) => {
     injectResponsiveClasses();
   }, []);
 
-  // Estilos simplificados para debug
+  // Estilos para el layout de la página
   const templateStyles = `
     * {
       box-sizing: border-box;
     }
 
-    .page-container {
+    .page-layout {
       width: 100vw;
       min-height: 100vh;
-      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .page-header {
+      flex-shrink: 0;
       position: relative;
+      z-index: 100;
+    }
+    
+    .page-main {
+      flex: 1;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3rem;
     }
     
     .content-wrapper {
@@ -37,32 +63,55 @@ const PageTemplate = ({ children, className = '' }) => {
       flex-direction: column;
       align-items: center;
       gap: 3rem;
+      padding: 2rem 1.5rem;
+    }
+    
+    .page-footer {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 100;
     }
     
     @media (min-width: 768px) {
-      .page-container {
-        padding: 10.42vw 5.56vw;
-        gap: 5.56vw;
-      }
-      
       .content-wrapper {
         max-width: 88.89vw;
         gap: 5.56vw;
+        padding: 5.56vw;
       }
     }
   `;
 
   return (
     <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+      </Helmet>
+      
       <style dangerouslySetInnerHTML={{ __html: templateStyles }} />
       
       <div 
-        className={`page-container ${className}`}
+        className={`page-layout ${className}`}
         style={{ backgroundColor: semanticColors?.surface?.background || '#FFFFFF' }}
       >
-        <div className="content-wrapper">
-          {children}
-        </div>
+        {/* Header */}
+        <header className="page-header">
+          <Header currentPage={currentPage} />
+        </header>
+        
+        {/* Contenido Principal */}
+        <main className="page-main">
+          <div className="content-wrapper">
+            {children}
+          </div>
+        </main>
+        
+        {/* Footer */}
+        <footer className="page-footer">
+          <Footer />
+        </footer>
       </div>
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useComponentColors, useTheme } from '../../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import ButtonGhost from '../Button/ButtonGhost.jsx';
@@ -53,6 +54,10 @@ const Header = ({
   const ghostButtonColors = useComponentColors('buttonGhost');
   const { toggleTheme } = useTheme();
 
+  // Hooks de React Router
+  const location = useLocation();
+  const navigate = useNavigate();
+
   // Función para manejar el toggle del menú móvil
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -64,19 +69,26 @@ const Header = ({
     const item = navigationItems.find(nav => nav.id === itemId);
     
     if (item && item.hasDropdown) {
-      // Si tiene dropdown, toggle del dropdown (igual que PC)
+      // Si tiene dropdown, navegar a la ruta principal y toggle del dropdown
+      if (item.path) {
+        navigate(item.path);
+      }
       setActiveMobileDropdown(activeMobileDropdown === itemId ? null : itemId);
-    } else {
+    } else if (item && item.path) {
       // Si no tiene dropdown, navegar y cerrar menú
-      onNavClick(itemId);
+      navigate(item.path);
       setIsMobileMenuOpen(false);
       setActiveMobileDropdown(null);
     }
+    onNavClick(itemId);
   };
 
   // Función para manejar clic en dropdown item desde móvil
-  const handleMobileDropdownClick = (itemId) => {
-    onDropdownItemClick(itemId);
+  const handleMobileDropdownClick = (dropdownItem) => {
+    if (dropdownItem.path) {
+      navigate(dropdownItem.path);
+    }
+    onDropdownItemClick(dropdownItem.id);
     setIsMobileMenuOpen(false);
     setActiveMobileDropdown(null);
   };
@@ -99,18 +111,30 @@ const Header = ({
     { 
       id: 'about', 
       label: 'Sobre MEP Engineering',
+      path: '/nosotros',
       hasDropdown: true,
-      dropdownItems: [] // Se llenará después con los botones ghost
+      dropdownItems: [
+        { id: 'about-historia', label: 'Historia', path: '/historia' },
+        { id: 'about-equipo', label: 'Equipo', path: '/equipo' },
+        { id: 'about-mision', label: 'Misión y Visión', path: '/mision' }
+      ]
     },
     { 
       id: 'projects', 
       label: 'Ingenierías',
+      path: '/energia',
       hasDropdown: true,
-      dropdownItems: [] // Se llenará después con los botones ghost
+      dropdownItems: [
+        { id: 'projects-energia', label: 'Energía', path: '/energia' },
+        { id: 'projects-agua', label: 'Agua', path: '/agua' },
+        { id: 'projects-industria', label: 'Industria', path: '/industria' },
+        { id: 'projects-infraestructura', label: 'Infraestructura', path: '/infraestructura' }
+      ]
     },
     { 
       id: 'contact', 
       label: 'Contacto',
+      path: '/contacto',
       hasDropdown: false
     }
   ];
@@ -136,12 +160,12 @@ const Header = ({
     >
       <div className="header-container">
         {/* Logo Area */}
-        <div className="header-logo">
+        <Link to="/" className="header-logo">
           <img 
             src={mepLogo}
             alt="MEP Engineering"
           />
-        </div>
+        </Link>
 
         {/* Navigation Area - Hidden on mobile, visible on tablet and desktop */}
         <nav className="header-nav" style={{ display: 'none' }}>
@@ -149,8 +173,13 @@ const Header = ({
             <div key={item.id} className="nav-item-container">
               <ButtonGhost
                 size="md"
-                selected={activeNavItem === item.id}
-                onClick={() => onNavClick(item.id)}
+                selected={activeNavItem === item.id || location.pathname === item.path}
+                onClick={() => {
+                  if (item.path) {
+                    navigate(item.path);
+                  }
+                  onNavClick(item.id);
+                }}
                 rightIcon={item.hasDropdown ? "arrowDownS" : undefined}
               >
                 {item.label}
@@ -160,64 +189,22 @@ const Header = ({
               {item.hasDropdown && (
                 <div className="dropdown-menu">
                   <div className="dropdown-content">
-                    {/* Botones Ghost directos con funcionalidad de selección */}
-                    {item.id === 'about' && (
-                      <>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'about-historia'}
-                          onClick={() => onDropdownItemClick('about-historia')}
-                        >
-                          Historia
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'about-equipo'}
-                          onClick={() => onDropdownItemClick('about-equipo')}
-                        >
-                          Equipo
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'about-mision'}
-                          onClick={() => onDropdownItemClick('about-mision')}
-                        >
-                          Misión y Visión
-                        </ButtonGhost>
-                      </>
-                    )}
-                    {item.id === 'projects' && (
-                      <>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-energia'}
-                          onClick={() => onDropdownItemClick('projects-energia')}
-                        >
-                          Energía
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-agua'}
-                          onClick={() => onDropdownItemClick('projects-agua')}
-                        >
-                          Agua
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-industria'}
-                          onClick={() => onDropdownItemClick('projects-industria')}
-                        >
-                          Industria
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-infraestructura'}
-                          onClick={() => onDropdownItemClick('projects-infraestructura')}
-                        >
-                          Infraestructura
-                        </ButtonGhost>
-                      </>
-                    )}
+                    {/* Botones Ghost dinámicos con navegación */}
+                    {item.dropdownItems && item.dropdownItems.map((dropdownItem) => (
+                      <ButtonGhost 
+                        key={dropdownItem.id}
+                        size="md"
+                        selected={selectedDropdownItem === dropdownItem.id || location.pathname === dropdownItem.path}
+                        onClick={() => {
+                          if (dropdownItem.path) {
+                            navigate(dropdownItem.path);
+                          }
+                          onDropdownItemClick(dropdownItem.id);
+                        }}
+                      >
+                        {dropdownItem.label}
+                      </ButtonGhost>
+                    ))}
                   </div>
                 </div>
               )}
@@ -302,63 +289,16 @@ const Header = ({
                 {/* Subelementos del dropdown - solo si está activo */}
                 {item.hasDropdown && activeMobileDropdown === item.id && (
                   <div className="mobile-dropdown-items">
-                    {item.id === 'about' && (
-                      <>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'about-historia'}
-                          onClick={() => handleMobileDropdownClick('about-historia')}
-                        >
-                          Historia
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'about-equipo'}
-                          onClick={() => handleMobileDropdownClick('about-equipo')}
-                        >
-                          Equipo
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'about-mision'}
-                          onClick={() => handleMobileDropdownClick('about-mision')}
-                        >
-                          Misión y Visión
-                        </ButtonGhost>
-                      </>
-                    )}
-                    {item.id === 'projects' && (
-                      <>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-energia'}
-                          onClick={() => handleMobileDropdownClick('projects-energia')}
-                        >
-                          Energía
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-agua'}
-                          onClick={() => handleMobileDropdownClick('projects-agua')}
-                        >
-                          Agua
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-industria'}
-                          onClick={() => handleMobileDropdownClick('projects-industria')}
-                        >
-                          Industria
-                        </ButtonGhost>
-                        <ButtonGhost 
-                          size="md"
-                          selected={selectedDropdownItem === 'projects-infraestructura'}
-                          onClick={() => handleMobileDropdownClick('projects-infraestructura')}
-                        >
-                          Infraestructura
-                        </ButtonGhost>
-                      </>
-                    )}
+                    {item.dropdownItems.map(dropdownItem => (
+                      <ButtonGhost 
+                        key={dropdownItem.id}
+                        size="md"
+                        selected={selectedDropdownItem === dropdownItem.id}
+                        onClick={() => handleMobileDropdownClick(dropdownItem)}
+                      >
+                        {dropdownItem.label}
+                      </ButtonGhost>
+                    ))}
                   </div>
                 )}
               </div>
