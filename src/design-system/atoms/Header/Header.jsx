@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useComponentColors, useTheme } from '../../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import ButtonGhost from '../Button/ButtonGhost.jsx';
@@ -38,6 +38,9 @@ const Header = ({
   className = '',
   ...props
 }) => {
+  // Estado local para controlar el menú desplegable móvil
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // Inyectar clases CSS responsivas al montar
   React.useEffect(() => {
     injectResponsiveClasses();
@@ -47,6 +50,29 @@ const Header = ({
   const headerColors = useComponentColors('header');
   const ghostButtonColors = useComponentColors('buttonGhost');
   const { toggleTheme } = useTheme();
+
+  // Función para manejar el toggle del menú móvil
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Función para cerrar el menú móvil al hacer clic en un elemento
+  const handleMobileNavClick = (itemId) => {
+    onNavClick(itemId);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Función para manejar clic en dropdown item desde móvil
+  const handleMobileDropdownClick = (itemId) => {
+    onDropdownItemClick(itemId);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Función para manejar cambio de tema desde móvil
+  const handleMobileThemeToggle = () => {
+    toggleTheme();
+    setIsMobileMenuOpen(false);
+  };
 
   const navigationItems = [
     { 
@@ -96,7 +122,7 @@ const Header = ({
           />
         </div>
 
-        {/* Navigation Area - Hidden on mobile */}
+        {/* Navigation Area - Hidden on mobile, visible on tablet and desktop */}
         <nav className="header-nav" style={{ display: 'none' }}>
           {navigationItems.map((item) => (
             <div key={item.id} className="nav-item-container">
@@ -189,7 +215,7 @@ const Header = ({
             Log In
           </ButtonPrimary>
           
-          {/* Botón de cambio de tema - siempre visible */}
+          {/* Botón de cambio de tema - visible en PC/tablet, usa energia.svg */}
           <button
             className="header-theme-button"
             onClick={toggleTheme}
@@ -202,16 +228,16 @@ const Header = ({
             }}
           >
             <Icon 
-              name="menu" 
+              name="energia" 
               size={20}
               color={headerColors.text || 'currentColor'}
             />
           </button>
           
-          {/* Botón de menú original - solo visible en mobile */}
+          {/* Botón de menú móvil - solo visible en mobile */}
           <button
             className="header-menu-button"
-            onClick={onMenuClick}
+            onClick={handleMobileMenuToggle}
             aria-label="Menu"
             style={{
               background: 'transparent',
@@ -228,8 +254,104 @@ const Header = ({
         </div>
       </div>
 
-      {/* Navigation visible on tablet/desktop */}
+      {/* Menú móvil desplegable */}
+      {isMobileMenuOpen && (
+        <div className="mobile-menu">
+          <div className="mobile-menu-content">
+            {/* Elementos de navegación */}
+            {navigationItems.map((item) => (
+              <div key={item.id} className="mobile-nav-section">
+                <ButtonGhost
+                  size="md"
+                  selected={activeNavItem === item.id}
+                  onClick={() => handleMobileNavClick(item.id)}
+                  rightIcon={item.hasDropdown ? "arrowDownS" : undefined}
+                >
+                  {item.label}
+                </ButtonGhost>
+                
+                {/* Subelementos del dropdown si los tiene */}
+                {item.hasDropdown && (
+                  <div className="mobile-dropdown-items">
+                    {item.id === 'about' && (
+                      <>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'about-historia'}
+                          onClick={() => handleMobileDropdownClick('about-historia')}
+                        >
+                          Historia
+                        </ButtonGhost>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'about-equipo'}
+                          onClick={() => handleMobileDropdownClick('about-equipo')}
+                        >
+                          Equipo
+                        </ButtonGhost>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'about-mision'}
+                          onClick={() => handleMobileDropdownClick('about-mision')}
+                        >
+                          Misión y Visión
+                        </ButtonGhost>
+                      </>
+                    )}
+                    {item.id === 'projects' && (
+                      <>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'projects-energia'}
+                          onClick={() => handleMobileDropdownClick('projects-energia')}
+                        >
+                          Energía
+                        </ButtonGhost>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'projects-agua'}
+                          onClick={() => handleMobileDropdownClick('projects-agua')}
+                        >
+                          Agua
+                        </ButtonGhost>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'projects-industria'}
+                          onClick={() => handleMobileDropdownClick('projects-industria')}
+                        >
+                          Industria
+                        </ButtonGhost>
+                        <ButtonGhost 
+                          size="md"
+                          selected={selectedDropdownItem === 'projects-infraestructura'}
+                          onClick={() => handleMobileDropdownClick('projects-infraestructura')}
+                        >
+                          Infraestructura
+                        </ButtonGhost>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+            
+            {/* Botón de cambio de tema en el menú móvil */}
+            <div className="mobile-theme-section">
+              <ButtonGhost
+                size="md"
+                leftIcon="energia"
+                onClick={handleMobileThemeToggle}
+              >
+                Cambiar tema
+              </ButtonGhost>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation visible on tablet/desktop - Comportamiento original para PC/tablet */}
       <style jsx>{`
+        /* Media query para tablet/desktop - Mantener comportamiento original */
         @media (min-width: 768px) {
           .header-nav {
             display: flex !important;
@@ -240,9 +362,76 @@ const Header = ({
           .header-menu-button {
             display: none !important;
           }
+          
+          .header-theme-button {
+            display: block !important;
+          }
+          
+          .mobile-menu {
+            display: none !important;
+          }
         }
 
-        /* Dropdown Styles */
+        /* Estilos SOLO para móvil - aquí se aplican los nuevos cambios */
+        @media (max-width: 767px) {
+          .header-theme-button {
+            display: none !important;
+          }
+          
+          .header-menu-button {
+            display: block !important;
+          }
+          
+          .mobile-menu {
+            display: block !important;
+          }
+        }
+
+        /* Estilos del menú móvil desplegable - SOLO para móvil */
+        @media (max-width: 767px) {
+          .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+          }
+
+          .mobile-menu-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .mobile-nav-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+
+          .mobile-dropdown-items {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+
+          .mobile-theme-section {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 16px;
+            margin-top: 8px;
+          }
+        }
+
+        /* Dropdown Styles para desktop/tablet - MANTENER ORIGINAL */
         .nav-item-container {
           position: relative;
           display: inline-block;

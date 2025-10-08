@@ -69,6 +69,7 @@ const Footer = ({
   // Estilos base con el sistema responsive
   const footerStyles = {
     width: '100%',
+    maxWidth: '100vw', // Evitar desbordamiento
     height: 'clamp(19.63rem, 21.81vw, 21.81vw)', // 314px responsive
     padding: '4.17vw 5.56vw', // 60px arriba/abajo (4.17vw), 80px izquierda/derecha (5.56vw)
     background: footerColors.background,
@@ -76,6 +77,7 @@ const Footer = ({
     justifyContent: 'space-between',
     alignItems: 'center',
     boxSizing: 'border-box',
+    overflow: 'hidden', // Evitar desbordamiento de contenido
     ...props.style
   };
 
@@ -122,7 +124,7 @@ const Footer = ({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    gap: 'clamp(5rem, 5.56vw, 5.56vw)' // 80px responsive
+    gap: 'clamp(5rem, 5.56vw, 5.56vw)' // 80px responsive - ORIGINAL
   };
 
   const columnStyles = {
@@ -130,7 +132,7 @@ const Footer = ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    gap: 'clamp(1.5rem, 1.67vw, 1.67vw)' // 24px responsive
+    gap: 'clamp(1.5rem, 1.67vw, 1.67vw)' // 24px responsive - ORIGINAL
   };
 
   const columnTitleStyles = {

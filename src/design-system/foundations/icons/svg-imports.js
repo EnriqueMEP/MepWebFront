@@ -32,6 +32,7 @@ import userSharedLine from './Line/ri_user-shared-line.svg?raw';
 import userShared2Line from './Line/ri_user-shared-2-line.svg?raw';
 import userStarLine from './Line/ri_user-star-line.svg?raw';
 import userUnfollowLine from './Line/ri_user-unfollow-line.svg?raw';
+import energiaLine from './Line/energia.svg?raw';
 
 // Fill Icons
 import searchFill from './Fill/ri_search-fill.svg?raw';
@@ -83,7 +84,8 @@ export const svgLineIcons = {
   userShared: userSharedLine,
   userShared2: userShared2Line,
   userStar: userStarLine,
-  userUnfollow: userUnfollowLine
+  userUnfollow: userUnfollowLine,
+  energia: energiaLine
 };
 
 // Mapeo de iconos Fill
