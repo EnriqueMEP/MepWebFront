@@ -107,6 +107,22 @@ const ProjectsSection = ({
     /* Projects Grid - cards más juntas con márgenes laterales */
     ${generateGridStyles(grids.projects, 'projects-grid')}
 
+    /* Centrado global de cards en móvil - se aplica donde sea que se use esta sección */
+    @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+      .projects-section .projects-grid > * {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+      }
+      
+      /* Centrado del contenido interno de cada card */
+      .projects-section .projects-grid > * > * {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+
     /* Estilos móvil específicos para centrar las cards */
     @media (max-width: calc(${breakpoints.tablet} - 1px)) {
       .projects-grid {
