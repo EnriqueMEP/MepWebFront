@@ -153,10 +153,10 @@ export const shapes = {
   projects: {
     display: 'block',
     position: 'absolute',
-    top: '-2rem', // Mantengo la altura original
-    left: '-8rem', // Solo pegado a la pared izquierda
-    width: '24rem',
-    height: '6rem',
+    top: '-11rem', // Subido aún más arriba
+    left: '-4rem', // Posición izquierda mantenida
+    width: '20rem', // Tamaño grande mantenido
+    height: '26rem', // Tamaño grande mantenido
     zIndex: -1,
     pointerEvents: 'none',
     opacity: 1,
