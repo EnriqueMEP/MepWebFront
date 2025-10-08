@@ -26,7 +26,7 @@ const ProjectsSection = ({
   projects = [],
   selectedProject = null,
   onProjectSelect = () => {},
-  shapeImageSrc = "/src/design-system/foundations/img/shape2.png"
+  shapeImageSrc = "src/design-system/foundations/img/shape2.png"
 }) => {
   const semanticColors = useSemanticTokens();
 
@@ -54,7 +54,7 @@ const ProjectsSection = ({
     .projects-title-container {
       width: 100%;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center; /* Centrado en móvil */
       align-items: center;
       position: relative;
       margin-bottom: 0.5rem;
@@ -64,38 +64,67 @@ const ProjectsSection = ({
     
     @media (min-width: ${breakpoints.tablet}) {
       .projects-title-container {
+        justify-content: flex-start; /* Izquierda en desktop */
         margin-bottom: -0.3vw;
       }
     }
 
     /* Projects Shape - Ajustado con el texto "Nuestros proyectos", opacity: 1 */
     .projects-shape {
-      display: none;
+      display: block;
+      position: absolute;
+      top: -2rem; /* Mantengo la altura original */
+      left: -8rem; /* Solo pegado a la pared izquierda */
+      width: 24rem;
+      height: 6rem;
+      z-index: -1 !important;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    .projects-shape img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: -1 !important;
     }
 
     @media (min-width: ${breakpoints.tablet}) {
       .projects-shape {
-        display: block;
-        position: absolute;
         top: -7vw;
         left: -20vw;
         width: 51.77vw;
         height: 14.17vw;
         z-index: -100 !important;
-        pointer-events: none;
         opacity: 1;
       }
 
       .projects-shape img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
         z-index: -100 !important;
       }
     }
 
     /* Projects Grid - cards más juntas con márgenes laterales */
     ${generateGridStyles(grids.projects, 'projects-grid')}
+
+    /* Estilos móvil específicos para centrar las cards */
+    @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+      .projects-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+      }
+      
+      .projects-grid > * {
+        width: 280px !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+      }
+    }
 
     .projects-grid {
       position: relative;

@@ -25,7 +25,7 @@ const BlogSection = ({
   selectedArticle = null,
   onArticleSelect = () => {},
   buttonText = "Me interesa",
-  shapeImageSrc = "/src/design-system/foundations/img/shape.png"
+  shapeImageSrc = "src/design-system/foundations/img/shape.png"
 }) => {
   const semanticColors = useSemanticTokens();
 

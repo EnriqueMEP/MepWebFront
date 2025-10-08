@@ -42,12 +42,13 @@ const StatsSection = ({
 
     .stats-title {
       width: 100%;
-      text-align: left;
+      text-align: center; /* Centrado en móvil */
       margin-bottom: 1rem;
     }
     
     @media (min-width: ${breakpoints.tablet}) {
       .stats-title {
+        text-align: left; /* Izquierda en desktop */
         margin-bottom: 1.5vw;
       }
     }

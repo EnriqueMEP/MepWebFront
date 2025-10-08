@@ -55,12 +55,11 @@ export const grids = {
   // Grid de estadísticas
   stats: {
     mobile: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      flexWrap: 'wrap',
-      gap: '2rem',
-      padding: '1rem 2rem'
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)', // 2 columnas en móvil
+      gap: '1.5rem',
+      justifyItems: 'center',
+      padding: '0 1rem'
     },
     desktop: {
       display: 'flex',
@@ -129,7 +128,15 @@ export const containers = {
 // Sistema de shapes (decoraciones de fondo)
 export const shapes = {
   hero: {
-    display: 'none',
+    display: 'block',
+    position: 'absolute',
+    top: '-1rem', // Mantengo la altura original
+    right: '-8rem', // Solo pegado a la pared derecha
+    width: '20rem',
+    height: '26rem',
+    zIndex: 2,
+    pointerEvents: 'none',
+    opacity: 1,
     desktop: {
       display: 'block',
       position: 'absolute',
@@ -144,27 +151,45 @@ export const shapes = {
   },
   
   projects: {
-    display: 'none',
+    display: 'block',
+    position: 'absolute',
+    top: '-2rem', // Mantengo la altura original
+    left: '-8rem', // Solo pegado a la pared izquierda
+    width: '24rem',
+    height: '6rem',
+    zIndex: -1,
+    pointerEvents: 'none',
+    opacity: 1,
     desktop: {
       display: 'block',
       position: 'absolute',
-      top: '-7vw', // Cambiado de -7vw a 2vw (más hacia abajo)
+      top: '-7vw',
       left: '-20vw',
       width: '51.77vw',
       height: '14.17vw',
-      zIndex: -100, // Z-index muy bajo para estar definitivamente detrás
+      zIndex: -100,
       pointerEvents: 'none',
       opacity: 1
     }
   },
   
   blog: {
-    display: 'none',
+    display: 'block',
+    position: 'absolute',
+    top: 'auto', // No desde arriba
+    bottom: '-8rem', // Desde abajo, más cerca del footer
+    right: '-3rem',
+    width: '20rem', // Mucho más grande para igualar PC
+    height: '22rem', // Proporción mantenida pero más grande
+    zIndex: -1,
+    pointerEvents: 'none',
+    opacity: 1,
     desktop: {
       display: 'block',
       position: 'absolute',
-      top: '-9.8vw', // Cambiado de -9.8vw a 2vw (más hacia abajo)
+      top: '-9.8vw',
       right: '-9.5vw',
+      bottom: 'auto', // Reset bottom en desktop
       width: '42vw',
       height: '45.8vw',
       zIndex: -1,
@@ -240,9 +265,21 @@ export const generateGridStyles = (gridConfig, className) => {
 
 // Utilidad para generar estilos de shapes
 export const generateShapeStyles = (shapeConfig, className) => {
+  // Generar estilos móvil basados en la configuración
+  const mobileProperties = Object.entries(shapeConfig)
+    .filter(([key]) => key !== 'desktop')
+    .map(([property, value]) => `${property}: ${value};`)
+    .join('\n      ');
+    
   const mobileCSS = `
     .${className} {
-      display: none;
+      ${mobileProperties}
+    }
+    
+    .${className} img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   `;
   
@@ -256,12 +293,6 @@ export const generateShapeStyles = (shapeConfig, className) => {
     @media (min-width: ${breakpoints.tablet}) {
       .${className} {
         ${desktopCSS}
-      }
-
-      .${className} img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
       }
     }
   `;

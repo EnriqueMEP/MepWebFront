@@ -34,8 +34,8 @@ const HeroSection = ({
   description = "Nuestra compañía refuerza su identidad de marca comunicando así su crecimiento y solidez dentro del mercado. Comprometiéndose a seguir aportando valor a futuro.",
   buttonText = "Conocer más",
   onButtonClick = () => console.log('Hero button clicked'),
-  videoSrc = "/src/design-system/foundations/video/vHome.mp4",
-  shapeImageSrc = "/src/design-system/foundations/img/shape.png"
+  videoSrc = "src/design-system/foundations/video/vHome.mp4",
+  shapeImageSrc = "src/design-system/foundations/img/shape.png"
 }) => {
   const semanticColors = useSemanticTokens();
 
@@ -87,7 +87,7 @@ const HeroSection = ({
       justify-content: space-between;
       align-items: flex-end;
       gap: 2rem;
-      order: 2;
+      order: 1; /* Texto primero en móvil */
     }
     
     @media (min-width: ${breakpoints.tablet}) {
@@ -132,7 +132,7 @@ const HeroSection = ({
       max-width: 500px;
       aspect-ratio: 16/10;
       position: relative;
-      order: 1;
+      order: 2; /* Video segundo en móvil */
       z-index: 1;
     }
     
