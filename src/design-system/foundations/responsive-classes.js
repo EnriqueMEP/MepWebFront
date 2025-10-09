@@ -81,7 +81,7 @@ export const responsiveClasses = `
 
   .text-body-large {
     font-size: clamp(0.875rem, 1.11vw, 1.11vw);
-    font-family: Roboto, sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.5;
     word-wrap: break-word;
@@ -89,7 +89,7 @@ export const responsiveClasses = `
 
   .text-body-medium {
     font-size: clamp(0.8125rem, 1.04vw, 1.04vw);
-    font-family: Roboto, sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.46;
     word-wrap: break-word;
