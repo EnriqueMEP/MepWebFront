@@ -785,27 +785,22 @@ export const responsiveClasses = `
   }
 
   /* ========================================================================
-     CARD VERTICAL RESPONSIVE SYSTEM - Simplificado para trabajar con estilos inline
+     CARD VERTICAL RESPONSIVE SYSTEM - Imagen con mismo ancho que contenido
      ======================================================================== */
   .card-vertical-sm {
     /* Dimensiones manejadas por estilos inline con clamp() */
   }
 
-  /* CARD VERTICAL IMAGES - Solo reglas esenciales para garantizar comportamiento */
+  /* CARD VERTICAL IMAGES - Mismo ancho que el contenedor del contenido */
   article.card-vertical-sm img.img,
   .card-vertical-sm img.img,
   .card-vertical-sm img {
-    /* Estilos manejados por imgStyles inline */
+    /* La imagen toma el mismo ancho que el contenedor .o-container */
+    width: 100% !important;
     max-width: 100% !important;
-    min-width: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    outline: none !important;
-    flex-shrink: 0 !important;
     box-sizing: border-box !important;
   }
 
@@ -816,17 +811,11 @@ export const responsiveClasses = `
   article.card-vertical-md img.img,
   .card-vertical-md img.img,
   .card-vertical-md img {
-    /* Estilos manejados por imgStyles inline */
+    width: 100% !important;
     max-width: 100% !important;
-    min-width: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    outline: none !important;
-    flex-shrink: 0 !important;
     box-sizing: border-box !important;
   }
 
@@ -837,17 +826,11 @@ export const responsiveClasses = `
   article.card-vertical-lg img.img,
   .card-vertical-lg img.img,
   .card-vertical-lg img {
-    /* Estilos manejados por imgStyles inline */
+    width: 100% !important;
     max-width: 100% !important;
-    min-width: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    outline: none !important;
-    flex-shrink: 0 !important;
     box-sizing: border-box !important;
   }
 
@@ -858,18 +841,56 @@ export const responsiveClasses = `
   article.card-vertical-xl img.img,
   .card-vertical-xl img.img,
   .card-vertical-xl img {
-    /* Estilos manejados por imgStyles inline */
+    width: 100% !important;
     max-width: 100% !important;
-    min-width: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    outline: none !important;
-    flex-shrink: 0 !important;
     box-sizing: border-box !important;
+  }
+
+  /* FORZAR que la imagen tenga exactamente el mismo ancho que el contenido en MÓVIL */
+  @media (max-width: 767px) {
+    /* SOLUCIÓN INVERSA: Ampliar el contenedor verde para igualar al ancho de la imagen */
+    .card-vertical-sm,
+    .card-vertical-md,
+    .card-vertical-lg,
+    .card-vertical-xl {
+      /* Card debe contener todo */
+      max-width: 100vw !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    /* Imagen normal sin modificaciones */
+    .card-vertical-sm img.img,
+    .card-vertical-md img.img,
+    .card-vertical-lg img.img,
+    .card-vertical-xl img.img,
+    .card-vertical-sm img,
+    .card-vertical-md img,
+    .card-vertical-lg img,
+    .card-vertical-xl img {
+      /* Imagen con comportamiento normal */
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      box-sizing: border-box !important;
+    }
+
+    /* AMPLIAR contenedor verde para igualar ancho de imagen */
+    .card-vertical-sm .o-container,
+    .card-vertical-md .o-container,
+    .card-vertical-lg .o-container,
+    .card-vertical-xl .o-container {
+      /* Contenedor verde del mismo ancho que imagen */
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 16px !important;
+    }
   }
 
   @media (min-width: 768px) {
@@ -880,17 +901,11 @@ export const responsiveClasses = `
     article.card-vertical-sm img.img,
     .card-vertical-sm img.img,
     .card-vertical-sm img {
-      /* Estilos manejados por imgStyles inline */
+      width: 100% !important;
       max-width: 100% !important;
-      min-width: 100% !important;
       object-fit: cover !important;
       object-position: center !important;
       display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      outline: none !important;
-      flex-shrink: 0 !important;
       box-sizing: border-box !important;
     }
 
@@ -901,17 +916,11 @@ export const responsiveClasses = `
     article.card-vertical-md img.img,
     .card-vertical-md img.img,
     .card-vertical-md img {
-      /* Estilos manejados por imgStyles inline */
+      width: 100% !important;
       max-width: 100% !important;
-      min-width: 100% !important;
       object-fit: cover !important;
       object-position: center !important;
       display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      outline: none !important;
-      flex-shrink: 0 !important;
       box-sizing: border-box !important;
     }
 
@@ -922,17 +931,11 @@ export const responsiveClasses = `
     article.card-vertical-lg img.img,
     .card-vertical-lg img.img,
     .card-vertical-lg img {
-      /* Estilos manejados por imgStyles inline */
+      width: 100% !important;
       max-width: 100% !important;
-      min-width: 100% !important;
       object-fit: cover !important;
       object-position: center !important;
       display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      outline: none !important;
-      flex-shrink: 0 !important;
       box-sizing: border-box !important;
     }
 
@@ -943,17 +946,11 @@ export const responsiveClasses = `
     article.card-vertical-xl img.img,
     .card-vertical-xl img.img,
     .card-vertical-xl img {
-      /* Estilos manejados por imgStyles inline */
+      width: 100% !important;
       max-width: 100% !important;
-      min-width: 100% !important;
       object-fit: cover !important;
       object-position: center !important;
       display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      outline: none !important;
-      flex-shrink: 0 !important;
       box-sizing: border-box !important;
     }
   }

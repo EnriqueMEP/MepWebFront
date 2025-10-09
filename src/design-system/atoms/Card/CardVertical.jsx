@@ -114,6 +114,7 @@ export const CardVertical = ({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flexShrink: 0,
+    width: sizeConfig.width,
     height: sizeConfig.height,
     position: 'relative',
     ...style
@@ -121,7 +122,7 @@ export const CardVertical = ({
 
   const imgStyles = {
     flexShrink: 0,
-    width: sizeConfig.width,
+    // width quitado - será manejado por CSS para igualar con contenido
     height: sizeConfig.imageHeight,
     position: 'relative',
     objectFit: 'cover',
