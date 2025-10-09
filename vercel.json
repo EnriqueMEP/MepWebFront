@@ -19,7 +19,6 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "functions": {},
   "regions": ["fra1"],
   "cleanUrls": true,
   "trailingSlash": false
