@@ -13,256 +13,502 @@ export const responsiveClasses = `
   }
 
   /* ========================================================================
-     TYPOGRAPHY SYSTEM - Escalado proporcional con clamp
+     TYPOGRAPHY SYSTEM - Escalado proporcional usando el sistema exitoso VW
      ======================================================================== */
   .text-display-large {
-    font-size: clamp(2rem, 3.96vw, 3.96vw);
+    font-size: 2rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.12;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-display-large {
+      font-size: 3.96vw;
+    }
+  }
+
   .text-display-medium {
-    font-size: clamp(1.75rem, 3.13vw, 3.13vw);
+    font-size: 1.75rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.16;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-display-medium {
+      font-size: 3.13vw;
+    }
+  }
+
   .text-display-medium-bold {
-    font-size: clamp(1.75rem, 3.13vw, 3.13vw);
+    font-size: 1.75rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 700;
     line-height: 1.16;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-display-medium-bold {
+      font-size: 3.13vw;
+    }
+  }
+
   .text-display-small {
-    font-size: clamp(1.5rem, 2.5vw, 2.5vw);
+    font-size: 1.5rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.22;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-display-small {
+      font-size: 2.5vw;
+    }
+  }
+
   .text-title-large {
-    font-size: clamp(1rem, 1.53vw, 1.53vw);
+    font-size: 1rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.27;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-title-large {
+      font-size: 1.53vw;
+    }
+  }
+
   .text-heading-large {
-    font-size: clamp(1.5rem, 2.22vw, 2.22vw);
+    font-size: 1.5rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 500;
     line-height: 1.28;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-heading-large {
+      font-size: 2.22vw;
+    }
+  }
+
   .text-heading-medium {
-    font-size: clamp(1.25rem, 1.94vw, 1.94vw);
+    font-size: 1.25rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 500;
     line-height: 1.29;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-heading-medium {
+      font-size: 1.94vw;
+    }
+  }
+
   .text-heading-small {
-    font-size: clamp(1rem, 1.67vw, 1.67vw);
+    font-size: 1rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.33;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-heading-small {
+      font-size: 1.67vw;
+    }
+  }
+
   .text-body-large {
-    font-size: clamp(0.875rem, 1.11vw, 1.11vw);
+    font-size: 0.875rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.5;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-body-large {
+      font-size: 1.11vw;
+    }
+  }
+
   .text-body-medium {
-    font-size: clamp(0.8125rem, 1.04vw, 1.04vw);
+    font-size: 0.8125rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.46;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-body-medium {
+      font-size: 1.04vw;
+    }
+  }
+
   .text-label-large {
-    font-size: clamp(0.75rem, 0.97vw, 0.97vw);
+    font-size: 0.75rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 500;
     line-height: 1.43;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-label-large {
+      font-size: 0.97vw;
+    }
+  }
+
   .text-label-medium {
-    font-size: clamp(0.688rem, 0.83vw, 0.83vw);
+    font-size: 0.688rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 500;
     line-height: 1.33;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-label-medium {
+      font-size: 0.83vw;
+    }
+  }
+
   .text-label-small {
-    font-size: clamp(0.625rem, 0.69vw, 0.69vw);
+    font-size: 0.625rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 500;
     line-height: 1.45;
     word-wrap: break-word;
   }
 
+  @media (min-width: 768px) {
+    .text-label-small {
+      font-size: 0.69vw;
+    }
+  }
+
   /* ========================================================================
-     BUTTON SIZE SYSTEM - Escalado proporcional
+     BUTTON SIZE SYSTEM - Escalado proporcional usando sistema VW exitoso
      ======================================================================== */
   .btn-size-sm {
-    padding: clamp(0.5rem, 0.56vw, 0.56vw) clamp(0.75rem, 0.83vw, 0.83vw);
-    height: clamp(2rem, 2.22vw, 2.22vw);
-    gap: clamp(0.75rem, 0.83vw, 0.83vw);
+    padding: 0.5rem 0.75rem;
+    height: 2rem;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .btn-size-sm {
+      padding: 0.56vw 0.83vw;
+      height: 2.22vw;
+      gap: 0.83vw;
+    }
   }
 
   .btn-size-md {
-    padding: clamp(0.5rem, 0.56vw, 0.56vw) clamp(1rem, 1.11vw, 1.11vw);
-    height: clamp(2.5rem, 2.78vw, 2.78vw);
-    gap: clamp(0.75rem, 0.83vw, 0.83vw);
+    padding: 0.5rem 1rem;
+    height: 2.5rem;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .btn-size-md {
+      padding: 0.56vw 1.11vw;
+      height: 2.78vw;
+      gap: 0.83vw;
+    }
   }
 
   .btn-size-lg {
-    padding: clamp(0.5rem, 0.56vw, 0.56vw) clamp(1.25rem, 1.39vw, 1.39vw);
-    height: clamp(3rem, 3.33vw, 3.33vw);
-    gap: clamp(0.75rem, 0.83vw, 0.83vw);
+    padding: 0.5rem 1.25rem;
+    height: 3rem;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .btn-size-lg {
+      padding: 0.56vw 1.39vw;
+      height: 3.33vw;
+      gap: 0.83vw;
+    }
   }
 
   .btn-size-xl {
-    padding: clamp(0.5rem, 0.56vw, 0.56vw) clamp(1.5rem, 1.67vw, 1.67vw);
-    height: clamp(3.5rem, 3.89vw, 3.89vw);
-    gap: clamp(0.75rem, 0.83vw, 0.83vw);
+    padding: 0.5rem 1.5rem;
+    height: 3.5rem;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .btn-size-xl {
+      padding: 0.56vw 1.67vw;
+      height: 3.89vw;
+      gap: 0.83vw;
+    }
   }
 
   /* ========================================================================
-     BADGE SIZE SYSTEM - Escalado proporcional
+     BADGE SIZE SYSTEM - Escalado proporcional usando sistema VW exitoso
      ======================================================================== */
   .badge-size-sm {
-    height: clamp(1rem, 1.11vw, 1.11vw);
-    padding: clamp(0.125rem, 0.14vw, 0.14vw) clamp(0.375rem, 0.42vw, 0.42vw);
-    border-radius: clamp(0.125rem, 0.14vw, 0.14vw);
+    height: 1rem;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.125rem;
+  }
+
+  @media (min-width: 768px) {
+    .badge-size-sm {
+      height: 1.11vw;
+      padding: 0.14vw 0.42vw;
+      border-radius: 0.14vw;
+    }
   }
 
   .badge-size-md {
-    height: clamp(1.25rem, 1.39vw, 1.39vw);
-    padding: clamp(0.25rem, 0.28vw, 0.28vw) clamp(0.75rem, 0.83vw, 0.83vw);
-    border-radius: clamp(0.125rem, 0.14vw, 0.14vw);
+    height: 1.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.125rem;
+  }
+
+  @media (min-width: 768px) {
+    .badge-size-md {
+      height: 1.39vw;
+      padding: 0.28vw 0.83vw;
+      border-radius: 0.14vw;
+    }
   }
 
   .badge-size-lg {
-    height: clamp(1.5rem, 1.67vw, 1.67vw);
-    padding: clamp(0.25rem, 0.28vw, 0.28vw) clamp(1rem, 1.11vw, 1.11vw);
-    border-radius: clamp(0.125rem, 0.14vw, 0.14vw);
+    height: 1.5rem;
+    padding: 0.25rem 1rem;
+    border-radius: 0.125rem;
+  }
+
+  @media (min-width: 768px) {
+    .badge-size-lg {
+      height: 1.67vw;
+      padding: 0.28vw 1.11vw;
+      border-radius: 0.14vw;
+    }
   }
 
   .badge-size-xl {
-    height: clamp(2rem, 2.22vw, 2.22vw);
-    padding: clamp(0.25rem, 0.28vw, 0.28vw) clamp(1.25rem, 1.39vw, 1.39vw);
-    border-radius: clamp(0.25rem, 0.28vw, 0.28vw);
+    height: 2rem;
+    padding: 0.25rem 1.25rem;
+    border-radius: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .badge-size-xl {
+      height: 2.22vw;
+      padding: 0.28vw 1.39vw;
+      border-radius: 0.28vw;
+    }
   }
 
   /* ========================================================================
      CARD SIZE SYSTEM - Escalado proporcional
      ======================================================================== */
   .card-size-sm {
-    padding: clamp(0.75rem, 0.83vw, 0.83vw);
-    border-radius: clamp(0.25rem, 0.28vw, 0.28vw);
-    gap: clamp(0.5rem, 0.56vw, 0.56vw);
-    width: clamp(10rem, 11.11vw, 11.11vw);
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    gap: 0.5rem;
+    width: 10rem;
   }
 
   .card-size-md {
-    padding: clamp(1rem, 1.11vw, 1.11vw);
-    border-radius: clamp(0.375rem, 0.42vw, 0.42vw);
-    gap: clamp(0.75rem, 0.83vw, 0.83vw);
-    width: clamp(12.5rem, 13.89vw, 13.89vw);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    gap: 0.75rem;
+    width: 12.5rem;
   }
 
   .card-size-lg {
-    padding: clamp(1.25rem, 1.39vw, 1.39vw);
-    border-radius: clamp(0.5rem, 0.56vw, 0.56vw);
-    gap: clamp(1rem, 1.11vw, 1.11vw);
-    width: clamp(14rem, 15.56vw, 15.56vw);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    gap: 1rem;
+    width: 14rem;
   }
 
   .card-size-xl {
-    padding: clamp(1.5rem, 1.67vw, 1.67vw);
-    border-radius: clamp(0.625rem, 0.69vw, 0.69vw);
-    gap: clamp(1.25rem, 1.39vw, 1.39vw);
-    width: clamp(16.67rem, 18.52vw, 18.52vw);
+    padding: 1.5rem;
+    border-radius: 0.625rem;
+    gap: 1.25rem;
+    width: 16.67rem;
   }
 
   /* Card Image Specific Sizes for Horizontal Cards */
   .card-image-sm {
-    width: clamp(7.5rem, 8.33vw, 8.33vw);
-    height: clamp(7.5rem, 8.33vw, 8.33vw);
+    width: 7.5rem;
+    height: 7.5rem;
   }
 
   .card-image-md {
-    width: clamp(8rem, 8.89vw, 8.89vw);
-    height: clamp(8rem, 8.89vw, 8.89vw);
+    width: 8rem;
+    height: 8rem;
+  }
+
+  @media (min-width: 768px) {
+    .card-size-sm {
+      padding: 0.83vw;
+      border-radius: 0.28vw;
+      gap: 0.56vw;
+      width: 11.11vw;
+    }
+
+    .card-size-md {
+      padding: 1.11vw;
+      border-radius: 0.42vw;
+      gap: 0.83vw;
+      width: 13.89vw;
+    }
+
+    .card-size-lg {
+      padding: 1.39vw;
+      border-radius: 0.56vw;
+      gap: 1.11vw;
+      width: 15.56vw;
+    }
+
+    .card-size-xl {
+      padding: 1.67vw;
+      border-radius: 0.69vw;
+      gap: 1.39vw;
+      width: 18.52vw;
+    }
+
+    .card-image-sm {
+      width: 8.33vw;
+      height: 8.33vw;
+    }
+
+    .card-image-md {
+      width: 8.89vw;
+      height: 8.89vw;
+    }
   }
 
   /* ========================================================================
-     ICON SIZE SYSTEM - Escalado proporcional
+     ICON SIZE SYSTEM - Escalado proporcional usando sistema VW exitoso
      ======================================================================== */
   .icon-size-sm {
-    width: clamp(1rem, 1.11vw, 1.11vw);
-    height: clamp(1rem, 1.11vw, 1.11vw);
+    width: 1rem;
+    height: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .icon-size-sm {
+      width: 1.11vw;
+      height: 1.11vw;
+    }
   }
 
   .icon-size-md {
-    width: clamp(1.25rem, 1.39vw, 1.39vw);
-    height: clamp(1.25rem, 1.39vw, 1.39vw);
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .icon-size-md {
+      width: 1.39vw;
+      height: 1.39vw;
+    }
   }
 
   .icon-size-lg {
-    width: clamp(1.5rem, 1.67vw, 1.67vw);
-    height: clamp(1.5rem, 1.67vw, 1.67vw);
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .icon-size-lg {
+      width: 1.67vw;
+      height: 1.67vw;
+    }
   }
 
   .icon-size-xl {
-    width: clamp(1.75rem, 1.94vw, 1.94vw);
-    height: clamp(1.75rem, 1.94vw, 1.94vw);
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .icon-size-xl {
+      width: 1.94vw;
+      height: 1.94vw;
+    }
   }
 
   /* ========================================================================
-     SPACING SYSTEM - Escalado proporcional
+     SPACING SYSTEM - Escalado proporcional usando sistema VW exitoso
      ======================================================================== */
   .spacing-xs {
-    gap: clamp(0.25rem, 0.28vw, 0.28vw);
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-xs {
+      gap: 0.28vw;
+    }
   }
 
   .spacing-sm {
-    gap: clamp(0.5rem, 0.56vw, 0.56vw);
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-sm {
+      gap: 0.56vw;
+    }
   }
 
   .spacing-md {
-    gap: clamp(0.75rem, 0.83vw, 0.83vw);
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-md {
+      gap: 0.83vw;
+    }
   }
 
   .spacing-lg {
-    gap: clamp(1rem, 1.11vw, 1.11vw);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-lg {
+      gap: 1.11vw;
+    }
   }
 
   .spacing-xl {
-    gap: clamp(1.5rem, 1.67vw, 1.67vw);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-xl {
+      gap: 1.67vw;
+    }
   }
 
   .spacing-2xl {
-    gap: clamp(2rem, 2.22vw, 2.22vw);
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .spacing-2xl {
+      gap: 2.22vw;
+    }
   }
 
   /* ========================================================================
@@ -322,15 +568,22 @@ export const responsiveClasses = `
   }
 
   /* ========================================================================
-     HEADER COMPONENT - Escalado proporcional
+     HEADER COMPONENT - Sistema VW puro como layout.js exitoso
      ======================================================================== */
   .header-component {
     width: 100%;
     min-width: 100vw;
-    height: clamp(5rem, 5.56vw, 5.56vw);
-    padding: clamp(1rem, 1.11vw, 1.11vw) clamp(5rem, 5.56vw, 5.56vw);
+    height: 5rem;
+    padding: 1rem 5rem;
     position: relative;
     box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .header-component {
+      height: 5.56vw;
+      padding: 1.11vw 5.56vw;
+    }
   }
 
   .header-container {
@@ -342,10 +595,17 @@ export const responsiveClasses = `
   }
 
   .header-logo {
-    width: clamp(6.5rem, 7.22vw, 7.22vw);
-    height: clamp(2.5rem, 2.78vw, 2.78vw);
+    width: 6.5rem;
+    height: 2.5rem;
     position: relative;
     overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .header-logo {
+      width: 7.22vw;
+      height: 2.78vw;
+    }
   }
 
   .header-logo img {
@@ -358,39 +618,65 @@ export const responsiveClasses = `
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: clamp(1rem, 1.11vw, 1.11vw);
+    gap: 1rem;
     flex: 0 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .header-nav {
+      gap: 1.11vw;
+    }
   }
 
   .header-actions {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: clamp(1rem, 1.11vw, 1.11vw);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-actions {
+      gap: 1.11vw;
+    }
   }
 
   .header-menu-button {
-    width: clamp(1.5rem, 1.67vw, 1.67vw);
-    height: clamp(1.5rem, 1.67vw, 1.67vw);
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
+  @media (min-width: 768px) {
+    .header-menu-button {
+      width: 1.67vw;
+      height: 1.67vw;
+    }
+  }
+
   /* ========================================================================
-     FOOTER COMPONENT - Escalado proporcional
+     FOOTER COMPONENT - Sistema VW puro como layout.js exitoso
      ======================================================================== */
   .footer-component {
     width: 100%;
-    height: clamp(19.69rem, 21.81vw, 21.81vw);
-    padding: clamp(2.5rem, 2.78vw, 2.78vw) clamp(4rem, 4.44vw, 4.44vw);
+    height: 19.69rem;
+    padding: 2.5rem 4rem;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
     box-sizing: border-box;
     flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .footer-component {
+      height: 21.81vw;
+      padding: 2.78vw 4.44vw;
+    }
   }
 
   .footer-container {
@@ -402,10 +688,17 @@ export const responsiveClasses = `
   }
 
   .footer-logo {
-    width: clamp(6.5rem, 7.22vw, 7.22vw);
-    height: clamp(2.5rem, 2.78vw, 2.78vw);
+    width: 6.5rem;
+    height: 2.5rem;
     position: relative;
     overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .footer-logo {
+      width: 7.22vw;
+      height: 2.78vw;
+    }
   }
 
   .footer-logo img {
@@ -419,7 +712,364 @@ export const responsiveClasses = `
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: clamp(1rem, 1.11vw, 1.11vw);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-nav {
+      gap: 1.11vw;
+    }
+  }
+
+  /* ========================================================================
+     FOOTER RESPONSIVE SYSTEM - Escalado VW para zoom consistente
+     ======================================================================== */
+  .footer-address-gap {
+    gap: 0.25rem;
+  }
+
+  .footer-address-text {
+    font-size: 1rem;
+  }
+
+  .footer-licencias {
+    width: 18.5rem;
+    height: 3.5rem;
+  }
+
+  .footer-right-gap {
+    gap: 5rem;
+  }
+
+  .footer-column-gap {
+    gap: 1.5rem;
+  }
+
+  .footer-column-title {
+    font-size: 1.375rem;
+  }
+
+  .footer-column-items-gap {
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-address-gap {
+      gap: 0.28vw;
+    }
+
+    .footer-address-text {
+      font-size: 1.11vw;
+    }
+
+    .footer-licencias {
+      width: 20.56vw;
+      height: 3.89vw;
+    }
+
+    .footer-right-gap {
+      gap: 5.56vw;
+    }
+
+    .footer-column-gap {
+      gap: 1.67vw;
+    }
+
+    .footer-column-title {
+      font-size: 1.53vw;
+    }
+
+    .footer-column-items-gap {
+      gap: 1.11vw;
+    }
+  }
+
+  /* ========================================================================
+     CARD VERTICAL RESPONSIVE SYSTEM - Simplificado para trabajar con estilos inline
+     ======================================================================== */
+  .card-vertical-sm {
+    /* Dimensiones manejadas por estilos inline con clamp() */
+  }
+
+  /* CARD VERTICAL IMAGES - Solo reglas esenciales para garantizar comportamiento */
+  article.card-vertical-sm img.img,
+  .card-vertical-sm img.img,
+  .card-vertical-sm img {
+    /* Estilos manejados por imgStyles inline */
+    max-width: 100% !important;
+    min-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .card-vertical-md {
+    /* Dimensiones manejadas por estilos inline con clamp() */
+  }
+
+  article.card-vertical-md img.img,
+  .card-vertical-md img.img,
+  .card-vertical-md img {
+    /* Estilos manejados por imgStyles inline */
+    max-width: 100% !important;
+    min-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .card-vertical-lg {
+    /* Dimensiones manejadas por estilos inline con clamp() */
+  }
+
+  article.card-vertical-lg img.img,
+  .card-vertical-lg img.img,
+  .card-vertical-lg img {
+    /* Estilos manejados por imgStyles inline */
+    max-width: 100% !important;
+    min-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .card-vertical-xl {
+    /* Dimensiones manejadas por estilos inline con clamp() */
+  }
+
+  article.card-vertical-xl img.img,
+  .card-vertical-xl img.img,
+  .card-vertical-xl img {
+    /* Estilos manejados por imgStyles inline */
+    max-width: 100% !important;
+    min-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (min-width: 768px) {
+    .card-vertical-sm {
+      /* Dimensiones manejadas por estilos inline con clamp() */
+    }
+
+    article.card-vertical-sm img.img,
+    .card-vertical-sm img.img,
+    .card-vertical-sm img {
+      /* Estilos manejados por imgStyles inline */
+      max-width: 100% !important;
+      min-width: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      outline: none !important;
+      flex-shrink: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .card-vertical-md {
+      /* Dimensiones manejadas por estilos inline con clamp() */
+    }
+
+    article.card-vertical-md img.img,
+    .card-vertical-md img.img,
+    .card-vertical-md img {
+      /* Estilos manejados por imgStyles inline */
+      max-width: 100% !important;
+      min-width: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      outline: none !important;
+      flex-shrink: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .card-vertical-lg {
+      /* Dimensiones manejadas por estilos inline con clamp() */
+    }
+
+    article.card-vertical-lg img.img,
+    .card-vertical-lg img.img,
+    .card-vertical-lg img {
+      /* Estilos manejados por imgStyles inline */
+      max-width: 100% !important;
+      min-width: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      outline: none !important;
+      flex-shrink: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .card-vertical-xl {
+      /* Dimensiones manejadas por estilos inline con clamp() */
+    }
+
+    article.card-vertical-xl img.img,
+    .card-vertical-xl img.img,
+    .card-vertical-xl img {
+      /* Estilos manejados por imgStyles inline */
+      max-width: 100% !important;
+      min-width: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      outline: none !important;
+      flex-shrink: 0 !important;
+      box-sizing: border-box !important;
+    }
+  }
+
+  /* ========================================================================
+     FOOTER LAYOUT RESPONSIVE SYSTEM - Desktop vs Mobile Structure
+     ======================================================================== */
+  .footer-desktop {
+    display: none;
+  }
+
+  .footer-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    gap: 3rem;
+    min-height: auto;
+  }
+
+  .footer-mobile-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+  }
+
+  .footer-mobile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .footer-mobile-title {
+    font-size: 1.375rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .footer-mobile-buttons button {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .footer-mobile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .footer-mobile-logo {
+    width: 140px;
+    height: 54px;
+  }
+
+  .footer-mobile-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .footer-mobile-address {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-mobile-address p {
+    font-size: 1rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-mobile-licenses {
+    width: 296px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  @media (min-width: 768px) {
+    .footer-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .footer-mobile {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .footer-component {
+      height: auto !important;
+      padding: 0 !important;
+    }
+    
+    .footer-desktop {
+      display: none;
+    }
   }
 `;
 

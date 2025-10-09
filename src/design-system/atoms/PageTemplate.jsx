@@ -4,6 +4,7 @@ import Header from './Header/Header.jsx';
 import Footer from './Footer/Footer.jsx';
 import { useSemanticTokens } from '../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../foundations/responsive-classes.js';
+import { injectGlobalVWSystem } from '../foundations/global-vw-system.js';
 
 /**
  * PageTemplate - Plantilla base para todas las páginas
@@ -24,17 +25,14 @@ const PageTemplate = ({
 }) => {
   const semanticColors = useSemanticTokens();
 
-  // Inyectar clases responsivas al montar el componente
+  // Inyectar clases responsivas y sistema VW global al montar el componente
   React.useEffect(() => {
     injectResponsiveClasses();
+    injectGlobalVWSystem();
   }, []);
 
-  // Estilos para el layout de la página
+  // Estilos para el layout de la página usando el sistema VW exitoso
   const templateStyles = `
-    * {
-      box-sizing: border-box;
-    }
-
     .page-layout {
       width: 100vw;
       min-height: 100vh;

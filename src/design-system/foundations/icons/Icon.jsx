@@ -62,7 +62,10 @@ const Icon = ({
           display: 'inline-flex', 
           alignItems: 'center', 
           justifyContent: 'center',
-          fontSize: 'clamp(0.5rem, 0.56vw, 0.56vw)',
+          fontSize: '0.5rem', // móvil
+          '@media (min-width: 768px)': {
+            fontSize: '0.56vw' // desktop
+          },
           color: '#dc2626',
           borderRadius: '2px',
           fontWeight: 'bold',

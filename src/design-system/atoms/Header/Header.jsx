@@ -37,6 +37,7 @@ const Header = ({
   onMenuClick = () => {},
   onDropdownItemClick = () => {},
   className = '',
+  currentPage, // Extraer currentPage para que no se pase al DOM
   ...props
 }) => {
   // Estado local para controlar el menú desplegable móvil
@@ -332,11 +333,11 @@ const Header = ({
 
       {/* Navigation visible on tablet/desktop - Comportamiento original para PC/tablet */}
       <style jsx>{`
-        /* Media query para tablet/desktop - Mantener comportamiento original */
+        /* Media query para tablet/desktop - APLICAR SISTEMA VW */
         @media (min-width: 768px) {
           .header-nav {
             display: flex !important;
-            width: clamp(33.5rem, 37.18vw, 37.18vw);
+            width: 37.18vw;
             gap: 1rem;
           }
           

@@ -69,8 +69,8 @@ export const ButtonGhost = ({
     border: 'none',
     borderRadius: '0',
 
-    // Borde inferior solo cuando está seleccionado
-    borderBottom: selected ? `2px solid ${currentColors.color}` : '2px solid transparent',
+    // Borde inferior responsive para estado selected
+    borderBottom: selected ? 'clamp(2px, 0.14vw, 0.14vw) solid currentColor' : 'clamp(2px, 0.14vw, 0.14vw) solid transparent',
 
     // Interactions
     cursor: disabled ? 'not-allowed' : 'pointer',
