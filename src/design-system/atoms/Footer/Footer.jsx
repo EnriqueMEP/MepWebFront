@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import { textStyles } from '../../foundations/typography.js';
@@ -28,8 +29,41 @@ const Footer = ({
     injectResponsiveClasses();
   }, []);
 
+  // Hook de navegación
+  const navigate = useNavigate();
+
   // Colores semánticos para el footer
   const footerColors = useComponentColors('footer');
+
+  // Función para manejar navegación funcional
+  const handleNavigation = (itemId) => {
+    const routes = {
+      // Sobre MEP Engineering
+      'vision': '/nosotros',
+      'nosotros': '/nosotros',
+      
+      // Líneas de negocio
+      'energia': '/energia',
+      'agua': '/agua', 
+      'industria': '/industria',
+      'infraestructuras': '/infraestructura',
+      
+      // Grupo (sin rutas definidas aún)
+      'facilities': null,
+      'canada': null,
+      'industria-grupo': null,
+      'infraestructuras-grupo': null,
+      
+      // Contacto
+      'conocenos': '/contacto'
+    };
+
+    const route = routes[itemId];
+    if (route) {
+      navigate(route);
+    }
+    onNavClick(itemId);
+  };
 
   // Datos de navegación organizados por columnas como en la imagen
   const navigationColumns = [
@@ -189,7 +223,7 @@ const Footer = ({
                     size="md"
                     selected={selectedItem === item.id}
                     disabled={false}
-                    onClick={() => onNavClick(item.id)}
+                    onClick={() => handleNavigation(item.id)}
                   >
                     {item.label}
                   </ButtonGhost>
@@ -214,7 +248,7 @@ const Footer = ({
                     size="md"
                     selected={selectedItem === item.id}
                     disabled={false}
-                    onClick={() => onNavClick(item.id)}
+                    onClick={() => handleNavigation(item.id)}
                   >
                     {item.label}
                   </ButtonGhost>

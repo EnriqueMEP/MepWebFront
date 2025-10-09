@@ -753,6 +753,19 @@ export const responsiveClasses = `
     gap: 1rem;
   }
 
+  /* ALINEACIÓN BOTONES: Eliminar padding extra de botones para alinear con títulos */
+  .footer-column-items-gap button,
+  .footer-mobile-buttons button {
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    min-height: auto !important;
+    line-height: 1.375rem !important;
+  }
+
   @media (min-width: 768px) {
     .footer-address-gap {
       gap: 0.28vw;
@@ -781,6 +794,16 @@ export const responsiveClasses = `
 
     .footer-column-items-gap {
       gap: 1.11vw;
+    }
+
+    /* ALINEACIÓN BOTONES DESKTOP: Solo ajustar posición vertical, mantener formato original */
+    .footer-column-items-gap button {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      vertical-align: top !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
     }
   }
 
