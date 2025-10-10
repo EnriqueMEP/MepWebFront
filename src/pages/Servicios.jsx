@@ -25,7 +25,7 @@ const Servicios = () => {
       <HeroSection
         title="Nuestros Servicios"
         subtitle="Soluciones integrales de ingeniería para proyectos de cualquier envergadura"
-        videoSrc="src/design-system/foundations/video/vHome.mp4"
+        videoSrc="/video/vHome.mp4"
         showVideo={true}
       />
       

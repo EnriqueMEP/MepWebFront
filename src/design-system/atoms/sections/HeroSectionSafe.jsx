@@ -21,7 +21,7 @@ const HeroSection = ({
   description = "Nuestra compañía refuerza su identidad de marca comunicando así su crecimiento y solidez dentro del mercado. Comprometiéndose a seguir aportando valor a futuro.",
   buttonText = "Conocer más",
   onButtonClick = () => console.log('Hero button clicked'),
-  shapeImageSrc = "/src/design-system/foundations/img/shape.png"
+  shapeImageSrc = "/img/shape.png"
 }) => {
   const semanticColors = useSemanticTokens();
 

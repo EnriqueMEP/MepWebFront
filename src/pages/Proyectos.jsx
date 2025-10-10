@@ -20,7 +20,7 @@ const Proyectos = () => {
   const allProjectsData = [
     {
       id: 1,
-      image: "src/design-system/foundations/img/p1.png",
+      image: "/img/p1.png",
       badgeText: "Ing. de Detalle",
       title: "Planta Fotovoltaica \"Puerto Cruz I\" de 21,15MWp",
       description: "Proyecto completo de ingeniería de detalle para planta solar fotovoltaica",
@@ -29,7 +29,7 @@ const Proyectos = () => {
     },
     {
       id: 2,
-      image: "src/design-system/foundations/img/p2.png",
+      image: "/img/p2.png",
       badgeText: "Ing. de Detalle", 
       title: "Planta Fotovoltaica \"Puerto Cruz II\" de 25,30MWp",
       description: "Segundo proyecto de la serie Puerto Cruz con mayor capacidad",
@@ -38,7 +38,7 @@ const Proyectos = () => {
     },
     {
       id: 3,
-      image: "src/design-system/foundations/img/p3.png",
+      image: "/img/p3.png",
       badgeText: "Ing. Básica",
       title: "Planta Fotovoltaica \"Puerto Cruz III\" de 21,15MWp",
       description: "Ingeniería básica para expansión del complejo Puerto Cruz",
@@ -47,7 +47,7 @@ const Proyectos = () => {
     },
     {
       id: 4,
-      image: "src/design-system/foundations/img/p4.png",
+      image: "/img/p4.png",
       badgeText: "Ing. Estructural",
       title: "Edificio Residencial Torrecilla",
       description: "Cálculo estructural completo para edificio de 8 plantas",
@@ -65,7 +65,7 @@ const Proyectos = () => {
       <HeroSection
         title="Nuestros Proyectos"
         subtitle="Portfolio de soluciones de ingeniería que transforman ideas en realidad"
-        videoSrc="src/design-system/foundations/video/vHome.mp4"
+        videoSrc="/video/vHome.mp4"
         showVideo={true}
       />
       

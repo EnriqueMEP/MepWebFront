@@ -26,7 +26,7 @@ const ProjectsSection = ({
   projects = [],
   selectedProject = null,
   onProjectSelect = () => {},
-  shapeImageSrc = "src/design-system/foundations/img/shape2.png"
+  shapeImageSrc = "/img/shape2.png"
 }) => {
   const semanticColors = useSemanticTokens();
 

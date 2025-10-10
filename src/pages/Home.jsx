@@ -26,7 +26,7 @@ const Home = () => {
   const projectsData = [
     {
       id: 1,
-      image: "src/design-system/foundations/img/p1.png",
+      image: "/img/p1.png",
       badgeText: "Ing. de Detalle",
       title: "Planta Fotovoltaica \"Puerto Cruz I\" de 21,15MWp",
       description: "",
@@ -34,7 +34,7 @@ const Home = () => {
     },
     {
       id: 2,
-      image: "src/design-system/foundations/img/p2.png",
+      image: "/img/p2.png",
       badgeText: "Ing. de Detalle",
       title: "Planta Fotovoltaica \"Puerto Cruz II\" de 25,30MWp",
       description: "",
@@ -42,7 +42,7 @@ const Home = () => {
     },
     {
       id: 3,
-      image: "src/design-system/foundations/img/p3.png",
+      image: "/img/p3.png",
       badgeText: "Ing. Básica",
       title: "Planta Fotovoltaica \"Puerto Cruz I\" de 21,15MWp",
       description: "",
@@ -50,7 +50,7 @@ const Home = () => {
     },
     {
       id: 4,
-      image: "src/design-system/foundations/img/p4.png",
+      image: "/img/p4.png",
       badgeText: "BIM",
       title: "Instalaciones Industriales \"Complejo Agua Verde\"",
       description: "",
@@ -129,8 +129,8 @@ const Home = () => {
         description="Nuestra compañía refuerza su identidad de marca comunicando así su crecimiento y solidez dentro del mercado. Comprometiéndose a seguir aportando valor a futuro."
         buttonText="Conocer más"
         onButtonClick={handleHeroButtonClick}
-        videoSrc="/src/design-system/foundations/video/vHome.mp4"
-        shapeImageSrc="/src/design-system/foundations/img/shape.png"
+        videoSrc="/video/vHome.mp4"
+        shapeImageSrc="/img/shape.png"
       />
 
       {/* Espacio después del hero */}
@@ -151,7 +151,7 @@ const Home = () => {
         projects={projectsData}
         selectedProject={selectedProject}
         onProjectSelect={handleProjectClick}
-        shapeImageSrc="/src/design-system/foundations/img/shape2.png"
+        shapeImageSrc="/img/shape2.png"
       />
 
       {/* Espacio después de proyectos */}
@@ -163,7 +163,7 @@ const Home = () => {
         selectedArticle={selectedArticle}
         onArticleSelect={handleArticleClick}
         buttonText="Me interesa"
-        shapeImageSrc="/src/design-system/foundations/img/shape.png"
+        shapeImageSrc="/img/shape.png"
       />
     </PageTemplate>
   );

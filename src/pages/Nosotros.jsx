@@ -23,7 +23,7 @@ const Nosotros = () => {
       <HeroSection
         title="Avanzamos comprometidos con la excelencia en ingeniería"
         subtitle="Un equipo de profesionales dedicados a crear soluciones técnicas innovadoras y confiables"
-        videoSrc="src/design-system/foundations/video/vHome.mp4"
+        videoSrc="/video/vHome.mp4"
         showVideo={true}
       />
       
