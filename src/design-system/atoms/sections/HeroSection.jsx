@@ -147,7 +147,28 @@ const HeroSection = ({
     }
 
     .hero-video-container video {
-      /* Estilos manejados inline para mejor control de errores */
+      /* Ocultar completamente controles nativos en todos los navegadores */
+      -webkit-controls-play-button: none !important;
+      -webkit-media-controls: none !important;
+      -webkit-media-controls-start-playback-button: none !important;
+      -webkit-media-controls-overlay-play-button: none !important;
+      -webkit-media-controls-play-button: none !important;
+      -webkit-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .hero-video-container video::-webkit-media-controls {
+      display: none !important;
+    }
+
+    .hero-video-container video::-webkit-media-controls-start-playback-button {
+      display: none !important;
+      -webkit-appearance: none !important;
+    }
+
+    .hero-video-container video::-webkit-media-controls-overlay-play-button {
+      display: none !important;
+      -webkit-appearance: none !important;
     }
 
     /* Shape Hero - DELANTE del video (z-index: 2), opacity: 1 */
@@ -208,10 +229,35 @@ const HeroSection = ({
 
           <div className="hero-video-container">
             <video
+              ref={(el) => {
+                if (el) {
+                  // Forzar reproducción automática en móvil
+                  el.muted = true;
+                  el.autoplay = true;
+                  el.loop = true;
+                  el.playsInline = true;
+                  el.controls = false;
+                  
+                  // Intentar reproducir cuando esté listo
+                  const playVideo = () => {
+                    el.play().catch(() => {
+                      // Si falla, reintentamos en el próximo frame
+                      setTimeout(() => el.play().catch(() => {}), 100);
+                    });
+                  };
+                  
+                  if (el.readyState >= 2) {
+                    playVideo();
+                  } else {
+                    el.addEventListener('loadeddata', playVideo);
+                    el.addEventListener('canplay', playVideo);
+                  }
+                }
+              }}
               src={videoSrc}
-              autoPlay 
-              loop 
-              muted 
+              autoPlay
+              loop
+              muted
               playsInline
               webkit-playsinline="true"
               preload="auto"
@@ -220,15 +266,23 @@ const HeroSection = ({
                 console.log('Video error:', e);
                 e.target.style.display = 'none';
               }}
-              onLoadedData={(e) => {
-                e.target.play();
-              }}
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                display: 'block'
+                display: 'block',
+                // Ocultar completamente cualquier control o overlay
+                outline: 'none',
+                border: 'none',
+                WebkitTapHighlightColor: 'transparent',
+                // Evitar que aparezcan controles nativos
+                WebkitAppearance: 'none',
+                appearance: 'none'
               }}
+              // Evitar interacción del usuario
+              onContextMenu={(e) => e.preventDefault()}
+              onTouchStart={(e) => e.preventDefault()}
+              onMouseDown={(e) => e.preventDefault()}
             />
             
             {/* Shape DELANTE del video con opacity: 1 */}
