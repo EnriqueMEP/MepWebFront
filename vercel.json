@@ -12,14 +12,15 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
       "dest": "/index.html"
     }
   ],
   "env": {
     "NODE_ENV": "production"
   },
-  "regions": ["fra1"],
-  "cleanUrls": true,
-  "trailingSlash": false
+  "regions": ["fra1"]
 }
