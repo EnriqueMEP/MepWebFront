@@ -213,9 +213,15 @@ const HeroSection = ({
               loop 
               muted 
               playsInline
+              webkit-playsinline="true"
+              preload="auto"
+              controls={false}
               onError={(e) => {
                 console.log('Video error:', e);
                 e.target.style.display = 'none';
+              }}
+              onLoadedData={(e) => {
+                e.target.play();
               }}
               style={{
                 width: '100%',
