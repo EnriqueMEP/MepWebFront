@@ -72,9 +72,9 @@ const PageTemplate = ({
     
     @media (min-width: 768px) {
       .content-wrapper {
-        max-width: 88.89vw;
+        max-width: 100%;
         gap: 5.56vw;
-        padding: 5.56vw;
+        padding: 5.56vw 5rem;
       }
     }
   `;
