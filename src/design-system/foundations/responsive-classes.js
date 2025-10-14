@@ -583,8 +583,8 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .header-component {
-      height: 5.56vw;
-      padding: 1.11vw 5.56vw;
+      height: 4.17vw;
+      padding: 1.25vw 5.56vw;
     }
   }
 
@@ -605,8 +605,8 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .header-logo {
-      width: 7.22vw;
-      height: 2.78vw;
+      width: 4.48vw;
+      height: 1.67vw;
     }
   }
 
@@ -639,7 +639,7 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .header-actions {
-      gap: 1.11vw;
+      gap: 0.83vw;
     }
   }
 

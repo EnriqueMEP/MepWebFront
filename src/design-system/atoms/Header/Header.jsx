@@ -6,7 +6,6 @@ import ButtonGhost from '../Button/ButtonGhost.jsx';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
 import ButtonOutline from '../Button/ButtonOutline.jsx';
 import Icon from '../../foundations/icons/Icon.jsx';
-import mepLogo from '../../foundations/img/mep_logo.svg';
 
 /**
  * Header - Cabecera principal de la aplicación
@@ -163,7 +162,7 @@ const Header = ({
         {/* Logo Area */}
         <Link to="/" className="header-logo">
           <img 
-            src={mepLogo}
+            src={theme === 'dark' ? '/img/mep_logodark.png' : '/img/mep_logo.png'}
             alt="MEP Engineering"
           />
         </Link>
@@ -173,7 +172,7 @@ const Header = ({
           {navigationItems.map((item) => (
             <div key={item.id} className="nav-item-container">
               <ButtonGhost
-                size="md"
+                size="sm"
                 selected={activeNavItem === item.id || location.pathname === item.path}
                 onClick={() => {
                   if (item.path) {
@@ -211,11 +210,57 @@ const Header = ({
               )}
             </div>
           ))}
+          
+          {/* Sección Theme integrada en la navegación - visible en PC/tablet */}
+          <div className="theme-section" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.42vw',
+            height: '2.22vw',
+            padding: '0.42vw 0.83vw',
+            backgroundColor: 'transparent',
+            border: 'none'
+          }}>
+            <span 
+              className="text-label-medium"
+              style={{ 
+                color: ghostButtonColors.text || 'currentColor',
+                fontFamily: 'Ubuntu, sans-serif'
+              }}
+            >
+              Theme
+            </span>
+            <button
+              className="header-theme-button"
+              onClick={toggleTheme}
+              aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <img 
+                src={theme === 'light' ? '/img/switchLight.png' : '/img/switchDark.png'}
+                alt={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                style={{
+                  width: '3.33vw',
+                  height: '1vw',
+                  objectFit: 'contain'
+                }}
+              />
+            </button>
+          </div>
         </nav>
 
-        {/* Right Actions Area */}
+        {/* Right Actions Area - Vacía temporalmente */}
         <div className="header-actions">
-          {/* Botón Login - solo visible en PC/tablet */}
+          {/* Botón Login - COMENTADO temporalmente - solo visible en PC/tablet */}
+          {/*
           <ButtonPrimary
             className="header-login-button"
             size="sm"
@@ -225,25 +270,7 @@ const Header = ({
           >
             Log In
           </ButtonPrimary>
-          
-          {/* Botón de cambio de tema - visible en PC/tablet */}
-          <button
-            className="header-theme-button"
-            onClick={toggleTheme}
-            aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '8px'
-            }}
-          >
-            <Icon 
-              name={theme === 'light' ? 'luna' : 'sol'}
-              size={20}
-              color={headerColors.text || 'currentColor'}
-            />
-          </button>
+          */}
           
           {/* Botón de menú móvil - solo visible en mobile */}
           <button
@@ -337,16 +364,18 @@ const Header = ({
         @media (min-width: 768px) {
           .header-nav {
             display: flex !important;
-            width: 37.18vw;
-            gap: 1rem;
+            flex: 1;
+            justify-content: flex-end;
+            gap: 0.5vw;
+            margin-right: 2vw;
           }
           
           .header-menu-button {
             display: none !important;
           }
           
-          .header-theme-button {
-            display: block !important;
+          .theme-section {
+            display: flex !important;
           }
           
           .mobile-menu {
@@ -356,7 +385,7 @@ const Header = ({
 
         /* Estilos SOLO para móvil - aquí se aplican los nuevos cambios */
         @media (max-width: 767px) {
-          .header-theme-button {
+          .theme-section {
             display: none !important;
           }
           
@@ -364,9 +393,9 @@ const Header = ({
             display: block !important;
           }
           
-          .header-login-button {
+          /* .header-login-button {
             display: none !important;
-          }
+          } */
           
           .mobile-menu {
             display: block !important;
