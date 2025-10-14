@@ -212,48 +212,51 @@ const Header = ({
           ))}
           
           {/* Sección Theme integrada en la navegación - visible en PC/tablet */}
-          <div className="theme-section" style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '0.42vw',
-            height: '2.22vw',
-            padding: '0.42vw 0.83vw',
-            backgroundColor: 'transparent',
-            border: 'none'
-          }}>
-            <span 
-              className="text-label-medium"
-              style={{ 
-                color: ghostButtonColors.text || 'currentColor',
-                fontFamily: 'Ubuntu, sans-serif'
-              }}
-            >
-              Theme
-            </span>
-            <button
-              className="header-theme-button"
-              onClick={toggleTheme}
-              aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              <img 
-                src={theme === 'light' ? '/img/switchLight.png' : '/img/switchDark.png'}
-                alt={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                style={{
-                  width: '3.33vw',
-                  height: '1vw',
-                  objectFit: 'contain'
+          <div className="nav-item-container">
+            <div className="theme-section" style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '0.42vw',
+              height: '2.22vw',
+              padding: '0.56vw 0.83vw',
+              backgroundColor: 'transparent',
+              border: 'none',
+              boxSizing: 'border-box'
+            }}>
+              <span 
+                className="text-label-medium"
+                style={{ 
+                  color: ghostButtonColors.text || 'currentColor',
+                  fontFamily: 'Ubuntu, sans-serif'
                 }}
-              />
-            </button>
+              >
+                Theme
+              </span>
+              <button
+                className="header-theme-button"
+                onClick={toggleTheme}
+                aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <img 
+                  src={theme === 'light' ? '/img/switchLight.png' : '/img/switchDark.png'}
+                  alt={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                  style={{
+                    width: '3.33vw',
+                    height: '1vw',
+                    objectFit: 'contain'
+                  }}
+                />
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -332,7 +335,8 @@ const Header = ({
               </div>
             ))}
             
-            {/* Botón Login en el menú móvil */}
+            {/* Botón Login en el menú móvil - OCULTO */}
+            {/*
             <div className="mobile-login-section">
               <ButtonPrimary
                 size="md"
@@ -343,16 +347,48 @@ const Header = ({
                 Log In
               </ButtonPrimary>
             </div>
+            */}
             
-            {/* Botón de cambio de tema en el menú móvil */}
-            <div className="mobile-theme-section">
-              <ButtonGhost
-                size="md"
-                leftIcon={theme === 'light' ? 'luna' : 'sol'}
-                onClick={handleMobileThemeToggle}
+            {/* Sección Theme + switch en el menú móvil */}
+            <div className="mobile-theme-section" style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.75rem',
+              padding: '0.75rem 1rem',
+              marginTop: '0.5rem'
+            }}>
+              <span style={{
+                color: headerColors.text || 'currentColor',
+                fontSize: '1rem',
+                fontWeight: '500',
+                fontFamily: 'Ubuntu, sans-serif'
+              }}>
+                Theme
+              </span>
+              <button
+                onClick={toggleTheme}
+                aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
-                Cambiar tema
-              </ButtonGhost>
+                <img 
+                  src={theme === 'light' ? '/img/switchLight.png' : '/img/switchDark.png'}
+                  alt={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                  style={{
+                    width: '3.5rem',
+                    height: '1rem',
+                    objectFit: 'contain'
+                  }}
+                />
+              </button>
             </div>
           </div>
         </div>

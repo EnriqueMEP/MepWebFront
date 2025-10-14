@@ -594,6 +594,15 @@ export const responsiveClasses = `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Forzar alineación estable al zoom */
+    align-content: center;
+    flex-wrap: nowrap;
+  }
+
+  /* Estabilidad al zoom para todos los elementos del header */
+  .header-container > * {
+    flex-shrink: 0;
+    align-self: center;
   }
 
   .header-logo {
@@ -601,6 +610,8 @@ export const responsiveClasses = `
     height: 2.5rem;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+    align-self: center;
   }
 
   @media (min-width: 768px) {
@@ -628,6 +639,19 @@ export const responsiveClasses = `
     .header-nav {
       gap: 1.11vw;
     }
+  }
+
+  /* Forzar alineación exacta para todos los elementos del header */
+  .header-nav > *,
+  .header-logo,
+  .header-actions > * {
+    align-self: center !important;
+    vertical-align: middle !important;
+  }
+
+  .theme-section {
+    flex-shrink: 0;
+    align-self: center !important;
   }
 
   .header-actions {
