@@ -16,7 +16,7 @@ export const responsiveClasses = `
      TYPOGRAPHY SYSTEM - Escalado proporcional usando el sistema exitoso VW
      ======================================================================== */
   .text-display-large {
-    font-size: 1rem;
+    font-size: 1.75rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.1;
@@ -27,7 +27,7 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .text-display-large {
-      font-size: 3.96vw;
+      font-size: 1.8vw;
     }
   }
 
@@ -74,7 +74,7 @@ export const responsiveClasses = `
   }
 
   .text-title-large {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.27;
@@ -83,7 +83,7 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .text-title-large {
-      font-size: 1.53vw;
+      font-size: 0.9vw;
     }
   }
 

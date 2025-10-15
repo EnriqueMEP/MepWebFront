@@ -67,7 +67,7 @@ export const fontWeights = {
 export const fontSizes = {
   // Display sizes (Ubuntu)
   display: {
-    large: '57px',    // Display Large
+    large: '28px',    // Display Large - tamaño más pequeño para títulos
     medium: '45px',   // Display Medium  
     small: '36px',    // Display Small
   },
@@ -81,7 +81,7 @@ export const fontSizes = {
   
   // Title sizes (Ubuntu)
   title: {
-    large: '22px',    // Title Large
+    large: '16px',    // Title Large (reducido de 22px)
     medium: '16px',   // Title Medium
     small: '14px',    // Title Small
   },

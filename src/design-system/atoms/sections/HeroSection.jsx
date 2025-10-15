@@ -2,6 +2,7 @@ import React from 'react';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
 import BadgeText from '../Badge/BadgeText.jsx';
 import { useSemanticTokens } from '../../foundations/theme-hooks.js';
+import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
 import { 
   breakpoints, 
   containers,
@@ -46,6 +47,11 @@ const HeroSection = ({
   // Usar description si no hay subtitle (retrocompatibilidad)
   const finalSubtitle = subtitle || description;
   const semanticColors = useSemanticTokens();
+
+  // Inyectar clases CSS responsivas al montar
+  React.useEffect(() => {
+    injectResponsiveClasses();
+  }, []);
 
   const heroStyles = `
     /* Hero Section - Posición relativa para shapes */
@@ -195,6 +201,17 @@ const HeroSection = ({
       .hero-text-content > div:first-child {
         ${scaling.badge.desktop.transform};
         transform-origin: ${scaling.badge.desktop.transformOrigin};
+      }
+    }
+
+    /* Forzar tamaño específico del título */
+    .hero-section .text-display-large {
+      font-size: 2rem !important;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-section .text-display-large {
+        font-size: 2vw !important;
       }
     }
   `;

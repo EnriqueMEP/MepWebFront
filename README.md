@@ -1,53 +1,73 @@
-# MEP Web Frontend - Documentación Principal
+# 🏢 MEP Web Frontend - Sitio Corporativo
 
 ## 📋 Índice
-- [Introducción](#introducción)
-- [Arquitectura del Proyecto](#arquitectura-del-proyecto)
-- [Guías Específicas](#guías-específicas)
-- [Configuración y Setup](#configuración-y-setup)
-- [Desarrollo](#desarrollo)
-- [Contribución](#contribución)
+- [🚀 Introducción](#-introducción)
+- [🏗️ Arquitectura](#️-arquitectura)
+- [📚 Documentación Específica](#-documentación-específica)
+- [⚙️ Setup y Desarrollo](#️-setup-y-desarrollo)
+- [🎨 Sistema de Diseño](#-sistema-de-diseño)
+- [📱 Características](#-características)
+- [🤝 Contribución](#-contribución)
 
 ## 🚀 Introducción
 
-MEP Web Frontend es una aplicación React moderna construida con Vite que implementa un sistema de diseño completo y modular. El proyecto utiliza un enfoque de design system con componentes reutilizables, foundations semánticas y un sistema de plantillas para desarrollo rápido.
+**MEP Web Frontend** es el sitio web corporativo oficial de MEP Engineering, construido con tecnologías modernas y un sistema de diseño completo. La aplicación implementa un enfoque de atomic design con componentes reutilizables, responsive design avanzado, y un sistema de plantillas para desarrollo rápido.
 
-### Tecnologías principales
-- **React 18** - Biblioteca principal
-- **Vite** - Build tool y dev server
-- **JavaScript ES6+** - Lenguaje principal
-- **CSS-in-JS** - Estilos dinámicos
-- **Design System** - Sistema de diseño modular
+### 🛠️ Stack Tecnológico
+- **⚛️ React 18** - Biblioteca principal con Hooks
+- **⚡ Vite** - Build tool ultra-rápido
+- **🎨 CSS-in-JS** - Estilos dinámicos y temáticos  
+- **📐 Design System** - Sistema atómico modular
+- **📱 Responsive VW** - Escalado consistente con zoom
+- **🌙 Dark/Light Mode** - Temas adaptativos
 
-## 🏗️ Arquitectura del Proyecto
+## 🏗️ Arquitectura
 
+### 📁 Estructura del Proyecto
 ```
 MepWebFront/
-├── public/                          # Archivos estáticos
-├── src/
-│   ├── design-system/              # Sistema de diseño completo
-│   │   ├── foundations/            # Fundamentos del sistema
-│   │   │   ├── colors.js           # Colores del sistema
-│   │   │   ├── typography.js       # Sistema tipográfico
-│   │   │   ├── layout.js           # Layouts y spacing
-│   │   │   ├── shapes.js           # Shapes decorativos
-│   │   │   ├── theme-hooks.js      # Hooks de tema
-│   │   │   ├── responsive-classes.js # Sistema responsive
-│   │   │   ├── icons/              # Sistema de iconos
-│   │   │   ├── img/                # Imágenes del sistema
-│   │   │   └── video/              # Videos del sistema
-│   │   ├── atoms/                  # Componentes básicos
-│   │   │   ├── Button/             # Componentes de botón
-│   │   │   ├── Badge/              # Componentes de badge
-│   │   │   ├── Card/               # Componentes de tarjeta
-│   │   │   ├── Header/             # Componentes de header
-│   │   │   ├── Footer/             # Componentes de footer
-│   │   │   ├── sections/           # Secciones reutilizables
-│   │   │   └── PageTemplate.jsx    # Plantilla base de página
-│   │   └── TEMPLATE_SYSTEM_GUIDE.md # Guía del sistema de plantillas
-│   ├── pages/                      # Páginas de la aplicación
-│   │   ├── Home.jsx               # Página principal original
-│   │   ├── Home_New.jsx           # Página principal con nuevo sistema
+├── 📄 Documentación Principal
+│   ├── README.md                        # Este archivo
+│   ├── ARCHITECTURE.md                  # Arquitectura detallada
+│   ├── DEVELOPMENT_FLOW.md              # Flujo de desarrollo
+│   ├── DEPLOY_README.md                 # Guía de deployment
+│   ├── TYPOGRAPHY_SYSTEM_GUIDE.md       # Sistema tipográfico
+│   ├── TEMPLATE_SYSTEM_README.md        # Sistema de plantillas
+│   └── URL_STRUCTURE.md                 # Estructura de URLs
+│
+├── 🌐 Aplicación
+│   ├── public/                          # Assets estáticos
+│   │   ├── img/                        # Imágenes (logos, fotos)
+│   │   └── video/                      # Videos corporativos
+│   └── src/
+│       ├── 🎨 design-system/           # SISTEMA DE DISEÑO
+│       │   ├── foundations/            # 🏛️ Fundamentos
+│       │   │   ├── colors.js          # Paletas de colores
+│       │   │   ├── semantic-colors.js  # Tokens semánticos  
+│       │   │   ├── typography.js       # Sistema tipográfico
+│       │   │   ├── responsive-classes.js # Sistema VW responsive
+│       │   │   ├── theme-hooks.js      # Hooks de tema
+│       │   │   ├── layout.js           # Layouts y spacing
+│       │   │   └── icons/              # Iconografía SVG
+│       │   └── atoms/                  # ⚛️ Componentes Atómicos
+│       │       ├── PageTemplate.jsx   # Plantilla base
+│       │       ├── Header/             # Navegación principal
+│       │       ├── Footer/             # Pie de página
+│       │       ├── Button/             # Sistema de botones
+│       │       ├── Badge/              # Badges y etiquetas
+│       │       ├── Card/               # Tarjetas de contenido
+│       │       └── sections/           # Secciones reutilizables
+│       │           ├── HeroSection.jsx       # Hero principal
+│       │           ├── StatsSection.jsx     # Estadísticas
+│       │           ├── ProjectsSection.jsx  # Proyectos
+│       │           └── BlogSection.jsx      # Blog/Noticias
+│       └── 📄 pages/                   # Páginas del Sitio
+│           ├── Home.jsx                # Página principal
+│           ├── Servicios.jsx           # Servicios de ingeniería  
+│           ├── Proyectos.jsx           # Portfolio de proyectos
+│           ├── Nosotros.jsx            # Sobre la empresa
+│           ├── Contacto.jsx            # Información de contacto
+│           └── NotFound.jsx            # Página 404
 │   │   └── ExamplePage.jsx        # Ejemplo de nueva página
 │   ├── App.jsx                     # Componente principal
 │   └── main.jsx                    # Punto de entrada
@@ -56,134 +76,209 @@ MepWebFront/
 └── README.md                      # Este archivo
 ```
 
-## 📚 Guías Específicas
+## 📚 Documentación Específica
 
-### Para Desarrolladores
-- [**Sistema de Diseño**](src/design-system/README.md) - Cómo usar y extender el design system
-- [**Sistema de Plantillas**](src/design-system/TEMPLATE_SYSTEM_GUIDE.md) - Crear páginas rápidamente
-- [**Componentes**](src/design-system/atoms/README.md) - Documentación de componentes
-- [**Foundations**](src/design-system/foundations/README.md) - Fundamentos del sistema
+### 🔧 Para Desarrolladores
+- [**🏗️ Arquitectura Completa**](ARCHITECTURE.md) - Visión detallada del proyecto
+- [**📝 Sistema de Plantillas**](TEMPLATE_SYSTEM_README.md) - Crear páginas rápidamente  
+- [**🎨 Design System**](src/design-system/foundations/README.md) - Fundamentos del sistema
+- [**📐 Sistema Tipográfico**](TYPOGRAPHY_SYSTEM_GUIDE.md) - **⭐ Cambiar tamaños de texto**
+- [**🎯 Flujo de Desarrollo**](DEVELOPMENT_FLOW.md) - Metodología de trabajo
 
-### Para Diseñadores
-- [**Colores y Temas**](src/design-system/foundations/COLORS_README.md) - Sistema de colores
-- [**Tipografía**](src/design-system/foundations/TYPOGRAPHY_README.md) - Sistema tipográfico
-- [**Iconografía**](src/design-system/foundations/icons/README.md) - Sistema de iconos
+### 🎨 Para Diseñadores  
+- [**🌈 Sistema de Colores**](src/design-system/foundations/COLORES-README.md) - Paletas y tokens
+- [**📱 Responsive System**](src/design-system/foundations/responsive-classes.js) - Sistema VW
+- [**🔗 Iconografía**](src/design-system/foundations/icons/README.md) - Librería de iconos
 
-### Para Project Managers
-- [**Estructura del Proyecto**](ARCHITECTURE.md) - Visión general de la arquitectura
-- [**Flujo de Desarrollo**](DEVELOPMENT_FLOW.md) - Proceso de desarrollo
+### 📋 Para Project Managers
+- [**🚀 Deployment**](DEPLOY_README.md) - Guía de publicación
+- [**🔗 URLs y Routing**](URL_STRUCTURE.md) - Estructura de navegación
+- [**📊 Métricas del Proyecto**](#-métricas-actuales) - Estado y progreso
 
-## ⚙️ Configuración y Setup
+## ⚙️ Setup y Desarrollo
 
-### Requisitos previos
-- Node.js 16+ 
-- npm o yarn
+### 📋 Requisitos
+- **Node.js 18+** (recomendado LTS)
+- **npm 9+** o **yarn 3+**
+- **Git** para control de versiones
 
-### Instalación
+### 🚀 Instalación Rápida
 ```bash
-# Clonar el repositorio
-git clone [repository-url]
+# 1. Clonar repositorio
+git clone https://github.com/EnriqueMEP/MepWebFront.git
 cd MepWebFront
 
-# Instalar dependencias
+# 2. Instalar dependencias  
 npm install
 
-# Iniciar servidor de desarrollo
+# 3. Iniciar desarrollo
 npm run dev
-
-# Build para producción
-npm run build
-
-# Preview del build
-npm run preview
+# 🌐 Abrir: http://localhost:5173
 ```
 
-### Scripts disponibles
+### 🛠️ Scripts Disponibles
 ```bash
-npm run dev      # Servidor de desarrollo
-npm run build    # Build de producción
-npm run preview  # Preview del build
-npm run lint     # Linting del código
+# 🔧 Desarrollo
+npm run dev         # Servidor desarrollo (puerto 5173)
+npm run build       # Build producción optimizado  
+npm run preview     # Preview del build local
+npm run lint        # Linter ESLint + correcciones
+
+# 📦 Utilidades
+./home.bat          # Abrir en navegador (Windows)
+./update-repo.bat   # Git add + commit + push automático
 ```
 
-## 🔧 Desarrollo
+### 🌐 URLs del Proyecto
+- **Desarrollo**: http://localhost:5173
+- **Producción**: https://mep-web-frontend.vercel.app
+- **Repositorio**: https://github.com/EnriqueMEP/MepWebFront
 
-### Crear una nueva página
+## 🎨 Sistema de Diseño
+
+### ⚡ Cambios Rápidos y Comunes
+
+#### � **Cambiar Tamaños de Texto**
+**Archivo**: [`TYPOGRAPHY_SYSTEM_GUIDE.md`](TYPOGRAPHY_SYSTEM_GUIDE.md) 
+```javascript
+// responsive-classes.js - Títulos Hero
+.text-display-large { font-size: 1.75rem; }     // Móvil
+@media (min-width: 768px) { font-size: 1.8vw; } // Desktop
+```
+
+#### 🌈 **Cambiar Colores**  
+**Archivo**: [`COLORES-README.md`](src/design-system/foundations/COLORES-README.md)
+```javascript
+// semantic-colors.js - Botones principales
+buttonPrimary: { backgroundColor: colors.blue[500] }
+```
+
+#### 📱 **Comportamiento Responsive**
+**Archivo**: `responsive-classes.js` - Sistema VW que escala con zoom
+- **Móvil**: Tamaños fijos en `rem`
+- **Desktop**: Escalado proporcional con `vw`
+
+### 🏗️ Crear Nueva Página
 ```jsx
 import PageTemplate from '../design-system/atoms/PageTemplate.jsx';
-import { HeroSection } from '../design-system/atoms/sections/index.js';
+import { HeroSection, StatsSection } from '../design-system/atoms/sections/index.js';
 
 const NuevaPagina = () => (
   <PageTemplate>
-    <HeroSection title="Mi Página" />
+    <HeroSection 
+      title="Nueva Página"
+      description="Descripción de la página"
+    />
+    <StatsSection stats={misDatos} />
   </PageTemplate>
 );
 ```
 
-### Agregar un nuevo componente
-1. Crear en `src/design-system/atoms/[Componente]/`
-2. Seguir convenciones del design system
-3. Incluir documentación JSDoc
-4. Exportar en `index.js`
+### ⚛️ Atomic Design Structure
+```
+🏛️ Foundations → ⚛️ Atoms → 🧬 Molecules → 🦠 Organisms → 📄 Pages
+     Tokens        Components     Sections       Templates      Routes
+```
 
-### Modificar estilos globales
-- **Colores**: `src/design-system/foundations/colors.js`
-- **Tipografía**: `src/design-system/foundations/typography.js`  
-- **Spacing**: `src/design-system/foundations/layout.js`
+## 📱 Características
 
-## 🎯 Características Principales
+### ✅ **Sistema Responsive Avanzado**
+- 🎯 **Sistema VW**: Escalado consistente con zoom del navegador
+- 📱 **Mobile-First**: Optimizado para dispositivos móviles
+- 🔄 **Breakpoints**: Tablet (768px) y Desktop automáticos
+- 📐 **Clamp()**: Fluidez entre tamaños mínimos y máximos
 
-### ✅ Sistema de Diseño Completo
-- Componentes reutilizables y modulares
-- Tokens de diseño consistentes
-- Sistema de colores semánticos
-- Tipografía escalable
+### ✅ **Design System Completo**  
+- 🎨 **Tokens Semánticos**: Colores que se adaptan a light/dark mode
+- ⚛️ **Componentes Atómicos**: Button, Badge, Card, Header, Footer
+- 📄 **Sistema de Plantillas**: Creación rápida de páginas consistentes
+- 🔤 **Tipografía Escalable**: Sistema VW integrado con clases CSS
 
-### ✅ Sistema de Plantillas
-- Creación rápida de páginas nuevas
-- Secciones predefinidas configurables
-- Layout responsive automático
-- Spacing consistente
+### ✅ **Experiencia de Desarrollo**
+- ⚡ **Vite HMR**: Hot Module Replacement ultra-rápido
+- 🔧 **Scripts Automatizados**: Git, build y deploy simplificados  
+- 📚 **Documentación Completa**: Guías específicas para cada área
+- 🎯 **Cambios Centralizados**: Un archivo para cambios globales
 
-### ✅ Responsive Design
-- Mobile-first approach
-- Breakpoints consistentes
-- Escalado proporcional con vw
-- Clamp() para fluidez
+### ✅ **Performance & SEO**
+- 📦 **Bundle Optimizado**: Tree-shaking y code splitting
+- 🏷️ **Meta Tags Dinámicos**: SEO configurado por página
+- 🚀 **Deploy Vercel**: CI/CD automático desde GitHub
+- 📊 **Lighthouse Score**: Optimizado para Core Web Vitals
 
-### ✅ Performance
-- Lazy loading de componentes
-- Optimización de bundle
-- CSS-in-JS optimizado
-- Hot module replacement
+## � Métricas Actuales
 
-## 🔄 Flujo de Contribución
+### 🏗️ **Estado del Desarrollo**
+- ✅ **5 Páginas Principales**: Home, Servicios, Proyectos, Nosotros, Contacto
+- ✅ **Sistema de Design**: Foundations + Atoms completamente implementado
+- ✅ **Responsive System**: VW scaling + zoom consistency aplicado  
+- ✅ **Theme System**: Light/Dark mode funcional con hooks
+- 🔄 **Molecules & Organisms**: En desarrollo para Q1 2026
 
-1. **Fork** del repositorio
-2. **Crear rama** para feature/fix
-3. **Desarrollar** siguiendo las convenciones
-4. **Testear** localmente
-5. **Crear PR** con descripción clara
-6. **Review** y merge
+### ⚛️ **Componentes Disponibles**
+```
+✅ PageTemplate      # Plantilla base con Header/Footer
+✅ HeroSection       # Hero principal con video/imagen  
+✅ StatsSection      # Estadísticas con números y métricas
+✅ ProjectsSection   # Grid de proyectos con modal
+✅ BlogSection       # Artículos y noticias expandibles
+✅ Button System     # Primary, Secondary, Outline, Ghost
+✅ Badge System      # Text y Number badges
+✅ Card System       # Vertical cards con responsive clamp()
+```
 
-## 📞 Soporte
+### 📝 **Documentación Disponible**
+- 📄 **8 README Files**: Cobertura completa del proyecto
+- 🎯 **Guías Específicas**: Para cada rol (dev, designer, PM)
+- 🔧 **Quick Start Guide**: Setup en < 5 minutos
+- 📚 **Troubleshooting**: Soluciones a problemas comunes
 
-Para preguntas o problemas:
-- Revisar documentación específica en cada carpeta
-- Consultar ejemplos en `ExamplePage.jsx`
-- Seguir patrones existentes en el código
+## 🤝 Contribución
 
-## 🔍 Recursos Adicionales
+### 📋 **Antes de Contribuir**
+1. 📖 **Leer**: [`DEVELOPMENT_FLOW.md`](DEVELOPMENT_FLOW.md) para metodología
+2. 🎨 **Revisar**: [`ARCHITECTURE.md`](ARCHITECTURE.md) para entender la estructura  
+3. 🔧 **Setup**: Seguir la [instalación rápida](#️-setup-y-desarrollo)
 
-- [React Documentation](https://react.dev/)
-- [Vite Documentation](https://vitejs.dev/)
-- [Design System Principles](https://www.designsystems.com/)
+### � **Flujo de Trabajo**
+```bash
+# 1. Crear rama feature
+git checkout -b feature/nueva-funcionalidad
+
+# 2. Desarrollar siguiendo patrones existentes
+# 3. Usar las guías de documentación específicas
+
+# 4. Commit con ./update-repo.bat
+./update-repo.bat "feat: descripción del cambio"
+
+# 5. Crear Pull Request con descripción clara
+```
+
+### 📐 **Convenciones**
+- **Commits**: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`
+- **Componentes**: PascalCase + JSDoc completo
+- **Archivos**: camelCase para JS, kebab-case para assets
+- **CSS**: Usar sistema de tokens, no valores hardcoded
 
 ---
 
-**Versión del Proyecto**: 1.0.0  
-**Última Actualización**: Octubre 2025  
-**Mantenido por**: Equipo MEP
+## � Información de Contacto
+
+**🏢 Proyecto**: MEP Engineering - Sitio Web Corporativo  
+**🔗 Repositorio**: https://github.com/EnriqueMEP/MepWebFront  
+**🌐 Producción**: https://mep-web-frontend.vercel.app  
+**💻 Desarrollo**: http://localhost:5173  
+
+### 🛠️ **Stack Completo**
+React 18 • Vite 5 • JavaScript ES2024 • CSS-in-JS • Atomic Design • VW Responsive System • Vercel Deploy
+
+### 📅 **Versión & Mantenimiento**
+- **Versión Actual**: `v2.1.0` (Octubre 2025)
+- **Próxima Release**: `v2.2.0` (Q1 2026) - Molecules & Testing
+- **Mantenido por**: [Equipo MEP](mailto:dev@mepengineering.com)
+
+---
+*⚡ Desarrollado con pasión por la ingeniería y el código limpio* 🚀
 En lugar de usar colores directos (`blue[500]`), utilizamos **tokens semánticos** que se adaptan automáticamente al tema:
 
 ```javascript
