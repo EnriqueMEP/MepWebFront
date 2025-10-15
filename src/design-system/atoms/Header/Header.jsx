@@ -12,7 +12,7 @@ import Icon from '../../foundations/icons/Icon.jsx';
  * 
  * Estructura:
  * - Logo MEP a la izquierda
- * - Navegación central con botones Ghost MD con dropdowns
+ * - Navegación central con botones Ghost sm con dropdowns
  * - Sección derecha con botón Login Primary SM + icono menu
  * 
  * Usa colores semánticos primary-container para background
@@ -217,18 +217,20 @@ const Header = ({
             <div className="theme-section" style={{ 
               display: 'inline-flex', 
               alignItems: 'center', 
-              gap: '0.42vw',
-              height: '2.22vw',
-              padding: '0.56vw 0.83vw',
+              gap: '0.56vw',
+              padding: '0.56vw',
               backgroundColor: 'transparent',
               border: 'none',
               boxSizing: 'border-box'
             }}>
               <span 
-                className="text-label-medium"
                 style={{ 
                   color: ghostButtonColors.text || 'currentColor',
-                  fontFamily: 'Ubuntu, sans-serif'
+                  fontFamily: 'Ubuntu, sans-serif',
+                  fontSize: '0.69vw',
+                  fontWeight: '500',
+                  lineHeight: '1.11vw',
+                  textAlign: 'center'
                 }}
               >
                 Theme
@@ -251,8 +253,8 @@ const Header = ({
                   src={theme === 'light' ? '/img/switchLight.png' : '/img/switchDark.png'}
                   alt={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
                   style={{
-                    width: '3.33vw',
-                    height: '1vw',
+                    width: '3.75vw',
+                    height: '1.11vw',
                     objectFit: 'contain'
                   }}
                 />
@@ -267,7 +269,7 @@ const Header = ({
           {/*
           <ButtonPrimary
             className="header-login-button"
-            size="sm"
+            size="md"
             leftIcon="user"
             selected={isLoginSelected}
             onClick={onLoginClick}
