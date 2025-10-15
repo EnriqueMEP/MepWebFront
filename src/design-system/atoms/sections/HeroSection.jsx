@@ -68,7 +68,7 @@ const HeroSection = ({
     
     @media (min-width: ${breakpoints.tablet}) {
       .hero-section {
-        padding: 1.25vw 3.5vw;
+        padding: 3.5vw 3.5vw;
         flex-direction: row;
         justify-content: space-between;
         gap: 3.33vw;
@@ -201,17 +201,6 @@ const HeroSection = ({
       .hero-text-content > div:first-child {
         ${scaling.badge.desktop.transform};
         transform-origin: ${scaling.badge.desktop.transformOrigin};
-      }
-    }
-
-    /* Forzar tamaño específico del título */
-    .hero-section .text-display-large {
-      font-size: 2.25rem !important;
-    }
-    
-    @media (min-width: 768px) {
-      .hero-section .text-display-large {
-        font-size: 2.5vw !important;
       }
     }
   `;

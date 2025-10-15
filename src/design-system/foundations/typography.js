@@ -67,7 +67,7 @@ export const fontWeights = {
 export const fontSizes = {
   // Display sizes (Ubuntu)
   display: {
-    large: '28px',    // Display Large - tamaño más pequeño para títulos
+    large: '32px',    // Display Large - según especificación de diseño
     medium: '45px',   // Display Medium  
     small: '36px',    // Display Small
   },
@@ -172,12 +172,12 @@ export const textStyles = {
   
   /**
    * Display Large - Títulos principales y hero text
-   * Ubuntu 57/64 Regular
+   * Ubuntu 32/40 Medium
    */
   displayLarge: {
     fontFamily: fontFamilies.display,
     fontSize: fontSizes.display.large,
-    fontWeight: fontWeights.regular,
+    fontWeight: fontWeights.medium,
     lineHeight: lineHeights.display.large,
     letterSpacing: '0em',
   },

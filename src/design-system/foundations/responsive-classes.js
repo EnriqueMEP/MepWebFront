@@ -16,10 +16,10 @@ export const responsiveClasses = `
      TYPOGRAPHY SYSTEM - Escalado proporcional usando el sistema exitoso VW
      ======================================================================== */
   .text-display-large {
-    font-size: 2.25rem;
+    font-size: 2rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 400;
-    line-height: 1.1;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
@@ -27,7 +27,8 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .text-display-large {
-      font-size: 2.5vw;
+      font-size: 2.22vw !important;
+      line-height: 1.25 !important;
     }
   }
 
@@ -74,16 +75,17 @@ export const responsiveClasses = `
   }
 
   .text-title-large {
-    font-size: 1.125rem;
+    font-size: 1rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 400;
-    line-height: 1.4;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
     word-wrap: break-word;
   }
 
   @media (min-width: 768px) {
     .text-title-large {
-      font-size: 1.25vw;
+      font-size: 1.11vw !important;
+      line-height: 1.5 !important;
     }
   }
 
