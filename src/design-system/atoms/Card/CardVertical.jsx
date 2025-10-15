@@ -6,80 +6,80 @@ import BadgeText from '../Badge/BadgeText.jsx';
 
 const SIZES = {
   sm: {
-    width: '11.11vw',
-    height: '16.67vw',
-    imageHeight: '5.56vw',
-    contentPadding: '0.83vw',
-    contentGap: '0.83vw',
+    width: 'clamp(140px, 11.11vw, 11.11vw)',
+    height: 'clamp(200px, 16.67vw, 16.67vw)',
+    imageHeight: 'clamp(70px, 5.56vw, 5.56vw)',
+    contentPadding: 'clamp(10px, 0.83vw, 0.83vw)',
+    contentGap: 'clamp(10px, 0.83vw, 0.83vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: '0.83vw',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
       fontWeight: 700,
       lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '0.69vw',
+      fontSize: 'clamp(10px, 0.69vw, 0.69vw)',
       fontWeight: 400,
       lineHeight: '1.43'
     },
     buttonSize: 'sm'
   },
   md: {
-    width: '12.5vw',
-    height: '18.06vw',
-    imageHeight: '6.25vw',
-    contentPadding: '1.11vw',
-    contentGap: '1.11vw',
+    width: 'clamp(160px, 12.5vw, 12.5vw)',
+    height: 'clamp(220px, 18.06vw, 18.06vw)',
+    imageHeight: 'clamp(80px, 6.25vw, 6.25vw)',
+    contentPadding: 'clamp(12px, 1.11vw, 1.11vw)',
+    contentGap: 'clamp(12px, 1.11vw, 1.11vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: '0.97vw',
+      fontSize: 'clamp(12px, 0.97vw, 0.97vw)',
       fontWeight: 700,
       lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '0.83vw',
+      fontSize: 'clamp(11px, 0.83vw, 0.83vw)',
       fontWeight: 400,
       lineHeight: '1.43'
     },
     buttonSize: 'sm'
   },
   lg: {
-    width: '13.89vw',
-    height: '19.44vw',
-    imageHeight: '6.94vw',
-    contentPadding: '1.25vw',
-    contentGap: '1.25vw',
+    width: 'clamp(180px, 13.89vw, 13.89vw)',
+    height: 'clamp(240px, 19.44vw, 19.44vw)',
+    imageHeight: 'clamp(90px, 6.94vw, 6.94vw)',
+    contentPadding: 'clamp(14px, 1.25vw, 1.25vw)',
+    contentGap: 'clamp(14px, 1.25vw, 1.25vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: '1.11vw',
+      fontSize: 'clamp(13px, 1.11vw, 1.11vw)',
       fontWeight: 700,
       lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '0.97vw',
+      fontSize: 'clamp(12px, 0.97vw, 0.97vw)',
       fontWeight: 400,
       lineHeight: '1.43'
     },
     buttonSize: 'sm'
   },
   xl: {
-    width: '16.67vw',
-    height: '22.22vw',
-    imageHeight: '8.33vw',
-    contentPadding: '1.67vw',
-    contentGap: '1.67vw',
+    width: 'clamp(200px, 16.67vw, 16.67vw)',
+    height: 'clamp(280px, 22.22vw, 22.22vw)',
+    imageHeight: 'clamp(100px, 8.33vw, 8.33vw)',
+    contentPadding: 'clamp(16px, 1.67vw, 1.67vw)',
+    contentGap: 'clamp(16px, 1.67vw, 1.67vw)',
     titleTypography: {
       fontFamily: 'Ubuntu, sans-serif',
-      fontSize: '1.11vw',
+      fontSize: 'clamp(14px, 1.11vw, 1.11vw)',
       fontWeight: 700,
       lineHeight: '1.5'
     },
     descriptionTypography: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '0.97vw',
+      fontSize: 'clamp(13px, 0.97vw, 0.97vw)',
       fontWeight: 400,
       lineHeight: '1.43'
     },

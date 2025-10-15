@@ -39,7 +39,9 @@ const HeroSection = ({
   videoWidth = null,
   videoHeight = null,
   showVideo = false,
-  shapeImageSrc = "/img/shape.png"
+  shapeImageSrc = "/img/shape.png",
+  titleFontSize = null,
+  descriptionFontSize = null
 }) => {
   // Usar description si no hay subtitle (retrocompatibilidad)
   const finalSubtitle = subtitle || description;
@@ -212,13 +214,19 @@ const HeroSection = ({
               <div className="hero-text-inner">
                 <div 
                   className="text-display-large" 
-                  style={{ color: semanticColors.content.text }}
+                  style={{ 
+                    color: semanticColors.content.text,
+                    ...(titleFontSize && { fontSize: titleFontSize })
+                  }}
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
                 
                 <div 
                   className="text-title-large" 
-                  style={{ color: semanticColors.content.text }}
+                  style={{ 
+                    color: semanticColors.content.text,
+                    ...(descriptionFontSize && { fontSize: descriptionFontSize })
+                  }}
                 >
                   {finalSubtitle}
                 </div>

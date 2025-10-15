@@ -132,6 +132,8 @@ const Home = () => {
         videoSrc="/video/vHome.mp4"
         showVideo={true}
         shapeImageSrc="/img/shape.png"
+        titleFontSize="clamp(2rem, 2.8vw, 3.5rem)"
+        descriptionFontSize="clamp(1rem, 1.1vw, 1.25rem)"
       />
 
       {/* Espacio después del hero */}
