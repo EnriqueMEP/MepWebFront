@@ -37,11 +37,7 @@ if %errorlevel% neq 0 (
 echo.
 
 echo [4/4] Subiendo cambios a GitHub...
-git push origin main
-if %errorlevel% neq 0 (
-    echo Error al hacer push. Intentando con 'master'...
-    git push origin master
-)
+git push origin master
 echo.
 
 echo ===========================================
