@@ -68,7 +68,7 @@ const HeroSection = ({
     
     @media (min-width: ${breakpoints.tablet}) {
       .hero-section {
-        padding: 1.25vw 5.56vw;
+        padding: 1.25vw 3.5vw;
         flex-direction: row;
         justify-content: space-between;
         gap: 3.33vw;
