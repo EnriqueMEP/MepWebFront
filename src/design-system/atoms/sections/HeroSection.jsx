@@ -206,12 +206,12 @@ const HeroSection = ({
 
     /* Forzar tamaño específico del título */
     .hero-section .text-display-large {
-      font-size: 2rem !important;
+      font-size: 2.25rem !important;
     }
     
     @media (min-width: 768px) {
       .hero-section .text-display-large {
-        font-size: 2vw !important;
+        font-size: 2.5vw !important;
       }
     }
   `;
