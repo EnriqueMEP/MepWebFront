@@ -1,0 +1,173 @@
+
+1. Primary
+- Light
+Background:olive-500
+Text: olive-50
+- Dark
+Background:olive-200
+Text: olive-700
+
+2. On Primary
+- Light
+Background:olive-50
+Text: olive-500
+- Dark
+Background:olive-700
+Text: olive-200
+
+3. Secondary
+- Light
+Background:green-500
+Text: green-50
+- Dark
+Background:green-200
+Text: green-700
+
+4. On Secondary
+- Light
+Background:green-50
+Text: green-500
+- Dark
+Background:green-700
+Text: green-100
+
+5. Primary Container
+- Light
+Background:olive-300
+Text: olive-700
+- Dark
+Background:olive-600
+Text: olive-100
+
+6. On Primary Container
+- Light
+Background:olive-600
+Text: olive-300
+- Dark
+Background:olive-100
+Text: olive-600
+
+7. Secondary Container
+- Light
+Background:green-200
+Text: green-700
+- Dark
+Background:green-600
+Text: green-100
+
+8. On Secondary Container
+- Light
+Background:green-700
+Text: green-200
+- Dark
+Background:green-100
+Text: green-600
+
+9. Primary Fixed
+- Light
+Background:olive-200
+Text: olive-700
+- Dark
+Background:green-100
+Text: green-800
+
+10. Primary Fixed Dim
+- Light
+Background:olive-300
+Text: green-700
+
+11. Secondary Fixed
+- Light
+Background:green-100
+Text: green-800
+
+12. Secondary Fixed Dim
+- Light
+Background:green-300
+Text: green-700
+
+13. On Primary Fixed
+- Light
+Background:olive-90
+Text: olive-200
+
+14. On Primary Fixed Variant
+- Light
+Background:green-700
+Text: neutral-50
+
+15. On Surface
+- Light
+Background:green-800
+Text: neutral-50
+- Dark
+Background:green-800
+Text: neutral-50
+
+16. On Surface Variant
+- Light
+Background:green-600
+Text: neutral-50
+- Dark
+Background:green-600
+Text: neutral-50
+
+17. Surface Dim
+Background:neutral-300
+Text: neutral-900
+
+18. Surface 
+Background:neutral-100
+Text: neutral-900
+
+19. On Surface 
+Background:neutral-900
+Text: neutral-50
+
+20. Error
+- Light
+Background:red-500
+Text: olive-50
+
+21. On Error
+- Light
+Background:red-900
+Text: red-50
+
+22. Error Container
+- Light
+Background:red-100
+Text: red-800
+
+23. On Error Container
+- Light
+Background:red-800
+Text: red-100
+
+24. Success
+- Light
+Background:green-600
+Text: neutral-50
+
+25. On Success
+- Light
+Background:green-600
+Text: neutral-50
+
+26. Success Container
+- Light
+Background:green-600
+Text: neutral-50
+
+27. On Error Container
+- Light
+Background:green-600
+Text: neutral-50
+
+
+
+
+
+
+
+
