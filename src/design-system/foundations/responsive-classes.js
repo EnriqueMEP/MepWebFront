@@ -130,7 +130,7 @@ export const responsiveClasses = `
   }
 
   .text-body-large {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-family: Ubuntu, sans-serif;
     font-weight: 400;
     line-height: 1.5;
@@ -139,7 +139,7 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .text-body-large {
-      font-size: 1.11vw;
+      font-size: 1.0vw;
     }
   }
 
@@ -611,7 +611,7 @@ export const responsiveClasses = `
   .header-component {
     width: 100%;
     min-width: 100vw;
-    height: 5rem;
+    height: 80px;
     padding: 1rem 5rem;
     position: relative;
     box-sizing: border-box;
@@ -619,7 +619,7 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .header-component {
-      height: 4.17vw;
+      height: 5.56vw;
       padding: 1.25vw 5.56vw;
     }
   }
@@ -652,8 +652,8 @@ export const responsiveClasses = `
 
   @media (min-width: 768px) {
     .header-logo {
-      width: 4.48vw;
-      height: 1.67vw;
+      width: 7.22vw;
+      height: 2.78vw;
     }
   }
 

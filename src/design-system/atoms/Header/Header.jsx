@@ -173,7 +173,7 @@ const Header = ({
           {navigationItems.map((item) => (
             <div key={item.id} className="nav-item-container">
               <ButtonGhost
-                size="sm"
+                size="md"
                 selected={activeNavItem === item.id || location.pathname === item.path}
                 onClick={() => {
                   if (item.path) {
