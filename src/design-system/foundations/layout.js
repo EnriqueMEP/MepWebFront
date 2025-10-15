@@ -130,7 +130,7 @@ export const shapes = {
   hero: {
     display: 'block',
     position: 'absolute',
-    top: '-1rem', // Mantengo la altura original
+    top: '-1rem', // Bajado un poco más
     right: '-8rem', // Solo pegado a la pared derecha
     width: '20rem',
     height: '26rem',
@@ -140,7 +140,7 @@ export const shapes = {
     desktop: {
       display: 'block',
       position: 'absolute',
-      top: '-5vw',
+      top: '2.5vw', // Bajado desde -5vw
       right: '-10vw',
       width: '40vw',
       height: '52vw',
