@@ -130,6 +130,7 @@ const Home = () => {
         buttonText="Conocer más"
         onButtonClick={handleHeroButtonClick}
         videoSrc="/video/vHome.mp4"
+        showVideo={true}
         shapeImageSrc="/img/shape.png"
       />
 

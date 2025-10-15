@@ -31,12 +31,18 @@ const HeroSection = ({
   badgeVariant = "outline",
   badgeSize = "lg",
   title = "Avanzamos comprometidos",
-  description = "Nuestra compañía refuerza su identidad de marca comunicando así su crecimiento y solidez dentro del mercado. Comprometiéndose a seguir aportando valor a futuro.",
+  subtitle = "Nuestra compañía refuerza su identidad de marca comunicando así su crecimiento y solidez dentro del mercado. Comprometiéndose a seguir aportando valor a futuro.",
+  description = null, // Mantener compatibilidad
   buttonText = "Conocer más",
   onButtonClick = () => console.log('Hero button clicked'),
   videoSrc = "/video/vHome.mp4",
+  videoWidth = null,
+  videoHeight = null,
+  showVideo = false,
   shapeImageSrc = "/img/shape.png"
 }) => {
+  // Usar description si no hay subtitle (retrocompatibilidad)
+  const finalSubtitle = subtitle || description;
   const semanticColors = useSemanticTokens();
 
   const heroStyles = `
@@ -54,10 +60,10 @@ const HeroSection = ({
     
     @media (min-width: ${breakpoints.tablet}) {
       .hero-section {
-        padding: ${spacing.desktop.padding};
+        padding: 1.25vw 5.56vw;
         flex-direction: row;
         justify-content: space-between;
-        gap: ${spacing.desktop.heroGap};
+        gap: 3.33vw;
       }
     }
 
@@ -75,7 +81,7 @@ const HeroSection = ({
       .hero-content-wrapper {
         flex-direction: row;
         justify-content: space-between;
-        gap: ${spacing.desktop.heroGap};
+        gap: 3.33vw;
       }
     }
 
@@ -93,7 +99,7 @@ const HeroSection = ({
     @media (min-width: ${breakpoints.tablet}) {
       .hero-text {
         width: 35.56vw;
-        gap: ${spacing.desktop.heroGap};
+        gap: 3.33vw;
         order: 1;
       }
     }
@@ -214,7 +220,7 @@ const HeroSection = ({
                   className="text-title-large" 
                   style={{ color: semanticColors.content.text }}
                 >
-                  {description}
+                  {finalSubtitle}
                 </div>
               </div>
             </div>
@@ -227,7 +233,15 @@ const HeroSection = ({
             </ButtonPrimary>
           </div>
 
-          <div className="hero-video-container">
+          <div 
+            className="hero-video-container"
+            style={videoWidth && videoHeight ? {
+              width: videoWidth,
+              height: videoHeight,
+              maxWidth: 'none',
+              aspectRatio: 'auto'
+            } : {}}
+          >
             <video
               ref={(el) => {
                 if (el) {
@@ -267,10 +281,10 @@ const HeroSection = ({
                 e.target.style.display = 'none';
               }}
               style={{
-                width: '100%',
-                height: '100%',
+                ...(videoWidth ? { width: videoWidth } : { width: '100%' }),
+                ...(videoHeight ? { height: videoHeight } : { height: '100%' }),
                 objectFit: 'cover',
-                display: 'block',
+                display: showVideo ? 'block' : 'none',
                 // Ocultar completamente cualquier control o overlay
                 outline: 'none',
                 border: 'none',

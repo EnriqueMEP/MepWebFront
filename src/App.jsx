@@ -4,7 +4,7 @@ import ThemeProvider from './design-system/foundations/ThemeContext.jsx'
 import Home from './pages/Home.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Proyectos from './pages/Proyectos.jsx'
-import Nosotros from './pages/Nosotros.jsx'
+import SobreNosotros from './pages/Nosotros.jsx'
 import Contacto from './pages/Contacto.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Servicios />} />
           <Route path="/proyectos" element={<Proyectos />} />
-          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/sobre_nosotros" element={<SobreNosotros />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

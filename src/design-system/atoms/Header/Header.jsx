@@ -111,9 +111,10 @@ const Header = ({
     { 
       id: 'about', 
       label: 'Sobre MEP Engineering',
-      path: '/nosotros',
+      path: '/sobre_nosotros',
       hasDropdown: true,
       dropdownItems: [
+        { id: 'about-nosotros', label: 'Sobre Nosotros', path: '/sobre_nosotros' },
         { id: 'about-historia', label: 'Historia', path: '/historia' },
         { id: 'about-equipo', label: 'Equipo', path: '/equipo' },
         { id: 'about-mision', label: 'Misión y Visión', path: '/mision' }

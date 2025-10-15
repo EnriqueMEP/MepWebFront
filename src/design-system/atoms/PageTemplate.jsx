@@ -74,7 +74,7 @@ const PageTemplate = ({
       .content-wrapper {
         max-width: 100%;
         gap: 5.56vw;
-        padding: 5.56vw 5rem;
+        padding: 5.56vw 5.56vw;
       }
     }
   `;

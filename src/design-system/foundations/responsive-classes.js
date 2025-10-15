@@ -318,34 +318,70 @@ export const responsiveClasses = `
   }
 
   /* ========================================================================
-     CARD SIZE SYSTEM - Escalado proporcional
+     CARD SIZE SYSTEM - Escalado proporcional usando VW puro
      ======================================================================== */
   .card-size-sm {
-    padding: 0.75rem;
+    padding: 0.5rem;
     border-radius: 0.25rem;
     gap: 0.5rem;
     width: 10rem;
   }
 
+  @media (min-width: 768px) {
+    .card-size-sm {
+      padding: 0.83vw;
+      border-radius: 0.28vw;
+      gap: 0.56vw;
+      width: 11.11vw;
+    }
+  }
+
   .card-size-md {
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: 0.375rem;
     gap: 0.75rem;
     width: 12.5rem;
   }
 
+  @media (min-width: 768px) {
+    .card-size-md {
+      padding: 1.11vw;
+      border-radius: 0.42vw;
+      gap: 0.83vw;
+      width: 13.89vw;
+    }
+  }
+
   .card-size-lg {
-    padding: 1.25rem;
+    padding: 1rem;
     border-radius: 0.5rem;
     gap: 1rem;
     width: 14rem;
   }
 
+  @media (min-width: 768px) {
+    .card-size-lg {
+      padding: 1.39vw;
+      border-radius: 0.56vw;
+      gap: 1.11vw;
+      width: 15.56vw;
+    }
+  }
+
   .card-size-xl {
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-radius: 0.625rem;
     gap: 1.25rem;
     width: 16.67rem;
+  }
+
+  @media (min-width: 768px) {
+    .card-size-xl {
+      padding: 1.67vw;
+      border-radius: 0.69vw;
+      gap: 1.39vw;
+      width: 18.56vw;
+    }
   }
 
   /* Card Image Specific Sizes for Horizontal Cards */
