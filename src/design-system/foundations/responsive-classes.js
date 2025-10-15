@@ -33,44 +33,55 @@ export const responsiveClasses = `
   }
 
   .text-display-medium {
-    font-size: 1.75rem;
+    font-size: 2rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 400;
-    line-height: 1.16;
+    font-weight: 400 !important;
+    line-height: 2.5rem !important;
     word-wrap: break-word;
   }
 
   @media (min-width: 768px) {
     .text-display-medium {
-      font-size: 3.13vw;
+      font-size: 2.22vw !important;
+      line-height: 2.78vw !important;
     }
   }
 
   .text-display-medium-bold {
-    font-size: 1.75rem;
+    font-size: 2.8125rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 700;
-    line-height: 1.16;
+    font-weight: 700 !important;
+    line-height: 3.25rem !important;
     word-wrap: break-word;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (min-width: 768px) {
     .text-display-medium-bold {
-      font-size: 3.13vw;
+      font-size: 3.125vw !important;
+      line-height: 3.61vw !important;
     }
   }
 
   .text-display-small {
-    font-size: 1.5rem;
+    font-size: 1.75rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 400;
-    line-height: 1.22;
+    font-weight: 400 !important;
+    line-height: 2.25rem !important;
     word-wrap: break-word;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (min-width: 768px) {
     .text-display-small {
-      font-size: 2.5vw;
+      font-size: 1.94vw !important;
+      line-height: 2.5vw !important;
     }
   }
 
@@ -89,6 +100,25 @@ export const responsiveClasses = `
     }
   }
 
+  .text-title-small-emphasis {
+    font-size: 1rem !important;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 700 !important;
+    line-height: 1.5rem !important;
+    word-wrap: break-word;
+    align-self: stretch;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .text-title-small-emphasis {
+      font-size: 1.11vw !important;
+      line-height: 1.67vw !important;
+    }
+  }
+
   .text-heading-large {
     font-size: 1.5rem;
     font-family: Ubuntu, sans-serif;
@@ -104,44 +134,53 @@ export const responsiveClasses = `
   }
 
   .text-heading-medium {
-    font-size: 1.25rem;
+    font-size: 1.375rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 500;
-    line-height: 1.29;
+    font-weight: 500 !important;
+    line-height: 1.75rem !important;
     word-wrap: break-word;
+    align-self: stretch;
   }
 
   @media (min-width: 768px) {
     .text-heading-medium {
-      font-size: 1.94vw;
+      font-size: 1.53vw !important;
+      line-height: 1.94vw !important;
     }
   }
 
   .text-heading-small {
-    font-size: 1rem;
+    font-size: 1.375rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 400;
-    line-height: 1.33;
+    font-weight: 400 !important;
+    line-height: 1.75rem !important;
     word-wrap: break-word;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (min-width: 768px) {
     .text-heading-small {
-      font-size: 1.67vw;
+      font-size: 1.53vw !important;
+      line-height: 1.94vw !important;
     }
   }
 
   .text-body-large {
-    font-size: 0.8rem;
+    font-size: 0.875rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
+    font-weight: 400 !important;
+    line-height: 1.25rem !important;
     word-wrap: break-word;
+    align-self: stretch;
   }
 
   @media (min-width: 768px) {
     .text-body-large {
-      font-size: 1.0vw;
+      font-size: 0.97vw !important;
+      line-height: 1.39vw !important;
     }
   }
 
@@ -160,16 +199,20 @@ export const responsiveClasses = `
   }
 
   .text-label-large {
-    font-size: 0.75rem;
+    font-size: 0.875rem !important;
     font-family: Ubuntu, sans-serif;
-    font-weight: 500;
-    line-height: 1.43;
+    font-weight: 500 !important;
+    line-height: 1.25rem !important;
     word-wrap: break-word;
+    align-self: stretch;
+    height: 20px;
   }
 
   @media (min-width: 768px) {
     .text-label-large {
-      font-size: 0.97vw;
+      font-size: 0.97vw !important;
+      line-height: 1.39vw !important;
+      height: 1.39vw;
     }
   }
 
@@ -198,6 +241,65 @@ export const responsiveClasses = `
   @media (min-width: 768px) {
     .text-label-small {
       font-size: 0.69vw;
+    }
+  }
+
+  /* ========================================================================
+     BUTTON TYPOGRAPHY SYSTEM - Clases específicas para botones
+     ======================================================================== */
+  .text-button-sm {
+    font-size: 0.688rem;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    line-height: 1.33;
+    word-wrap: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .text-button-sm {
+      font-size: 0.83vw;
+    }
+  }
+
+  .text-button-md {
+    font-size: 0.875rem;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 400;
+    line-height: 1.25;
+    word-wrap: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .text-button-md {
+      font-size: 0.97vw;
+    }
+  }
+
+  .text-button-lg {
+    font-size: 1.375rem;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    word-wrap: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .text-button-lg {
+      font-size: 1.53vw;
+    }
+  }
+
+  .text-button-xl {
+    font-size: 1.375rem;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    word-wrap: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .text-button-xl {
+      font-size: 1.53vw;
     }
   }
 
@@ -1180,10 +1282,10 @@ export const injectResponsiveClasses = () => {
 export const getTypographyClass = (componentType, size) => {
   const mappings = {
     button: {
-      sm: 'text-label-medium',
-      md: 'text-body-large', 
-      lg: 'text-heading-small',
-      xl: 'text-heading-medium'
+      sm: 'text-button-sm',
+      md: 'text-button-md', 
+      lg: 'text-button-lg',
+      xl: 'text-button-xl'
     },
     badge: {
       sm: 'text-label-small',
