@@ -21,7 +21,9 @@ const HeroSection = ({
   description = "Nuestra compañía refuerza su identidad de marca comunicando así su crecimiento y solidez dentro del mercado. Comprometiéndose a seguir aportando valor a futuro.",
   buttonText = "Conocer más",
   onButtonClick = () => console.log('Hero button clicked'),
-  shapeImageSrc = "/img/shape.png"
+  shapeImageSrc = "/img/shape.png",
+  titleFontSize = null,
+  descriptionFontSize = null
 }) => {
   const semanticColors = useSemanticTokens();
 
@@ -175,13 +177,17 @@ const HeroSection = ({
               <div className="hero-text-inner">
                 <div 
                   className="text-display-large" 
-                  style={{ color: semanticColors.content.text }}
+                  style={{ 
+                    color: semanticColors.content.text
+                  }}
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
                 
                 <div 
                   className="text-title-large" 
-                  style={{ color: semanticColors.content.text }}
+                  style={{ 
+                    color: semanticColors.content.text
+                  }}
                 >
                   {description}
                 </div>

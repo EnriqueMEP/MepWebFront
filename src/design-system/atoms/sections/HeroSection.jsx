@@ -215,8 +215,7 @@ const HeroSection = ({
                 <div 
                   className="text-display-large" 
                   style={{ 
-                    color: semanticColors.content.text,
-                    ...(titleFontSize && { fontSize: titleFontSize })
+                    color: semanticColors.content.text
                   }}
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
@@ -224,8 +223,7 @@ const HeroSection = ({
                 <div 
                   className="text-title-large" 
                   style={{ 
-                    color: semanticColors.content.text,
-                    ...(descriptionFontSize && { fontSize: descriptionFontSize })
+                    color: semanticColors.content.text
                   }}
                 >
                   {finalSubtitle}
