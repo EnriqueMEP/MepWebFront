@@ -57,7 +57,7 @@ const HeroSection = ({
     /* Hero Section - Posición relativa para shapes */
     .hero-section {
       width: 100%;
-      padding: 1.5rem;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -68,7 +68,7 @@ const HeroSection = ({
     
     @media (min-width: ${breakpoints.tablet}) {
       .hero-section {
-        padding: 3.5vw 3.5vw;
+        padding: 0;
         flex-direction: row;
         justify-content: space-between;
         gap: 3.33vw;
@@ -89,7 +89,7 @@ const HeroSection = ({
       .hero-content-wrapper {
         flex-direction: row;
         justify-content: space-between;
-        gap: 3.33vw;
+        gap: 2.33vw;
       }
     }
 
@@ -106,7 +106,7 @@ const HeroSection = ({
     
     @media (min-width: ${breakpoints.tablet}) {
       .hero-text {
-        width: 35.56vw;
+        width: 24.8vw;
         gap: 3.33vw;
         order: 1;
       }

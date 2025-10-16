@@ -405,8 +405,9 @@ const Header = ({
             display: flex !important;
             flex: 1;
             justify-content: flex-end;
-            gap: 0.5vw;
-            margin-right: 2vw;
+            gap: 1.11vw;
+            margin-right: 0;
+            margin-left: auto;
           }
           
           .header-menu-button {

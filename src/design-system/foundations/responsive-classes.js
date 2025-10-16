@@ -724,11 +724,9 @@ export const responsiveClasses = `
   @media (min-width: 768px) {
     .header-component {
       height: 5.56vw;
-      padding: 1.25vw 5.56vw;
+      padding: 1.25vw 13.89vw;
     }
-  }
-
-  .header-container {
+  }  .header-container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -769,15 +767,18 @@ export const responsiveClasses = `
 
   .header-nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-    flex: 0 0 auto;
+    flex: 1;
+    margin-left: auto;
+    margin-right: 1rem;
   }
 
   @media (min-width: 768px) {
     .header-nav {
       gap: 1.11vw;
+      margin-right: 1.11vw;
     }
   }
 

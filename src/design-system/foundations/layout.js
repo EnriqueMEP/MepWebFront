@@ -131,7 +131,7 @@ export const shapes = {
     display: 'block',
     position: 'absolute',
     top: '-1rem', // Bajado un poco más
-    right: '-8rem', // Solo pegado a la pared derecha
+    right: '-12rem', // Más pegado a la derecha
     width: '20rem',
     height: '26rem',
     zIndex: 2,
@@ -140,8 +140,8 @@ export const shapes = {
     desktop: {
       display: 'block',
       position: 'absolute',
-      top: '2.5vw', // Bajado desde -5vw
-      right: '-10vw',
+      top: '5vw', // Bajado desde -5vw
+      right: '-15vw', // Pegado al borde derecho
       width: '40vw',
       height: '52vw',
       zIndex: 2,
@@ -178,7 +178,7 @@ export const shapes = {
     position: 'absolute',
     top: 'auto', // No desde arriba
     bottom: '-8rem', // Desde abajo, más cerca del footer
-    right: '-3rem',
+    right: '-8rem', // Más pegado a la derecha
     width: '20rem', // Mucho más grande para igualar PC
     height: '22rem', // Proporción mantenida pero más grande
     zIndex: -1,
@@ -187,8 +187,8 @@ export const shapes = {
     desktop: {
       display: 'block',
       position: 'absolute',
-      top: '-9.8vw',
-      right: '-9.5vw',
+      top: '-17vw',
+      right: '-17vw', // Pegado al borde derecho
       bottom: 'auto', // Reset bottom en desktop
       width: '42vw',
       height: '45.8vw',
