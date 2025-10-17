@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useComponentColors, useTheme } from '../../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
+import { breakpoints } from '../../foundations/layout.js';
 import ButtonGhost from '../Button/ButtonGhost.jsx';
 import ButtonPrimary from '../Button/ButtonPrimary.jsx';
 import ButtonOutline from '../Button/ButtonOutline.jsx';
@@ -52,6 +53,11 @@ const Header = ({
   // Colores semánticos para el header y sistema de tema
   const headerColors = useComponentColors('header');
   const ghostButtonColors = useComponentColors('buttonGhost');
+  const dropdownColors = {
+    default: useComponentColors('dropdownItemDefault'),
+    hover: useComponentColors('dropdownItemHover'),
+    selected: useComponentColors('dropdownItemSelected')
+  };
   const { theme, toggleTheme } = useTheme();
 
   // Hooks de React Router
@@ -472,13 +478,46 @@ const Header = ({
           }
 
           .mobile-dropdown-items {
-            padding-left: 20px;
+            padding-left: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            padding-top: 8px;
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
-            margin-left: 12px;
+            gap: 0;
+            padding-top: 0;
+            border: none;
+            margin-left: 0;
+          }
+          
+          /* Estilos específicos para botones del dropdown móvil */
+          .mobile-dropdown-items button {
+            background: ${dropdownColors.default.background} !important;
+            border: none !important;
+            border-left: 0.21vw solid ${dropdownColors.default.border} !important;
+            padding: 1.67vw 2.5vw !important;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 2.5vw !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            width: 100% !important;
+            position: relative !important;
+            color: ${dropdownColors.default.text} !important;
+            text-align: left !important;
+            font-family: "Ubuntu-Medium", sans-serif !important;
+            font-size: 2.92vw !important;
+            line-height: 4.17vw !important;
+            font-weight: 500 !important;
+            border-radius: 0 !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+          }
+
+          /* Estado Hover/Selected para botones del dropdown móvil */
+          .mobile-dropdown-items button:hover,
+          .mobile-dropdown-items button.selected,
+          .mobile-dropdown-items button[data-selected="true"] {
+            background: ${dropdownColors.hover.background} !important;
+            border-left: 1px solid ${dropdownColors.hover.border} !important;
+            color: ${dropdownColors.hover.text} !important;
           }
 
           .mobile-login-section {
@@ -503,46 +542,85 @@ const Header = ({
         .dropdown-menu {
           position: absolute;
           top: 100%;
-          left: 0;
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 12px;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-          min-width: 200px;
+          left: 50%;
+          transform: translateX(-50%) translateY(-10px);
+          background-color: transparent;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
+          min-width: 160px;
           z-index: 1000;
           opacity: 0;
           visibility: hidden;
-          transform: translateY(-10px);
           transition: all 0.2s ease-in-out;
-          margin-top: 8px;
+          margin-top: 0;
         }
 
         .dropdown-content {
-          padding: 12px;
+          padding: 0;
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          align-items: center;
+          gap: 0;
+          align-items: stretch;
         }
 
         .nav-item-container:hover .dropdown-menu {
           opacity: 1;
           visibility: visible;
-          transform: translateY(0);
+          transform: translateX(-50%) translateY(0);
         }
 
-        /* ButtonGhost dentro del dropdown centrados con select funcional */
+        /* Estilo Default para botones del dropdown */
         .dropdown-content button {
-          width: auto;
-          justify-content: center;
+          background: ${dropdownColors.default.background} !important;
+          border: none !important;
+          border-left: 1px solid ${dropdownColors.default.border} !important;
+          padding: 8px 12px !important;
+          display: flex !important;
+          flex-direction: row !important;
+          gap: 12px !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+          width: 143px !important;
+          position: relative !important;
+          color: ${dropdownColors.default.text} !important;
+          text-align: left !important;
+          font-family: "Ubuntu-Medium", sans-serif !important;
+          font-size: 14px !important;
+          line-height: 20px !important;
+          font-weight: 500 !important;
+          border-radius: 0 !important;
+          box-sizing: border-box !important;
         }
 
-        /* Asegurar que el estado selected sea visible */
+        /* Media query para tablet - usar VW */
+        @media (min-width: ${breakpoints.tablet}) {
+          .dropdown-menu {
+            min-width: 11.11vw;
+            transform: translateX(-50%) translateY(-0.69vw);
+          }
+          
+          .nav-item-container:hover .dropdown-menu {
+            transform: translateX(-50%) translateY(0);
+          }
+          
+          .dropdown-content button {
+            border-left: 0.07vw solid ${dropdownColors.default.border} !important;
+            padding: 0.56vw 0.83vw !important;
+            gap: 0.83vw !important;
+            width: 9.93vw !important;
+            font-size: 0.97vw !important;
+            line-height: 1.39vw !important;
+          }
+        }
+
+        /* Estado Hover/Selected para botones del dropdown */
+        .dropdown-content button:hover,
         .dropdown-content button.selected,
         .dropdown-content button[data-selected="true"] {
-          border-bottom: 2px solid currentColor !important;
+          background: ${dropdownColors.hover.background} !important;
+          border-left: 1px solid ${dropdownColors.hover.border} !important;
+          color: ${dropdownColors.hover.text} !important;
         }
       `}</style>
     </header>

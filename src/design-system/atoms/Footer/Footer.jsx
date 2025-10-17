@@ -2,20 +2,18 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useComponentColors } from '../../foundations/theme-hooks.js';
 import { injectResponsiveClasses } from '../../foundations/responsive-classes.js';
-import { textStyles } from '../../foundations/typography.js';
-import ButtonGhost from '../Button/ButtonGhost.jsx';
+import { breakpoints } from '../../foundations/layout.js';
 import mepLogo from '../../foundations/img/mep_logo.svg';
 import licenciasImg from '../../foundations/img/licencias.png';
 
 /**
  * Footer - Pie de página principal de la aplicación
  * 
- * Estructura:
- * - Logo MEP arriba a la izquierda
- * - Navegación vertical con botones Ghost MD con iconos left/right
- * 
- * Usa colores semánticos primary-container para background
- * ACTUALIZADO: Usa clases CSS escalables como Home para comportamiento de zoom consistente
+ * Estructura actualizada basada en el diseño foot:
+ * - Layout horizontal: Logo/dirección/licencias | Navegación por columnas
+ * - Sistema VW responsivo
+ * - Colores semánticos adaptativos al tema
+ * - Links con underline y hover
  */
 
 const Footer = ({
@@ -43,10 +41,10 @@ const Footer = ({
       'nosotros': '/nosotros',
       
       // Líneas de negocio
-      'energia': '/energia',
-      'agua': '/agua', 
-      'industria': '/industria',
-      'infraestructuras': '/infraestructura',
+      'energia': '/servicios',
+      'agua': '/servicios', 
+      'industria': '/servicios',
+      'infraestructuras': '/servicios',
       
       // Grupo (sin rutas definidas aún)
       'facilities': null,
@@ -65,12 +63,12 @@ const Footer = ({
     onNavClick(itemId);
   };
 
-  // Datos de navegación organizados por columnas como en la imagen
+  // Datos de navegación organizados por columnas
   const navigationColumns = [
     {
       title: 'Sobre MEP Engineering',
       items: [
-        { id: 'vision', label: 'Ingenieria con visión de futuro' },
+        { id: 'vision', label: 'Ingeniería con visión de futuro' },
         { id: 'nosotros', label: 'Nosotros' }
       ]
     },
@@ -100,183 +98,285 @@ const Footer = ({
     }
   ];
 
-  // Estilos base simplificados - las dimensiones ya están en .footer-component CSS
-  const footerStyles = {
-    background: footerColors.background,
-    ...props.style
-  };
-
-  // Estilos simplificados - usar clases CSS para dimensiones y espaciado
-  const leftSectionStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start'
-  };
-
-  const logoStyles = {
-    position: 'relative',
-    overflow: 'hidden'
-  };
-
-  const addressContainerStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  };
-
-  const addressTextStyles = {
-    color: footerColors.text,
-    fontFamily: textStyles.bodyLarge.fontFamily,
-    fontWeight: textStyles.bodyLarge.fontWeight,
-    lineHeight: textStyles.bodyLarge.lineHeight,
-    margin: 0
-  };
-
-  const licenciasStyles = {
-    // Dimensiones manejadas por CSS class
-  };
-
-  // Estilos para la sección derecha
-  const rightSectionStyles = {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  };
-
-  const columnStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  };
-
-  const columnTitleStyles = {
-    color: footerColors.text,
-    fontFamily: textStyles.titleLargeEmphasis.fontFamily,
-    fontWeight: textStyles.titleLargeEmphasis.fontWeight,
-    lineHeight: textStyles.titleLargeEmphasis.lineHeight,
-    margin: 0
-  };
-
-  const columnItemsStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  };
-
-  // Generar className combinando clases escalables
-  const footerClassName = [
-    'component-base',
-    'footer-component',
-    className
-  ].filter(Boolean).join(' ');
-
   return (
-    <footer
-      className={footerClassName}
-      style={footerStyles}
+    <footer 
+      className={`footer-component ${className}`}
+      style={{ background: footerColors.background, ...props.style }}
       {...props}
     >
-      {/* Estructura para PC/Tablet (>= 768px) */}
-      <div className="footer-desktop">
-        {/* Sección Izquierda */}
-        <div style={leftSectionStyles}>
-          <div className="footer-nav">
-            {/* Logo */}
-            <div style={logoStyles} className="footer-logo">
-              <img 
-                src={mepLogo}
-                alt="MEP Engineering"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        /* FOOTER COMPONENT STYLES - Sistema VW Responsivo */
+        .footer-component {
+          background: ${footerColors.background};
+          padding: 2.78vw 13.89vw;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          height: 21.81vw;
+          position: relative;
+          width: 100%;
+          box-sizing: border-box;
+        }
 
-            {/* Dirección */}
-            <div style={addressContainerStyles} className="footer-address-gap">
-              <p style={addressTextStyles} className="footer-address-text">Calle Diego LLorente, 40.</p>
-              <p style={addressTextStyles} className="footer-address-text">Los Palacios y Villafranca.</p>
-              <p style={addressTextStyles} className="footer-address-text">41720 Sevilla</p>
-            </div>
-          </div>
+        /* Sección izquierda con logo, dirección e imagen de licencias */
+        .footer-left-section {
+          display: flex;
+          flex-direction: column;
+          gap: 1.67vw;
+          align-items: flex-start;
+          justify-content: center;
+          flex-shrink: 0;
+          position: relative;
+        }
 
-          {/* Imagen de licencias */}
-          <img 
-            src={licenciasImg}
-            alt="Licencias"
-            style={licenciasStyles}
-            className="footer-licencias"
-          />
-        </div>
+        .footer-logo-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1.67vw;
+          align-items: flex-start;
+          justify-content: center;
+          width: 100%;
+          flex-shrink: 0;
+          position: relative;
+        }
 
-        {/* Sección Derecha - Columnas de navegación */}
-        <div style={rightSectionStyles} className="footer-right-gap">
-          {navigationColumns.map((column, index) => (
-            <div key={index} style={columnStyles} className="footer-column-gap">
-              <h3 style={columnTitleStyles} className="footer-column-title">{column.title}</h3>
-              <div style={columnItemsStyles} className="footer-column-items-gap">
-                {column.items.map((item) => (
-                  <ButtonGhost
-                    key={item.id}
-                    size="md"
-                    selected={selectedItem === item.id}
-                    disabled={false}
-                    onClick={() => handleNavigation(item.id)}
-                  >
-                    {item.label}
-                  </ButtonGhost>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+        .footer-logo {
+          flex-shrink: 0;
+          width: 5.76vw;
+          height: 2.22vw;
+          position: relative;
+          overflow: hidden;
+        }
 
-      {/* Estructura para Móvil (< 768px) - Completamente nueva */}
-      <div className="footer-mobile">
-        {/* Navegación primero */}
-        <div className="footer-mobile-navigation">
-          {navigationColumns.map((column, index) => (
-            <div key={index} className="footer-mobile-column">
-              <h3 className="footer-mobile-title">{column.title}</h3>
-              <div className="footer-mobile-buttons">
-                {column.items.map((item) => (
-                  <ButtonGhost
-                    key={item.id}
-                    size="md"
-                    selected={selectedItem === item.id}
-                    disabled={false}
-                    onClick={() => handleNavigation(item.id)}
-                  >
-                    {item.label}
-                  </ButtonGhost>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        .footer-address-container {
+          display: flex;
+          flex-direction: column;
+          gap: 0.28vw;
+          align-items: flex-start;
+          justify-content: flex-start;
+          width: 100%;
+          flex-shrink: 0;
+          position: relative;
+        }
 
-        {/* Logo y dirección al final */}
-        <div className="footer-mobile-info">
-          <div className="footer-mobile-logo">
+        .footer-address-line {
+          color: ${footerColors.text};
+          text-align: left;
+          font-family: "Roboto-Regular", sans-serif;
+          font-size: 0.97vw;
+          line-height: 1.39vw;
+          font-weight: 400;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin: 0;
+        }
+
+        .footer-licencias {
+          flex-shrink: 0;
+          width: 20.56vw;
+          height: 3.89vw;
+          position: relative;
+          object-fit: cover;
+        }
+
+        /* Sección derecha con navegación */
+        .footer-right-section {
+          display: flex;
+          flex-direction: row;
+          gap: 2.78vw;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-shrink: 0;
+          position: relative;
+        }
+
+        .footer-column {
+          display: flex;
+          flex-direction: column;
+          gap: 1.67vw;
+          align-items: flex-start;
+          justify-content: center;
+          flex-shrink: 0;
+          position: relative;
+        }
+
+        .footer-column-title {
+          color: ${footerColors.text};
+          text-align: left;
+          font-family: "Ubuntu-Bold", sans-serif;
+          font-size: 1.11vw;
+          line-height: 1.67vw;
+          font-weight: 700;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin: 0;
+        }
+
+        .footer-column-links {
+          display: flex;
+          flex-direction: column;
+          gap: 1.11vw;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-shrink: 0;
+          position: relative;
+        }
+
+        .footer-link {
+          color: ${footerColors.text};
+          text-align: left;
+          font-family: "Ubuntu-Medium", sans-serif;
+          font-size: 0.97vw;
+          line-height: 1.39vw;
+          font-weight: 500;
+          text-decoration: none;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .footer-link:hover {
+          opacity: 0.8;
+        }
+
+        /* Media query para tablet - mantener VW */
+        @media (min-width: ${breakpoints.tablet}) {
+          .footer-component {
+            padding: 2.78vw 13.89vw;
+            height: 21.81vw;
+          }
+        }
+
+        /* Responsive: Mobile */
+        @media (max-width: 767px) {
+          .footer-component {
+            padding: 8vw 4vw;
+            flex-direction: column;
+            height: auto;
+            gap: 8vw;
+            align-items: center;
+            text-align: center;
+          }
+
+          .footer-left-section {
+            gap: 6vw;
+            align-items: center;
+            width: 100%;
+          }
+
+          .footer-logo-container {
+            align-items: center;
+            gap: 6vw;
+          }
+
+          .footer-logo {
+            width: 25vw;
+            height: 10vw;
+          }
+
+          .footer-address-container {
+            align-items: center;
+            gap: 1.5vw;
+          }
+
+          .footer-address-line {
+            font-size: 4vw;
+            line-height: 6vw;
+            text-align: center;
+          }
+
+          .footer-licencias {
+            width: 70vw;
+            height: 14vw;
+          }
+
+          .footer-right-section {
+            flex-direction: column;
+            gap: 8vw;
+            width: 100%;
+            align-items: center;
+          }
+
+          .footer-column {
+            gap: 4vw;
+            align-items: center;
+            width: 100%;
+          }
+
+          .footer-column-title {
+            font-size: 5vw;
+            line-height: 7vw;
+            text-align: center;
+          }
+
+          .footer-column-links {
+            gap: 3.5vw;
+            align-items: center;
+          }
+
+          .footer-link {
+            font-size: 4.5vw;
+            line-height: 6.5vw;
+            text-align: center;
+            padding: 1vw 2vw;
+            min-height: 6vw;
+          }
+        }
+      `}} />
+      
+      {/* Sección Izquierda: Logo, Dirección y Licencias */}
+      <div className="footer-left-section">
+        <div className="footer-logo-container">
+          <div className="footer-logo">
             <img 
-              src={mepLogo}
-              alt="MEP Engineering"
+              src={mepLogo} 
+              alt="MEP Engineering Logo" 
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
-          <div className="footer-mobile-address">
-            <p>Calle Diego LLorente, 40.</p>
-            <p>Los Palacios y Villafranca.</p>
-            <p>41720 Sevilla</p>
+          <div className="footer-address-container">
+            <div className="footer-address-line">Calle Diego LLorente, 40.</div>
+            <div className="footer-address-line">Los Palacios y Villafranca.</div>
+            <div className="footer-address-line">41720 Sevilla</div>
           </div>
-          <img 
-            className="footer-mobile-licenses"
-            src={licenciasImg}
-            alt="Licencias"
-          />
         </div>
+        <img 
+          src={licenciasImg} 
+          alt="Licencias y certificaciones" 
+          className="footer-licencias"
+        />
+      </div>
+
+      {/* Sección Derecha: Navegación por Columnas */}
+      <div className="footer-right-section">
+        {navigationColumns.map((column, columnIndex) => (
+          <div key={columnIndex} className="footer-column">
+            <div className="footer-column-title">{column.title}</div>
+            <div className="footer-column-links">
+              {column.items.map((item) => (
+                <button
+                  key={item.id}
+                  className="footer-link"
+                  onClick={() => handleNavigation(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </footer>
   );

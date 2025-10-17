@@ -1,0 +1,34 @@
+.variant-hover,
+.variant-hover * {
+  box-sizing: border-box;
+}
+.variant-hover {
+  background: var(--semantic-color-primary-primary-hover, #294a20);
+  border-style: solid;
+  border-color: var(--semantic-color-primary-on-primary, #f2f8f0);
+  border-width: 0px 0px 0px 1px;
+  padding: var(--semantic-padding-padding-04, 8px)
+    var(--semantic-padding-padding-05, 12px)
+    var(--semantic-padding-padding-04, 8px)
+    var(--semantic-padding-padding-05, 12px);
+  display: flex;
+  flex-direction: row;
+  gap: var(--semantic-gap-gap-05, 12px);
+  align-items: center;
+  justify-content: flex-start;
+  width: 143px;
+  position: relative;
+}
+.menu-item {
+  color: var(--semantic-color-primary-on-primary, #f2f8f0);
+  text-align: left;
+  font-family: var(
+    --cactus-label-large-font-family,
+    "Ubuntu-Medium",
+    sans-serif
+  );
+  font-size: var(--cactus-label-large-font-size, 14px);
+  line-height: var(--cactus-label-large-line-height, 20px);
+  font-weight: var(--cactus-label-large-font-weight, 500);
+  position: relative;
+}

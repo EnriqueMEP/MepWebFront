@@ -351,7 +351,26 @@ export const lightTheme = {
   },
 
   // ==========================================
-  // 32. BADGE PRIMARY - Badge primario con estados
+  // 32. DROPDOWN MENU ITEMS - Items del menú desplegable
+  // ==========================================
+  dropdownItemDefault: {
+    background: primitiveColors.olive[300], // #92c482
+    text: primitiveColors.olive[600],       // #356028
+    border: primitiveColors.olive[600]      // #356028
+  },
+  dropdownItemHover: {
+    background: primitiveColors.olive[700], // #294a20
+    text: primitiveColors.olive[50],        // #f2f8f0
+    border: primitiveColors.olive[50]       // #f2f8f0
+  },
+  dropdownItemSelected: {
+    background: primitiveColors.olive[700], // #294a20
+    text: primitiveColors.olive[50],        // #f2f8f0
+    border: primitiveColors.olive[50]       // #f2f8f0
+  },
+
+  // ==========================================
+  // 33. BADGE PRIMARY - Badge primario con estados
   // ==========================================
   badgePrimary: {
     backgroundColor: primitiveColors.olive[500], // #3f762f
@@ -728,7 +747,26 @@ export const darkTheme = {
   },
 
   // ==========================================
-  // 32. BADGE PRIMARY - Badge primario (dark mode)
+  // 32. DROPDOWN MENU ITEMS - Items del menú desplegable (dark mode)
+  // ==========================================
+  dropdownItemDefault: {
+    background: primitiveColors.olive[600], // #356028 - más oscuro en dark
+    text: primitiveColors.olive[300],       // #92c482 - más brillante en dark
+    border: primitiveColors.olive[300]      // #92c482
+  },
+  dropdownItemHover: {
+    background: primitiveColors.olive[500], // #3f762f - hover más claro
+    text: primitiveColors.olive[100],       // #c8ddc0 - texto muy brillante
+    border: primitiveColors.olive[100]      // #c8ddc0
+  },
+  dropdownItemSelected: {
+    background: primitiveColors.olive[500], // #3f762f - selected igual que hover
+    text: primitiveColors.olive[100],       // #c8ddc0 - texto muy brillante
+    border: primitiveColors.olive[100]      // #c8ddc0
+  },
+
+  // ==========================================
+  // 33. BADGE PRIMARY - Badge primario (dark mode)
   // ==========================================
   badgePrimary: {
     backgroundColor: primitiveColors.olive[600], // #356028 - más brillante en dark
@@ -816,6 +854,12 @@ export const componentRoleMapping = {
   buttonOutlineHover: 'buttonOutlineHover',
   buttonOutlineSelected: 'buttonOutlineSelected',
   buttonOutlineDisabled: 'buttonOutlineDisabled',
+
+  // Dropdown menu items con estados
+  dropdownItem: 'dropdownItemDefault',
+  dropdownItemDefault: 'dropdownItemDefault',
+  dropdownItemHover: 'dropdownItemHover',
+  dropdownItemSelected: 'dropdownItemSelected',
 
   // Badge con variantes
   badgePrimary: 'badgePrimary',

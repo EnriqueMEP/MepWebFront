@@ -1,0 +1,29 @@
+/* Variables CSS específicas para botones dropdown del header */
+:root {
+  /* Colores default del dropdown */
+  --semantic-color-primary-primary-container: #92c482;
+  --semantic-color-primary-on-primary-container: #356028;
+  
+  /* Colores hover/selected del dropdown */
+  --semantic-color-primary-primary-hover: #294a20;
+  --semantic-color-primary-on-primary: #f2f8f0;
+  
+  /* Padding y gaps */
+  --semantic-padding-padding-04: 8px;
+  --semantic-padding-padding-05: 12px;
+  --semantic-gap-gap-05: 12px;
+  
+  /* Typography */
+  --cactus-label-large-font-family: "Ubuntu-Medium", sans-serif;
+  --cactus-label-large-font-size: 14px;
+  --cactus-label-large-line-height: 20px;
+  --cactus-label-large-font-weight: 500;
+}
+
+/* Variables CSS para modo oscuro */
+[data-theme="dark"] {
+  --semantic-color-primary-primary-container: #356028;
+  --semantic-color-primary-on-primary-container: #92c482;
+  --semantic-color-primary-primary-hover: #294a20;
+  --semantic-color-primary-on-primary: #f2f8f0;
+}
